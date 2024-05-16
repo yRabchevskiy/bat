@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+app-root {
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    flex: 1 1 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
