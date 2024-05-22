@@ -8,22 +8,18 @@ import { SoldiersService } from '../../Services/soldiers.service';
   styleUrl: './soldiers.component.scss',
 })
 export class SoldiersComponent implements OnInit {
-  soldiers!: ISoldier[];
-  visible: boolean = false;
+  // soldiers: ISoldier[] = [];
+  // visible: boolean = false;
+  // constructor(private _SoldiersService: SoldiersService) {
+  //   this._SoldiersService.soldiersData.subscribe(
+  //     (data) => (this.soldiers = data)
+  //   );
+  // }
 
-  constructor(private _SoldiersService: SoldiersService) {}
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.getData();
-  }
+  // private getData(): void {
+  //   this._SoldiersService.getSoldiers();
+  // }
 
-  showDialog() {
-    this.visible = true;
-  }
-
-  private getData(): void {
-    this._SoldiersService
-      .getSoldiers()
-      .subscribe((data: ISoldier[]) => (this.soldiers = data));
-  }
 }

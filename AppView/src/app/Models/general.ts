@@ -1,3 +1,7 @@
+export interface IListItem<V> {
+  label: string;
+  value: V;
+}
 export enum BLOOD_TYPES {
   O_NEGATIVE = '0(-)',
   O_POSITIVE = '0(+)',
@@ -7,7 +11,7 @@ export enum BLOOD_TYPES {
   B_POSITIVE = 'B(+)',
   AB_NEGATIVE = 'AB(-)',
   AB_POSITIVE = 'AB(+)',
-  UNKNOWN = 'UNKNOWN',
+  UNKNOWN = 'Невідома',
 }
 
 export enum RANK_TYPES {
@@ -31,7 +35,9 @@ export enum RANK_TYPES {
   BRIGADIER_GENERAL = 'Бригадний генерал',
   MAJOR_GENERAL = 'Генерал майор',
   LIEUTENANT_GENERAL = 'Генерал лейтинант',
+  COLONEL_GENERAL = 'Генерал полковник',
   GENERAL = 'Генерал',
+  UNKNOWN = 'Невідомо',
 }
 
 export enum SEX_TYPE {
@@ -46,4 +52,10 @@ export enum TYPE_OF_DISEASE {
   MUTILATION = "Каліцтво",
   SELF_MUTILATION = "Самокаліцтво",
   CONTUSION = "Контузія",
+}
+
+export enum TYPE_OF_VISIT {
+  AMBULATORY = "Амбулаторний",
+  HOSPITALIZATION = "Госпіталізація",
+  EXAMINATION = "Обстеження",
 }

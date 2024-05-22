@@ -1,14 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ISoldier } from '../Models/soldiers';
 import { DataService } from './data.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SoldiersService {
+  soldiers = new BehaviorSubject<ISoldier[]>([]);
 
-    constructor(private _service: DataService) {}
+  soldiersData = this.soldiers.asObservable();
 
-    public getSoldiers(): Observable<ISoldier[]> {
-        return this._service.getData<ISoldier[]>('/soldier');
-    }
+  constructor(private _service: DataService) {}
+
+  public getSoldiers() {
+    this._service.get<ISoldier[]>('/soldier').subscribe((res) => {
+      console.log(res)
+      this.soldiers.next(res);
+    });
+  }
+  public postSoldier(data: ISoldier) {
+    return this._service
+      .post<ISoldier>('/soldier', data)
+      .subscribe((res) =>
+        this.soldiers.next([...this.soldiers.getValue(), res])
+      );
+  }
+
+  public deleteSoldier(id: string) {
+    return this._service
+      .delete<ISoldier>('/soldier', id)
+      .subscribe((res) => {
+        this.soldiers.next([...this.soldiers.getValue().filter(it => it._id !== res.id)])
+      });
+  }
+
+  // function to update the value of the BehaviorSubject
+  // updateQuote(newQuote: string){
+  //   this.qoute.next(newQuote);
+  // }
 }
