@@ -1,7 +1,8 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 import { TYPE_OF_DISEASE, TYPE_OF_VISIT } from "./enum_types/general";
 
-interface IVisit {
+interface IVisitFields {
+  _id?: string;
   date_in?: Date;
   date_out?: Date;
   pre_diagnosis?: string;
@@ -13,7 +14,18 @@ interface IVisit {
   recomendation?: string;
 }
 
+interface IVisit extends IVisitFields {
+  soldier: ObjectId;
+}
+
+// interface IVisitPostData extends IVisitFields {
+//   soldier_id?: string;
+//   soldier_full_name?: string;
+// }
+
 interface IVisitDoc extends mongoose.Document {
+  _id?: string;
+  soldier: ObjectId;
   date_in?: Date;
   date_out?: Date;
   pre_diagnosis?: string;
@@ -29,6 +41,10 @@ interface IVisitModel extends mongoose.Model<IVisitDoc> {
   createObj(attr: IVisit): IVisitDoc;
 }
 const visitSchema = new mongoose.Schema<IVisit>({
+  soldier: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Soldier'
+  },
   date_in: { type: Date },
   date_out: { type: Date },
   pre_diagnosis: { type: String },
@@ -57,6 +73,10 @@ const visitSchema = new mongoose.Schema<IVisit>({
 
 visitSchema.statics.createObj = (attr: IVisit) => new Visit(attr);
 
-const Visit = mongoose.model<any, IVisitModel>("Visits", visitSchema);
+const Visit = mongoose.model<any, IVisitModel>("Visit", visitSchema);
 
-export { IVisit, Visit };
+export {
+  IVisit,
+  // IVisitPostData,
+  Visit
+};

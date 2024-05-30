@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ISoldier } from '../../../Models/soldiers';
 import { SoldiersService } from '../../../Services/soldiers.service';
+import { SEX_TYPE } from '../../../Models/general';
 
 @Component({
   selector: 'app-soldiers-table',
@@ -8,23 +9,27 @@ import { SoldiersService } from '../../../Services/soldiers.service';
   styleUrl: './soldiers-table.component.scss',
 })
 export class SoldiersTableComponent {
-  soldiers: ISoldier[] = [];
+  data: ISoldier[] = [];
+  showCreateForm: boolean = false;
+  readonly set_types = SEX_TYPE;
   constructor(private _SoldiersService: SoldiersService) {
     this._SoldiersService.soldiersData.subscribe(
-      (data) => (this.soldiers = data)
+      (_data: ISoldier[]) => (this.data = _data)
     );
   }
 
-  ngOnInit() {
-    this.getData();
-  }
+  ngOnInit() {}
 
   deleteSoldier($event: ISoldier) {
     if (!$event._id) return;
     this._SoldiersService.deleteSoldier($event._id);
   }
 
-  private getData(): void {
-    this._SoldiersService.getSoldiers();
+  showCreateSoldiersForm() {
+    this.showCreateForm = true;
+  }
+
+  closeCreateSoldiersForm() {
+    this.showCreateForm = false;
   }
 }

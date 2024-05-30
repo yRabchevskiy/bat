@@ -1,6 +1,8 @@
 <div class="page_header">
-  <a routerLink="./create" routerLinkActive="active">Додати солдата</a>
+  <!-- <a routerLink="./create" routerLinkActive="active">Додати солдата</a> -->
+  <app-tabs [tabs]="tabs" (onSelectTab)="onSelectTab($event)" [selectedTab]="selectedTab"/>
 </div>
 <div class="page_body">
-  <router-outlet></router-outlet>
+  <app-soldiers-table *ngIf="selectedTab === tabs[0].id" />
+  <app-hospitalisation *ngIf="selectedTab === tabs[1].id" />
 </div>

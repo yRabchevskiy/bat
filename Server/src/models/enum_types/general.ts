@@ -39,6 +39,7 @@ export enum RANK_TYPES {
 export enum SEX_TYPE {
   MALE = "Male",
   FEMALE = "Female",
+  UNKNOWN = "Невідома"
 }
 
 export enum TYPE_OF_DISEASE {

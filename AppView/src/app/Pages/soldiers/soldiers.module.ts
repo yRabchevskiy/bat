@@ -17,11 +17,16 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputMaskModule } from 'primeng/inputmask';
+import { TabViewModule } from 'primeng/tabview';
+import { AccordionModule } from 'primeng/accordion';
+import { GeneralModule } from '../../Components/General/general.module';
+import { HospitalisationComponent } from './hospitalisation/hospitalisation.component';
 @NgModule({
   declarations: [
     SoldiersComponent,
     CreateSoldierFormComponent,
-    SoldiersTableComponent
+    SoldiersTableComponent,
+    HospitalisationComponent
   ],
   imports: [
     CommonModule,
@@ -32,12 +37,15 @@ import { InputMaskModule } from 'primeng/inputmask';
     CalendarModule,
     InputMaskModule,
     ButtonModule,
+    TabViewModule,
+    AccordionModule,
     InputTextModule,
     DropdownModule,
     InputTextareaModule,
     FormsModule,
     ReactiveFormsModule,
-    SidebarModule
+    SidebarModule,
+    GeneralModule,
   ],
   providers: [SoldiersService]
 })

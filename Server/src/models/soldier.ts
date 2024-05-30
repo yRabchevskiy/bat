@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import { BLOOD_TYPES, RANK_TYPES, SEX_TYPE } from "./enum_types/general";
+// import { IHospitalizationPostData } from "./hospitalization";
+import { createSoldierByVisit } from "../helpers/soldier.helper";
 
 interface IVlc {
-  number: string;
-  date: string;
+  vlc_number: string;
+  vlc_date: Date;
   hospital_name: string;
   diagnosis: string;
   recomendation: string;
@@ -16,6 +18,7 @@ interface ISoldierEditionalData {
   summoned?: string;
   summoned_date?: string;
   unit?: string;
+  description?: string;
 }
 
 interface IRank {
@@ -24,6 +27,7 @@ interface IRank {
 }
 
 interface ISoldier {
+  _id?: string;
   full_name: string;
   birthday: Date;
   phone?: string;
@@ -33,6 +37,7 @@ interface ISoldier {
 }
 
 interface ISoldierDoc extends mongoose.Document {
+  _id: string;
   full_name: string;
   birthday: Date;
   phone?: string;
@@ -43,10 +48,11 @@ interface ISoldierDoc extends mongoose.Document {
 
 interface ISoldierModel extends mongoose.Model<ISoldierDoc> {
   createObj(attr: ISoldier): ISoldierDoc;
+  createByVisit(name: string): ISoldierDoc;
 }
 const soldierSchema = new mongoose.Schema<ISoldier>({
   full_name: { type: String, require: true },
-  birthday: { type: Date, require: true },
+  birthday: { type: Date },
   phone: { type: String },
   rank: [
     {
@@ -78,7 +84,7 @@ const soldierSchema = new mongoose.Schema<ISoldier>({
           RANK_TYPES.GENERAL,
           RANK_TYPES.UNKNOWN,
         ],
-        default: RANK_TYPES.SOLDIER
+        default: RANK_TYPES.SOLDIER,
       },
     },
   ],
@@ -97,29 +103,31 @@ const soldierSchema = new mongoose.Schema<ISoldier>({
         BLOOD_TYPES.UNKNOWN,
       ],
       default: BLOOD_TYPES.UNKNOWN,
-    },   
+    },
     sex_type: {
       type: String,
-      enum: [SEX_TYPE.MALE, SEX_TYPE.FEMALE],
-      default: SEX_TYPE.MALE,
+      enum: [SEX_TYPE.MALE, SEX_TYPE.FEMALE, SEX_TYPE.UNKNOWN],
+      default: SEX_TYPE.UNKNOWN,
     },
     address: { type: String },
     summoned: { type: String },
     summoned_date: { type: String },
     unit: { type: String },
+    description: { type: String },
   },
   vlc: [
     {
-      number: { type: String, required: true },
-      date: { type: Date, required: true },
-      hospital_name: { type: String, required: true },
-      diagnosis: { type: String, required: true },
-      recomendation: { type: String, required: true },
-    }
+      vlc_number: { type: String },
+      vlc_date: { type: Date },
+      hospital_name: { type: String },
+      diagnosis: { type: String },
+      recomendation: { type: String },
+    },
   ],
 });
 
 soldierSchema.statics.createObj = (attr: ISoldier) => new Soldier(attr);
+soldierSchema.statics.createByVisit = (name: string) => new Soldier(createSoldierByVisit(name));
 
 const Soldier = mongoose.model<any, ISoldierModel>("Soldier", soldierSchema);
 

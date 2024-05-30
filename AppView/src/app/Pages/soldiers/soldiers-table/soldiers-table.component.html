@@ -1,34 +1,52 @@
-<p-table class="table" [value]="soldiers">
-    <!-- <ng-template pTemplate="caption">
-        <p-button icon="pi pi-refresh" (onClick)="showPanel()" />
-    </ng-template> -->
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Name</th>
-            <th>Birthday</th>
-            <th>Rank</th>
-            <th>Address</th>
-            <th>Blood Type</th>
-            <th></th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-item>
-        <tr>
-            <td>{{ item.full_name }}</td>
-            <td>{{ item.birthday }}</td>
-            <td>{{ item.rank.type }}</td>
-            <td>{{ item.address }}</td>
-            <td>{{ item.blood_type }}</td>
-            <td>
-                <button>Add</button>
-                <button (click)="deleteSoldier(item)">Delete</button>
-            </td>
-        </tr>
-    </ng-template>
+<p-table class="table" [value]="data" >
+  <ng-template pTemplate="caption">
+    <div>
+      <button (click)="showCreateSoldiersForm()">Add</button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>№</th>
+      <th>ПІБ</th>
+      <th style="width: 120px">Дата народження</th>
+      <th style="width: 200px">Звання</th>
+      <th style="width: 160px">Телефон</th>
+      <th style="width: 200px">Місце проживання</th>
+      <th style="width: 80px">Група крові</th>
+      <th style="width: 60px">Стать</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ item.full_name }}</td>
+      <td>{{ item.birthday | date:'dd/MM/yyyy' }}</td>
+      <td>{{ item.rank[item.rank.length - 1].type }}</td>
+      <td>{{ item.phone }}</td>
+      <td>{{ item.editional_data.address }}</td>
+      <td>{{ item.editional_data.blood_type }}</td>
+      <td>{{ item.editional_data.sex_type === set_types.MALE ? 'Ч' : 'Ж' }}</td>
+      <td>
+        <button (click)="deleteSoldier(item)">Delete</button>
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
-<!-- <p-sidebar [(visible)]="visible" position="right" class="sidebar" [showCloseIcon]="false">
-    <ng-template pTemplate="header">
-        <div class="sidebar-header">Створити солдата</div>
-    </ng-template>
-    <app-create-soldier-form (visibleChange)="closePanel()" />
-</p-sidebar> -->
+<p-dialog
+  [modal]="true"
+  [closeOnEscape]="false"
+  [closable]="false"
+  [visible]="showCreateForm"
+  [style]="{
+    width: '100vw',
+    height: 'calc(100vh - 32px)',
+    maxHeight: 'none',
+    borderRadius: 0,
+    boxShadow: 'none'
+  }"
+  position="bottom"
+  [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
+>
+  <app-create-soldier-form (onClose)="closeCreateSoldiersForm()" />
+</p-dialog>

@@ -1,11 +1,23 @@
-import { BLOOD_TYPES, RANK_TYPES, SEX_TYPE } from './general';
+import { BLOOD_TYPES, RANK_TYPES, SEX_TYPE, TYPE_OF_DISEASE, TYPE_OF_VISIT } from './general';
 
 export interface IVlc {
-  number: string;
-  date: string;
+  vlc_number: string;
+  vlc_date: Date;
   hospital_name: string;
   diagnosis: string;
   recomendation: string;
+}
+
+export interface IVisit {
+  date_in?: Date;
+  date_out?: Date;
+  pre_diagnosis?: string;
+  final_diagnosis?: string;
+  hospital_name?: string;
+  type_of_visit: TYPE_OF_VISIT;
+  type_of_disease: TYPE_OF_DISEASE;
+  complaint?: string;
+  recomendation?: string;
 }
 
 export interface ISoldierEditionalData {
@@ -15,6 +27,7 @@ export interface ISoldierEditionalData {
   summoned?: string;
   summoned_date?: string;
   unit?: string;
+  description?: string;
 }
 
 export interface IRank {

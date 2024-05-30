@@ -31,7 +31,14 @@ export class SoldiersService {
     return this._service
       .delete<ISoldier>('/soldier', id)
       .subscribe((res) => {
-        this.soldiers.next([...this.soldiers.getValue().filter(it => it._id !== res.id)])
+        if (!res.id) return;
+        const arr: ISoldier[] = this.soldiers.getValue();
+
+        arr.forEach((item, index) => {
+          if (item._id === res.id) { arr.splice(index, 1); }
+        });
+
+        this.soldiers.next(arr);
       });
   }
 

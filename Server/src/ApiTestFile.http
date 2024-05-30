@@ -1,10 +1,39 @@
-GET http://localhost:3000/api/soldier
+@baseUrl = http://localhost:3000
+@visitType = Амбулаторний
+
 ###
 
-POST http://localhost:3000/api/soldier
+GET {{baseUrl}}/soldier
+###
+
+POST {{baseUrl}}/soldier
 content-type: application/json
 
 {
     "name": "sample",
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+DELETE {{baseUrl}}/soldier/:id
+
+###
+GET {{baseUrl}}/visit/byType/{{visitType}}
+
+###
+
+POST {{baseUrl}}/visit
+content-type: application/json
+
+{
+    "soldier": "6658514e75e5aaf0d261b668",
+    "date_in": "Wed, 21 Oct 2015 18:27:50 GMT",
+    "date_out": null,
+    "pre_diagnosis": "травматолог",
+    "final_diagnosis": "",
+    "hospital_name": "",
+    "type_of_visit": "Амбулаторний",
+    "type_of_disease": "Хвороба",
+    "complaint": "",
+    "recomendation": ""
 }

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  private apiURL = 'http://localhost:3000/api';
+  private apiURL = 'http://localhost:3000';
   requestOptions: any = {
     headers: {
       'Content-Type': 'application/json',
@@ -23,8 +23,8 @@ export class DataService {
     return this.http.post<T>(this.apiURL + url, data, this.createParam());
   }
   public delete<T>(url: string, _id: string): Observable<any> {
-    const param = this.createParam({ id: _id });
-    return this.http.delete<T>(this.apiURL + url, param );
+    const param = this.createParam();
+    return this.http.delete<T>(this.apiURL + url + `/${_id}`, param );
   }
 
   private createParam(obj?: Object) {

@@ -15,6 +15,7 @@ export const BLOOD_TYPES_LIST: IListItem<BLOOD_TYPES>[] = [
 export const SEX_TYPE_LIST: IListItem<SEX_TYPE>[] = [
     { label: 'Чоловіча', value: SEX_TYPE.MALE },
     { label: 'Жіноча', value: SEX_TYPE.FEMALE },
+    { label: 'Невідома', value: SEX_TYPE.UNKNOWN }
 ];
 
 export const TYPE_OF_DISEASE_LIST: IListItem<TYPE_OF_DISEASE>[] = [
