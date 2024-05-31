@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HospitalizationsService } from '../../../Services/hospitalization.service';
+import { VisitsService } from '../../../Services/visit.service';
+import { IVisit } from '../../../Models/soldiers';
+import { TYPE_OF_VISIT } from '../../../Models/general';
 
 @Component({
   selector: 'app-hospitalisation',
@@ -7,11 +9,11 @@ import { HospitalizationsService } from '../../../Services/hospitalization.servi
   styleUrl: './hospitalisation.component.scss'
 })
 export class HospitalisationComponent implements OnInit {
-  data: any[] = [];
+  data: IVisit[] = [];
 
-  constructor(private _dataService: HospitalizationsService) {
-    this._dataService.hospitalizationsData.subscribe(
-      (_data: any[]) => {
+  constructor(private _dataService: VisitsService) {
+    this._dataService.visitsData.subscribe(
+      (_data: IVisit[]) => {
         this.data = _data
       }
     );
@@ -22,6 +24,6 @@ export class HospitalisationComponent implements OnInit {
   }
 
   private getData(): void {
-    this._dataService.getHospitalizations();
+    this._dataService.getVisits(TYPE_OF_VISIT.EXAMINATION);
   }
 }

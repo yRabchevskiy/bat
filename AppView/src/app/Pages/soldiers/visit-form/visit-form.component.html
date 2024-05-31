@@ -1,0 +1,17 @@
+<form
+  [formGroup]="visitForm"
+  (ngSubmit)="save()"
+  novalidate
+  class="form_wrapper"
+>
+  <div class="form_footer">
+    <button
+      pButton
+      type="button"
+      label="Відмінити"
+      severity="secondary"
+      (click)="cancel()"
+    ></button>
+    <button pButton type="submit" label="Зберегти" [disabled]="visitForm.invalid"></button>
+  </div>
+</form>

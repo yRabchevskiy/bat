@@ -9,6 +9,7 @@ export interface IVlc {
 }
 
 export interface IVisit {
+  soldier: ISoldier;
   date_in?: Date;
   date_out?: Date;
   pre_diagnosis?: string;
@@ -26,6 +27,7 @@ export interface ISoldierEditionalData {
   address?: string;
   summoned?: string;
   summoned_date?: string;
+  position?: string;
   unit?: string;
   description?: string;
 }

@@ -19,7 +19,7 @@ export const SEX_TYPE_LIST: IListItem<SEX_TYPE>[] = [
 ];
 
 export const TYPE_OF_DISEASE_LIST: IListItem<TYPE_OF_DISEASE>[] = [
-    { label: 'Хвороба', value: TYPE_OF_DISEASE.DISEASE },
+    { label: 'Захворювання', value: TYPE_OF_DISEASE.DISEASE },
     { label: 'Травма', value: TYPE_OF_DISEASE.TRAUMA },
     { label: 'Поранення', value: TYPE_OF_DISEASE.WOUND },
     { label: 'Контузія', value: TYPE_OF_DISEASE.CONTUSION },

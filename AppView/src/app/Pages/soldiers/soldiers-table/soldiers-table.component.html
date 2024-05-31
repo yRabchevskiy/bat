@@ -1,7 +1,7 @@
 <p-table class="table" [value]="data" >
   <ng-template pTemplate="caption">
     <div>
-      <button (click)="showCreateSoldiersForm()">Add</button>
+      <button (click)="openCreateSoldierForm()">Add</button>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
@@ -28,6 +28,7 @@
       <td>{{ item.editional_data.blood_type }}</td>
       <td>{{ item.editional_data.sex_type === set_types.MALE ? 'Ч' : 'Ж' }}</td>
       <td>
+        <button (click)="addVisit(item)">+ Госп</button>
         <button (click)="deleteSoldier(item)">Delete</button>
       </td>
     </tr>
@@ -48,5 +49,22 @@
   position="bottom"
   [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
 >
-  <app-create-soldier-form (onClose)="closeCreateSoldiersForm()" />
+  <app-create-soldier-form (onClose)="closeCreateSoldierForm()" />
+</p-dialog>
+<p-dialog
+  [modal]="true"
+  [closeOnEscape]="false"
+  [closable]="false"
+  [visible]="showVisitForm"
+  [style]="{
+    width: '100vw',
+    height: 'calc(100vh - 32px)',
+    maxHeight: 'none',
+    borderRadius: 0,
+    boxShadow: 'none'
+  }"
+  position="bottom"
+  [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
+>
+  <app-visit-form (onClose)="closeVisitForm()" />
 </p-dialog>

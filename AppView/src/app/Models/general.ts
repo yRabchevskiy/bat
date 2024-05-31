@@ -41,22 +41,22 @@ export enum RANK_TYPES {
 }
 
 export enum SEX_TYPE {
-    MALE = 'Male',
-    FEMALE = 'Female',
-    UNKNOWN = 'Невідома'
+  MALE = 'Male',
+  FEMALE = 'Female',
+  UNKNOWN = 'Невідома',
 }
 
 export enum TYPE_OF_DISEASE {
-  DISEASE = "Хвороба",
-  TRAUMA = "Травма",
-  WOUND = "Поранення",
-  MUTILATION = "Каліцтво",
-  SELF_MUTILATION = "Самокаліцтво",
-  CONTUSION = "Контузія",
+  DISEASE = 'Захворювання',
+  TRAUMA = 'Травма',
+  WOUND = 'Поранення',
+  MUTILATION = 'Каліцтво',
+  SELF_MUTILATION = 'Самокаліцтво',
+  CONTUSION = 'Контузія',
 }
 
 export enum TYPE_OF_VISIT {
-  AMBULATORY = "Амбулаторний",
-  HOSPITALIZATION = "Госпіталізація",
-  EXAMINATION = "Обстеження",
+  AMBULATORY = 'Амбулаторний',
+  HOSPITALIZATION = 'Госпіталізація',
+  EXAMINATION = 'Обстеження',
 }

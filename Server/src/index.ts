@@ -3,7 +3,7 @@ import { json } from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { soldierRouter } from './routes/soldier';
-import { visitRouter } from './routes/visit';
+import { visitsRouter } from './routes/visits';
 
 
 const app = express();
@@ -17,7 +17,7 @@ const options: cors.CorsOptions = {
 app.use(cors(options));
 app.use(json());
 app.use('/soldier', soldierRouter);
-app.use('/visit', visitRouter);
+app.use('/visits', visitsRouter);
 
 mongoose.connect('mongodb://localhost:27017/202').then(() => {
     console.log('Db connect work');

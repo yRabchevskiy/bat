@@ -11,6 +11,7 @@ const createSoldierByVisit = (name: string) => ({
     address: "",
     summoned: "",
     summoned_date: "",
+    position: "",
     unit: "",
     description: "",
   },

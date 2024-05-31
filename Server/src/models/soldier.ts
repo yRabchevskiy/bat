@@ -17,6 +17,7 @@ interface ISoldierEditionalData {
   address?: string;
   summoned?: string;
   summoned_date?: string;
+  position?: string;
   unit?: string;
   description?: string;
 }
@@ -112,6 +113,7 @@ const soldierSchema = new mongoose.Schema<ISoldier>({
     address: { type: String },
     summoned: { type: String },
     summoned_date: { type: String },
+    position: { type: String },
     unit: { type: String },
     description: { type: String },
   },

@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000
-@visitType = Амбулаторний
+@visitsType=Амбулаторний
 
 ###
 
@@ -18,11 +18,14 @@ content-type: application/json
 DELETE {{baseUrl}}/soldier/:id
 
 ###
-GET {{baseUrl}}/visit/byType/{{visitType}}
+GET {{baseUrl}}/visits/byType/{{visitsType}}
+
+###
+GET {{baseUrl}}/visits
 
 ###
 
-POST {{baseUrl}}/visit
+POST {{baseUrl}}/visits
 content-type: application/json
 
 {

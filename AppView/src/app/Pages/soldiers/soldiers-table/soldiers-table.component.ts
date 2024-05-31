@@ -10,7 +10,9 @@ import { SEX_TYPE } from '../../../Models/general';
 })
 export class SoldiersTableComponent {
   data: ISoldier[] = [];
+  editableSoldier: ISoldier | null = null;
   showCreateForm: boolean = false;
+  showVisitForm: boolean = false;
   readonly set_types = SEX_TYPE;
   constructor(private _SoldiersService: SoldiersService) {
     this._SoldiersService.soldiersData.subscribe(
@@ -20,16 +22,29 @@ export class SoldiersTableComponent {
 
   ngOnInit() {}
 
+  addVisit($event: ISoldier) {
+    this.editableSoldier = $event;
+    this.openVisitForm();
+  }
+
   deleteSoldier($event: ISoldier) {
     if (!$event._id) return;
     this._SoldiersService.deleteSoldier($event._id);
   }
 
-  showCreateSoldiersForm() {
+  openVisitForm() {
+    this.showVisitForm = true;
+  }
+
+  closeVisitForm() {
+    this.showVisitForm = false;
+  }
+
+  openCreateSoldierForm() {
     this.showCreateForm = true;
   }
 
-  closeCreateSoldiersForm() {
+  closeCreateSoldierForm() {
     this.showCreateForm = false;
   }
 }

@@ -43,7 +43,7 @@ export enum SEX_TYPE {
 }
 
 export enum TYPE_OF_DISEASE {
-  DISEASE = "Хвороба",
+  DISEASE = "Захворювання",
   TRAUMA = "Травма",
   WOUND = "Поранення",
   MUTILATION = "Каліцтво",

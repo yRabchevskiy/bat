@@ -3,23 +3,22 @@ import { IVisit, Visit } from "../models/visits";
 import { TYPE_OF_VISIT } from "../models/enum_types/general";
 import { Soldier } from "../models/soldier";
 import mongoose, { ObjectId } from "mongoose";
+import { castNumberToVisitsEnum } from "../helpers/visits.helper";
 
 const router = Router();
 
 router.get("/", [], async (req: Request, res: Response) => {
-  console.log("param: ", req.params);
   try {
-    const visits = await Visit.find({ type_of_visit: req.params.visitType }).populate({ path: "soldier" }).exec();
+    const visits = await Visit.find({}).populate({ path: "soldier" }).exec();
     return res.status(200).send(visits || []);
   } catch (err) {
     return res.status(500).send(err);
   }
 });
 
-router.get("/byType/:visitType", [], async (req: Request, res: Response) => {
-  console.log(req.params);
+router.get("/:visitsType", [], async (req: Request, res: Response) => {
   try {
-    const visits = await Visit.find({ type_of_visit: req.params.visitType }).populate({ path: "soldier" }).exec();
+    const visits = await Visit.find({ type_of_visit: req.params.visitsType }).populate({ path: "soldier" }).exec();
     return res.status(200).send(visits || []);
   } catch (err) {
     return res.status(500).send(err);
@@ -95,4 +94,4 @@ router.post("/", async (req: Request<IVisit>, res: Response<any>) => {
   //   }
 });
 
-export { router as visitRouter };
+export { router as visitsRouter };

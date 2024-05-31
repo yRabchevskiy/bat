@@ -39,6 +39,7 @@ export class CreateSoldierFormComponent implements OnInit {
       address: new FormControl<string | null>(''),
       summoned: new FormControl<string | null>(''),
       summoned_date: new FormControl<string | null>(''),
+      position: new FormControl<string | null>(''),
       unit: new FormControl<string | null>(''),
       description: new FormControl<string | null>(''),
     }),

@@ -21,12 +21,14 @@ import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../Components/General/general.module';
 import { HospitalisationComponent } from './hospitalisation/hospitalisation.component';
+import { VisitFormComponent } from './visit-form/visit-form.component';
 @NgModule({
   declarations: [
     SoldiersComponent,
     CreateSoldierFormComponent,
     SoldiersTableComponent,
-    HospitalisationComponent
+    HospitalisationComponent,
+    VisitFormComponent
   ],
   imports: [
     CommonModule,
