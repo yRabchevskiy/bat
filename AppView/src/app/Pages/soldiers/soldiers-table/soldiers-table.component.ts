@@ -10,41 +10,38 @@ import { SEX_TYPE } from '../../../Models/general';
 })
 export class SoldiersTableComponent {
   data: ISoldier[] = [];
-  editableSoldier: ISoldier | null = null;
-  showCreateForm: boolean = false;
-  showVisitForm: boolean = false;
+  editableSoldier: ISoldier | undefined = undefined;
+  showForm: string | null = null;
   readonly set_types = SEX_TYPE;
   constructor(private _SoldiersService: SoldiersService) {
     this._SoldiersService.soldiersData.subscribe(
-      (_data: ISoldier[]) => (this.data = _data)
+      (_data: ISoldier[]) => {
+        const _arr = [];
+        for (let index = 0; index < 50; index++) {
+          _arr.push(_data[0]);
+        }
+        this.data = _arr; // _data
+      }
+      // (_data: ISoldier[]) => (this.data = _data)
     );
   }
 
   ngOnInit() {}
 
-  addVisit($event: ISoldier) {
-    this.editableSoldier = $event;
-    this.openVisitForm();
+  openModalWindow(type: string, $event?: ISoldier) {
+    if (type === 'visit' || type === 'vlk') {
+      this.editableSoldier = $event;
+    }
+    this.showForm = type;
+  }
+
+  closeModalWindow() {
+    this.editableSoldier = undefined;
+    this.showForm = null;
   }
 
   deleteSoldier($event: ISoldier) {
     if (!$event._id) return;
     this._SoldiersService.deleteSoldier($event._id);
-  }
-
-  openVisitForm() {
-    this.showVisitForm = true;
-  }
-
-  closeVisitForm() {
-    this.showVisitForm = false;
-  }
-
-  openCreateSoldierForm() {
-    this.showCreateForm = true;
-  }
-
-  closeCreateSoldierForm() {
-    this.showCreateForm = false;
   }
 }

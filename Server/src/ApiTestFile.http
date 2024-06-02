@@ -38,5 +38,6 @@ content-type: application/json
     "type_of_visit": "Амбулаторний",
     "type_of_disease": "Хвороба",
     "complaint": "",
-    "recomendation": ""
+    "recomendation": "",
+    "status": "Активний",
 }

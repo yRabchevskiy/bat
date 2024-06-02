@@ -22,13 +22,15 @@ import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../Components/General/general.module';
 import { HospitalisationComponent } from './hospitalisation/hospitalisation.component';
 import { VisitFormComponent } from './visit-form/visit-form.component';
+import { VlkFormComponent } from './vlk-form/vlk-form.component';
 @NgModule({
   declarations: [
     SoldiersComponent,
     CreateSoldierFormComponent,
     SoldiersTableComponent,
     HospitalisationComponent,
-    VisitFormComponent
+    VisitFormComponent,
+    VlkFormComponent
   ],
   imports: [
     CommonModule,

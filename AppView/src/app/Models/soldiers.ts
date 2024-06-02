@@ -1,4 +1,4 @@
-import { BLOOD_TYPES, RANK_TYPES, SEX_TYPE, TYPE_OF_DISEASE, TYPE_OF_VISIT } from './general';
+import { BLOOD_TYPES, RANK_TYPES, SEX_TYPE, TYPE_OF_DISEASE, TYPE_OF_VISIT, TYPE_OF_VISIT_STATUS } from './general';
 
 export interface IVlc {
   vlc_number: string;
@@ -8,17 +8,25 @@ export interface IVlc {
   recomendation: string;
 }
 
-export interface IVisit {
-  soldier: ISoldier;
+interface IVisitFields {
   date_in?: Date;
   date_out?: Date;
   pre_diagnosis?: string;
   final_diagnosis?: string;
   hospital_name?: string;
-  type_of_visit: TYPE_OF_VISIT;
-  type_of_disease: TYPE_OF_DISEASE;
+  type_of_visit?: TYPE_OF_VISIT;
+  type_of_disease?: TYPE_OF_DISEASE;
   complaint?: string;
   recomendation?: string;
+  status?: TYPE_OF_VISIT_STATUS;
+}
+
+export interface IVisit extends IVisitFields {
+  soldier: ISoldier;
+}
+
+export interface IVisitPostData extends IVisitFields {
+  soldier: string;
 }
 
 export interface ISoldierEditionalData {

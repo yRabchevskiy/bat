@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DataService } from './data.service';
 import { TYPE_OF_VISIT } from '../Models/general';
-import { IVisit } from '../Models/soldiers';
+import { IVisit, IVisitPostData } from '../Models/soldiers';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +20,9 @@ export class VisitsService {
       this.visits.next(res);
     });
   }
-  public postVisit(data: IVisit) {
+  public postVisit(data: IVisitPostData) {
     return this._service
-      .post<IVisit>('/visits', data)
+      .post<IVisitPostData>('/visits', data)
       .subscribe((res) =>
         this.visits.next([...this.visits.getValue(), res])
       );

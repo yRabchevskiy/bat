@@ -72,8 +72,7 @@ export class CreateSoldierFormComponent implements OnInit {
   readonly rank_types: IListItem<RANK_TYPES>[] = RANK_TYPES_LIST;
   readonly sex_types: IListItem<SEX_TYPE>[] = SEX_TYPE_LIST;
   readonly disease_types: IListItem<TYPE_OF_DISEASE>[] = TYPE_OF_DISEASE_LIST;
-  // readonly visits_types: IListItem<TYPE_OF_VISIT>[] = TYPE_OF_VISIT_LIST;
-  // Type_of_Visit = TYPE_OF_VISIT;
+  
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(private _SoldiersService: SoldiersService) {}
 

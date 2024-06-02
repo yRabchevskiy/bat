@@ -1,7 +1,7 @@
-<p-table class="table" [value]="data" >
+<p-table class="table" [value]="data" [scrollable]="true" scrollHeight="calc(100% - 36px)">
   <ng-template pTemplate="caption">
     <div>
-      <button (click)="openCreateSoldierForm()">Add</button>
+      <button (click)="openModalWindow('create')">Add</button>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
@@ -28,7 +28,8 @@
       <td>{{ item.editional_data.blood_type }}</td>
       <td>{{ item.editional_data.sex_type === set_types.MALE ? 'Ч' : 'Ж' }}</td>
       <td>
-        <button (click)="addVisit(item)">+ Госп</button>
+        <button (click)="openModalWindow('visit', item)">+ Госп</button>
+        <button (click)="openModalWindow('vlk', item)">+ влк</button>
         <button (click)="deleteSoldier(item)">Delete</button>
       </td>
     </tr>
@@ -38,7 +39,7 @@
   [modal]="true"
   [closeOnEscape]="false"
   [closable]="false"
-  [visible]="showCreateForm"
+  [visible]="!!(showForm && showForm === 'create')"
   [style]="{
     width: '100vw',
     height: 'calc(100vh - 32px)',
@@ -49,13 +50,13 @@
   position="bottom"
   [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
 >
-  <app-create-soldier-form (onClose)="closeCreateSoldierForm()" />
+  <app-create-soldier-form (onClose)="closeModalWindow()" />
 </p-dialog>
 <p-dialog
   [modal]="true"
   [closeOnEscape]="false"
   [closable]="false"
-  [visible]="showVisitForm"
+  [visible]="!!(showForm && showForm === 'visit')"
   [style]="{
     width: '100vw',
     height: 'calc(100vh - 32px)',
@@ -66,5 +67,22 @@
   position="bottom"
   [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
 >
-  <app-visit-form (onClose)="closeVisitForm()" />
+  <app-visit-form *ngIf="!!editableSoldier" [soldier]="editableSoldier" (onClose)="closeModalWindow()" />
+</p-dialog>
+<p-dialog
+  [modal]="true"
+  [closeOnEscape]="false"
+  [closable]="false"
+  [visible]="!!(showForm && showForm === 'vlk')"
+  [style]="{
+    width: '100vw',
+    height: 'calc(100vh - 32px)',
+    maxHeight: 'none',
+    borderRadius: 0,
+    boxShadow: 'none'
+  }"
+  position="bottom"
+  [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
+>
+  <app-vlk-form *ngIf="!!editableSoldier" [soldier]="editableSoldier" (onClose)="closeModalWindow()" />
 </p-dialog>

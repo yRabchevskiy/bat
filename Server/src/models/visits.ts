@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from "mongoose";
-import { TYPE_OF_DISEASE, TYPE_OF_VISIT } from "./enum_types/general";
+import { TYPE_OF_DISEASE, TYPE_OF_VISIT, TYPE_OF_VISIT_STATUS } from "./enum_types/general";
 
 interface IVisitFields {
   _id?: string;
@@ -12,16 +12,12 @@ interface IVisitFields {
   type_of_disease: TYPE_OF_DISEASE;
   complaint?: string;
   recomendation?: string;
+  status?: TYPE_OF_VISIT_STATUS;
 }
 
 interface IVisit extends IVisitFields {
   soldier: ObjectId;
 }
-
-// interface IVisitPostData extends IVisitFields {
-//   soldier_id?: string;
-//   soldier_full_name?: string;
-// }
 
 interface IVisitDoc extends mongoose.Document {
   _id?: string;
@@ -35,6 +31,7 @@ interface IVisitDoc extends mongoose.Document {
   type_of_disease: TYPE_OF_DISEASE;
   complaint?: string;
   recomendation?: string;
+  status?: TYPE_OF_VISIT_STATUS;
 }
 
 interface IVisitModel extends mongoose.Model<IVisitDoc> {
@@ -50,6 +47,11 @@ const visitSchema = new mongoose.Schema<IVisit>({
   pre_diagnosis: { type: String },
   final_diagnosis: { type: String },
   hospital_name: { type: String },
+  status: {
+    type: String,
+    enum: [TYPE_OF_VISIT_STATUS.ACTIVE, TYPE_OF_VISIT_STATUS.PENDING, TYPE_OF_VISIT_STATUS.CLOSED],
+    default: TYPE_OF_VISIT_STATUS.ACTIVE,
+  },
   type_of_visit: {
     type: String,
     enum: [TYPE_OF_VISIT.AMBULATORY, TYPE_OF_VISIT.HOSPITALIZATION, TYPE_OF_VISIT.EXAMINATION],

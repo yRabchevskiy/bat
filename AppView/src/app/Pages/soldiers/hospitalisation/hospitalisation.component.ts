@@ -14,7 +14,11 @@ export class HospitalisationComponent implements OnInit {
   constructor(private _dataService: VisitsService) {
     this._dataService.visitsData.subscribe(
       (_data: IVisit[]) => {
-        this.data = _data
+        const _arr = [];
+        for (let index = 0; index < 50; index++) {
+          _arr.push(_data[0]);
+        }
+        this.data = _arr; // _data
       }
     );
   }
@@ -24,6 +28,6 @@ export class HospitalisationComponent implements OnInit {
   }
 
   private getData(): void {
-    this._dataService.getVisits(TYPE_OF_VISIT.EXAMINATION);
+    this._dataService.getVisits();
   }
 }

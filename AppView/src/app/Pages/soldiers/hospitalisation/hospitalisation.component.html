@@ -1,14 +1,15 @@
-<p-table class="table" [value]="data">
+<p-table class="table" [value]="data" [scrollable]="true" scrollHeight="100%" >
   <ng-template pTemplate="header">
     <tr>
-      <th>№</th>
+      <th width="40px">№</th>
       <th>ПІБ</th>
-      <th>Дата госпіталізації</th>
+      <th width="130px">Дата госпіталізації</th>
       <th>Діагноз при направленні</th>
       <th>Діагноз при виписці</th>
-      <th>Дата виписки</th>
-      <th>Заклад МОЗ/МО</th>
-      <th>Вид звернення</th>
+      <th width="130px">Дата виписки</th>
+      <th width="116px">Заклад МОЗ/МО</th>
+      <th width="140px">Тип звернення</th>
+      <th width="140px">Характер звернення</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
@@ -20,6 +21,7 @@
       <td>{{ item.final_diagnosis }}</td>
       <td>{{ item.date_out | date:'dd/MM/yyyy' }}</td>
       <td>{{ item.hospital_name }}</td>
+      <td>{{ item.type_of_visit }}</td>
       <td>{{ item.type_of_disease }}</td>
     </tr>
   </ng-template>

@@ -60,3 +60,9 @@ export enum TYPE_OF_VISIT {
   HOSPITALIZATION = 'Госпіталізація',
   EXAMINATION = 'Обстеження',
 }
+
+export enum TYPE_OF_VISIT_STATUS {
+  ACTIVE = 'Активний',
+  PENDING = 'Очікування',
+  CLOSED = 'Завершений'
+}
