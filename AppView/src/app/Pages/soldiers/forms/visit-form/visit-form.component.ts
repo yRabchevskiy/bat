@@ -5,14 +5,14 @@ import {
   TYPE_OF_DISEASE,
   TYPE_OF_VISIT,
   TYPE_OF_VISIT_STATUS,
-} from '../../../Models/general';
-import { VisitsService } from '../../../Services/visit.service';
+} from '../../../../Models/general';
+import { VisitsService } from '../../../../Services/visit.service';
 import {
   TYPE_OF_DISEASE_LIST,
   TYPE_OF_VISIT_LIST,
-} from '../../../Models/General_Lists/general_lists';
+} from '../../../../Models/General_Lists/general_lists';
 import { DropdownChangeEvent } from 'primeng/dropdown';
-import { ISoldier } from '../../../Models/soldiers';
+import { ISoldier } from '../../../../Models/soldiers';
 
 @Component({
   selector: 'app-visit-form',

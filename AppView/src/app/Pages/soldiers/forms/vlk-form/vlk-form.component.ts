@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ISoldier } from '../../../Models/soldiers';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { VisitsService } from '../../../Services/visit.service';
+import { ISoldier } from '../../../../Models/soldiers';
+import { VisitsService } from '../../../../Services/visit.service';
 
 @Component({
   selector: 'app-vlk-form',

@@ -15,14 +15,7 @@ export class SoldiersTableComponent {
   readonly set_types = SEX_TYPE;
   constructor(private _SoldiersService: SoldiersService) {
     this._SoldiersService.soldiersData.subscribe(
-      (_data: ISoldier[]) => {
-        const _arr = [];
-        for (let index = 0; index < 50; index++) {
-          _arr.push(_data[0]);
-        }
-        this.data = _arr; // _data
-      }
-      // (_data: ISoldier[]) => (this.data = _data)
+      (_data: ISoldier[]) => (this.data = _data)
     );
   }
 

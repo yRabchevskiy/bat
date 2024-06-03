@@ -7,15 +7,15 @@ import {
   SEX_TYPE,
   TYPE_OF_DISEASE,
   TYPE_OF_VISIT,
-} from '../../../Models/general';
+} from '../../../../Models/general';
 import {
   BLOOD_TYPES_LIST,
   RANK_TYPES_LIST,
   SEX_TYPE_LIST,
   TYPE_OF_DISEASE_LIST,
   TYPE_OF_VISIT_LIST,
-} from '../../../Models/General_Lists/general_lists';
-import { SoldiersService } from '../../../Services/soldiers.service';
+} from '../../../../Models/General_Lists/general_lists';
+import { SoldiersService } from '../../../../Services/soldiers.service';
 
 @Component({
   selector: 'app-create-soldier-form',

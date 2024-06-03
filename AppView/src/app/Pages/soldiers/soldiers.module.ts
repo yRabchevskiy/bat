@@ -8,7 +8,6 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SoldiersService } from '../../Services/soldiers.service';
-import { CreateSoldierFormComponent } from './create-soldier-form/create-soldier-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SoldiersTableComponent } from './soldiers-table/soldiers-table.component';
@@ -20,9 +19,10 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../Components/General/general.module';
-import { HospitalisationComponent } from './hospitalisation/hospitalisation.component';
-import { VisitFormComponent } from './visit-form/visit-form.component';
-import { VlkFormComponent } from './vlk-form/vlk-form.component';
+import { HospitalisationComponent } from './hospitalisation-table/hospitalisation.component';
+import { CreateSoldierFormComponent } from './forms/create-soldier-form/create-soldier-form.component';
+import { VisitFormComponent } from './forms/visit-form/visit-form.component';
+import { VlkFormComponent } from './forms/vlk-form/vlk-form.component';
 @NgModule({
   declarations: [
     SoldiersComponent,

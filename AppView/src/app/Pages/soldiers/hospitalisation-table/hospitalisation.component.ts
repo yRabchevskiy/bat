@@ -14,11 +14,7 @@ export class HospitalisationComponent implements OnInit {
   constructor(private _dataService: VisitsService) {
     this._dataService.visitsData.subscribe(
       (_data: IVisit[]) => {
-        const _arr = [];
-        for (let index = 0; index < 50; index++) {
-          _arr.push(_data[0]);
-        }
-        this.data = _arr; // _data
+        this.data = _data
       }
     );
   }
