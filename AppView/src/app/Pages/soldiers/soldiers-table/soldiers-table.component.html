@@ -1,36 +1,120 @@
-<p-table class="table" [value]="data" [scrollable]="true" scrollHeight="calc(100% - 36px)">
+<p-table
+  class="table"
+  [value]="data"
+  [scrollable]="true"
+  scrollHeight="calc(100% - 36px)"
+  dataKey="_id"
+>
   <ng-template pTemplate="caption">
     <div>
-      <button (click)="openModalWindow('create')">Add</button>
+      <app-icon-btn
+        [style]="{ width: '32px', height: '32px' }"
+        (onClick)="openModalWindow('create')"
+        svgIconPath="url('assets/icons/add-user.svg')"
+      />
     </div>
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th>№</th>
+      <th style="width: 40px"></th>
+      <th style="width: 60px">№</th>
       <th>ПІБ</th>
       <th style="width: 120px">Дата народження</th>
-      <th style="width: 200px">Звання</th>
-      <th style="width: 160px">Телефон</th>
-      <th style="width: 200px">Місце проживання</th>
-      <th style="width: 80px">Група крові</th>
-      <th style="width: 60px">Стать</th>
+      <th style="width: 160px">Телефон:</th>
+      <th style="width: 160px">Звання</th>
+      <th style="width: 160px">Посада</th>
       <th></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+  <ng-template
+    pTemplate="body"
+    let-item
+    let-rowIndex="rowIndex"
+    let-expanded="expanded"
+  >
     <tr>
+      <td>
+        <!-- <p-button
+          type="button"
+          pRipple
+          [pRowToggler]="item"
+          [icon]="expanded ? 'Open' : 'Close'"
+        /> -->
+        <app-svg-icon
+          [pRowToggler]="item"
+          path="url(assets/icons/arrow-right.svg)"
+          [ngClass]="expanded ? 'expanded' : 'collapsed'"
+        />
+      </td>
       <td>{{ rowIndex + 1 }}</td>
       <td>{{ item.full_name }}</td>
-      <td>{{ item.birthday | date:'dd/MM/yyyy' }}</td>
-      <td>{{ item.rank[item.rank.length - 1].type }}</td>
+      <td>{{ item.birthday | date : "dd/MM/yyyy" }}</td>
       <td>{{ item.phone }}</td>
-      <td>{{ item.editional_data.address }}</td>
-      <td>{{ item.editional_data.blood_type }}</td>
-      <td>{{ item.editional_data.sex_type === set_types.MALE ? 'Ч' : 'Ж' }}</td>
+      <td>{{ item.rank[item.rank.length - 1].type }}</td>
+      <td>{{ item.editional_data.position }}</td>
       <td>
-        <button (click)="openModalWindow('visit', item)">+ Госп</button>
-        <button (click)="openModalWindow('vlk', item)">+ влк</button>
-        <button (click)="deleteSoldier(item)">Delete</button>
+        <app-icon-btn
+          (onClick)="openModalWindow('visit', item)"
+          svgIconPath="url('assets/icons/visit.svg')"
+        />
+        <app-icon-btn
+          (onClick)="openModalWindow('vlk', item)"
+          svgIconPath="url('assets/icons/vlk.svg')"
+        />
+        <app-icon-btn
+          (onClick)="deleteSoldier(item)"
+          svgIconPath="url('assets/icons/delete.svg')"
+        />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-item>
+    <tr>
+      <td colspan="7">
+        <div class="expanded_row_wrapper">
+          <div class="expanded_row">
+            <span class="expanded_row_label">Підрозділ:</span>
+            <span class="expanded_row_value">{{
+              item.editional_data.unit
+            }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Місце проживання:</span>
+            <span class="expanded_row_value">{{
+              item.editional_data.address
+            }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Дата призову:</span>
+            <span class="expanded_row_value">{{
+              item.editional_data.summoned_date | date : "dd/MM/yyyy"
+            }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Призваний:</span>
+            <span class="expanded_row_value">{{
+              item.editional_data.summoned
+            }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Група крові:</span>
+            <span class="expanded_row_value">{{
+              item.editional_data.blood_type
+            }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Стать:</span>
+            <span class="expanded_row_value">{{
+              item.editional_data.sex_type
+            }}</span>
+          </div>
+          <div class="expanded_row" *ngIf="item.editional_data.description">
+            <span class="expanded_row_label">Додаткова інформація:</span>
+            <span class="expanded_row_value">{{
+              item.editional_data.description
+            }}</span>
+          </div>
+        </div>
       </td>
     </tr>
   </ng-template>
@@ -67,7 +151,11 @@
   position="bottom"
   [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
 >
-  <app-visit-form *ngIf="!!editableSoldier" [soldier]="editableSoldier" (onClose)="closeModalWindow()" />
+  <app-visit-form
+    *ngIf="!!editableSoldier"
+    [soldier]="editableSoldier"
+    (onClose)="closeModalWindow()"
+  />
 </p-dialog>
 <p-dialog
   [modal]="true"
@@ -84,5 +172,9 @@
   position="bottom"
   [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
 >
-  <app-vlk-form *ngIf="!!editableSoldier" [soldier]="editableSoldier" (onClose)="closeModalWindow()" />
+  <app-vlk-form
+    *ngIf="!!editableSoldier"
+    [soldier]="editableSoldier"
+    (onClose)="closeModalWindow()"
+  />
 </p-dialog>

@@ -37,8 +37,8 @@ export enum RANK_TYPES {
 }
 
 export enum SEX_TYPE {
-  MALE = "Male",
-  FEMALE = "Female",
+  MALE = "Чоловіча",
+  FEMALE = "Жіноча",
   UNKNOWN = "Невідома"
 }
 

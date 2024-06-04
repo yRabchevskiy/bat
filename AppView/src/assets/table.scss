@@ -11,6 +11,9 @@
         height: 24px;
         margin-bottom: 12px;
     }
+    .p-datatable-thead {
+        background: transparent;
+    }
     .p-datatable-thead th {
         background: transparent;
         text-align: center;
@@ -30,4 +33,24 @@
             border-right-width: 0;
         }
     }
+    .expanded_row_wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-left: 52px;
+    }
+    .expanded_row {
+        display: flex;
+        margin-bottom: 8px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .expanded_row_label {
+        font-weight: 700;
+        margin-right: 12px;
+    }
+    // .expanded_row_value {
+        
+    // }
 }

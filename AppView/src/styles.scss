@@ -3,6 +3,12 @@
 @import './assets/sidebar.scss';
 @import './assets/inputs.scss';
 @import './assets/general.scss';
+
+:root {
+    --blue: #2ca9bc;
+    --dark: #0F0F0F;
+    --grey: #e5e7eb;
+}
 * {
     margin: 0;
     padding: 0;
