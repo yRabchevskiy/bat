@@ -1,7 +1,8 @@
-export interface IListItem<V> {
-  label: string;
-  value: V;
+export enum APP_ROLES {
+  USER = 'User',
+  ADMIN = 'Admin'
 }
+
 export enum BLOOD_TYPES {
   O_NEGATIVE = '0(-)',
   O_POSITIVE = '0(+)',
@@ -11,6 +12,12 @@ export enum BLOOD_TYPES {
   B_POSITIVE = 'B(+)',
   AB_NEGATIVE = 'AB(-)',
   AB_POSITIVE = 'AB(+)',
+  UNKNOWN = 'Невідома',
+}
+
+export enum SEX_TYPE {
+  MALE = 'Чоловіча',
+  FEMALE = 'Жіноча',
   UNKNOWN = 'Невідома',
 }
 
@@ -38,12 +45,6 @@ export enum RANK_TYPES {
   COLONEL_GENERAL = 'Генерал полковник',
   GENERAL = 'Генерал',
   UNKNOWN = 'Невідомо',
-}
-
-export enum SEX_TYPE {
-  MALE = 'Чоловіча',
-  FEMALE = 'Жіноча',
-  UNKNOWN = 'Невідома',
 }
 
 export enum TYPE_OF_DISEASE {

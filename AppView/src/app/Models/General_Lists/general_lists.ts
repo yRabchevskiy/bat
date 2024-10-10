@@ -25,6 +25,7 @@ export const TYPE_OF_DISEASE_LIST: IListItem<TYPE_OF_DISEASE>[] = [
     { label: 'Контузія', value: TYPE_OF_DISEASE.CONTUSION },
     { label: 'Каліцтво', value: TYPE_OF_DISEASE.MUTILATION },
     { label: 'Самокаліцтво', value: TYPE_OF_DISEASE.SELF_MUTILATION },
+    { label: 'Інше', value: TYPE_OF_DISEASE.OTHER },
 ];
 
 export const RANK_TYPES_LIST: IListItem<RANK_TYPES>[] = [
@@ -57,4 +58,5 @@ export const TYPE_OF_VISIT_LIST: IListItem<TYPE_OF_VISIT>[] = [
     { label: 'Амбулаторний', value: TYPE_OF_VISIT.AMBULATORY },
     { label: 'Госпіталізація', value: TYPE_OF_VISIT.HOSPITALIZATION },
     { label: 'Обстеження', value: TYPE_OF_VISIT.EXAMINATION },
+    { label: 'Інше', value: TYPE_OF_VISIT.OTHER },
 ];
