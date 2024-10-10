@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './Services/api';
+import { AuthGuard } from './shared/auth-guard';
+import { UserService } from './Services/user.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +26,7 @@ import { ApiService } from './Services/api';
     GeneralModule,
     
   ],
-  providers: [ApiService],
+  providers: [ApiService, UserService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
