@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GeneralModule } from './Components/General/general.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ApiService } from './Services/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +22,9 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     AppRoutingModule,
     GeneralModule,
-    FormsModule,
-    ReactiveFormsModule,
+    
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

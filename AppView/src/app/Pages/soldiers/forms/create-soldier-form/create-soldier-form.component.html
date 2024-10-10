@@ -60,31 +60,17 @@
               />
             </div>
           </div>
-          <ng-container formArrayName="rank">
-            <ng-container *ngFor="let item of ranks.controls; let i = index">
-              <div [formGroupName]="i" class="form_fields_colums_group_wrapper">
-                <div class="form_control_wrapper form_field_left">
-                  <label for="type" class="form_label">Звання</label>
-                  <p-dropdown
-                    formControlName="type"
-                    [options]="rank_types"
-                    optionLabel="label"
-                    optionValue="value"
-                    class="form_dropdown"
-                  />
-                </div>
-                <div class="form_control_wrapper form_field_right">
-                  <label for="date" class="form_label">Дата присвоєння</label>
-                  <p-calendar
-                    formControlName="date"
-                    class="form_calendar"
-                    placeholder="../../...."
-                    dateFormat="dd/mm/yy"
-                  />
-                </div>
-              </div>
-            </ng-container>
-          </ng-container>
+          <div class="form_control_wrapper">
+            <label for="rank" class="form_label">Звання</label>
+            <p-dropdown
+              id="rank"
+              formControlName="rank"
+              [options]="rank_types"
+              optionLabel="label"
+              optionValue="value"
+              class="form_dropdown"
+            />
+          </div>
           <ng-container formGroupName="editional_data">
             <div class="form_control_wrapper">
               <label for="unit" class="form_label">Підрозділ</label>

@@ -8,25 +8,38 @@ export interface IVlc {
   recomendation: string;
 }
 
-interface IVisitFields {
-  date_in?: Date;
-  date_out?: Date;
-  pre_diagnosis?: string;
-  final_diagnosis?: string;
-  hospital_name?: string;
-  type_of_visit?: TYPE_OF_VISIT;
-  type_of_disease?: TYPE_OF_DISEASE;
-  complaint?: string;
+export interface IVisit {
+  _id?: string;
+  soldier: ISoldier;
+  date_in?: Date; // дата скерування, госпіталізації
+  date_out?: Date; // дата виписки
+  pre_diagnosis?: string; // діагноз при направденні
+  in_diagnosis?: string; // діагноз при госп
+  final_diagnosis?: string; // діагноз заключний
+  hospital_name?: string; 
+  type_of_visit: TYPE_OF_VISIT;
+  type_of_disease: TYPE_OF_DISEASE;
+  complaint?: string; // опис проведеної допомоги
   recomendation?: string;
   status?: TYPE_OF_VISIT_STATUS;
 }
 
-export interface IVisit extends IVisitFields {
-  soldier: ISoldier;
-}
-
-export interface IVisitPostData extends IVisitFields {
-  soldier: string;
+export interface IVisitPostData {
+  _id?: string;
+  soldier_name: string;
+  rank?: RANK_TYPES;
+  phone?: string;
+  date_in?: Date; // дата скерування, госпіталізації
+  date_out?: Date; // дата виписки
+  pre_diagnosis?: string; // діагноз при направденні
+  in_diagnosis?: string; // діагноз при госп
+  final_diagnosis?: string; // діагноз заключний
+  hospital_name?: string; 
+  type_of_visit: TYPE_OF_VISIT;
+  type_of_disease: TYPE_OF_DISEASE;
+  complaint?: string; // опис проведеної допомоги
+  recomendation?: string;
+  status?: TYPE_OF_VISIT_STATUS;
 }
 
 export interface ISoldierEditionalData {
@@ -40,17 +53,12 @@ export interface ISoldierEditionalData {
   description?: string;
 }
 
-export interface IRank {
-  date?: Date | null;
-  type: RANK_TYPES;
-}
-
 export interface ISoldier {
   _id?: string;
   full_name: string;
   birthday: Date;
   phone?: string;
-  rank: IRank[];
+  rank: RANK_TYPES;
   editional_data: ISoldierEditionalData;
   vlc?: IVlc[];
 }

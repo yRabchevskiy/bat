@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ISoldier } from '../../../../Models/soldiers';
-import { VisitsService } from '../../../../Services/visit.service';
 
 @Component({
   selector: 'app-vlk-form',
@@ -19,7 +18,7 @@ export class VlkFormComponent implements OnInit {
   @Input() soldier!: ISoldier;
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private _VisitsService: VisitsService) {}
+  constructor() {}
 
   ngOnInit() {}
   save() {

@@ -1,0 +1,51 @@
+<svg
+  id="batMap"
+  #svg
+  [attr.width]="options.width + 'px'"
+  [attr.height]="options.height + 'px'"
+>
+  <g [zoomableOf]="{ nativeElement: svg }">
+    <g [link]="link" *ngFor="let link of links"></g>
+    <g
+      [node]="node"
+      *ngFor="let node of nodes; let i = index"
+      (handleClick)="onClickNode($event, i)"
+    ></g>
+  </g>
+</svg>
+<div class="action-row">
+  <div class="action-row-group">
+    <app-icon-btn
+      [style]="{ width: '32px', height: '32px' }"
+      (onClick)="onChangeTypeView(graphTypes.PACK)"
+      svgIconPath="url('assets/icons/graph-data.svg')"
+    />
+    <app-icon-btn
+      [style]="{ width: '32px', height: '32px' }"
+      (onClick)="onChangeTypeView(graphTypes.TABLE)"
+      svgIconPath="url('assets/icons/table.svg')"
+    />
+    <app-icon-btn
+      [style]="{ width: '32px', height: '32px' }"
+      (onClick)="onChangeTypeView(graphTypes.PARTITION)"
+      svgIconPath="url('assets/icons/add-user.svg')"
+    />
+    <app-icon-btn
+      [style]="{ width: '32px', height: '32px' }"
+      (onClick)="onChangeTypeView(graphTypes.TREE)"
+      svgIconPath="url('assets/icons/graph.svg')"
+    />
+  </div>
+  <div class="action-row-group">
+    <app-icon-btn
+      [style]="{ width: '32px', height: '32px' }"
+      (onClick)="onZoomIn()"
+      svgIconPath="url('assets/icons/zoom-in.svg')"
+    />
+    <app-icon-btn
+      [style]="{ width: '32px', height: '32px' }"
+      (onClick)="onZoomOut()"
+      svgIconPath="url('assets/icons/zoom-out.svg')"
+    />
+  </div>
+</div>

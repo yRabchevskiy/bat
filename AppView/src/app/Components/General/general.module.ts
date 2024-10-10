@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppTabsComponent } from './app-tabs/app-tabs.component';
 import { SvgIconComponent } from './svg-icon/svg-icon.component';
 import { IconBtnComponent } from './icon-btn/icon-btn.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
@@ -12,9 +13,10 @@ import { IconBtnComponent } from './icon-btn/icon-btn.component';
     AppHeaderComponent,
     AppTabsComponent,
     SvgIconComponent,
-    IconBtnComponent
+    IconBtnComponent,
+    LoadingComponent
   ],
   imports: [CommonModule, RouterModule],
-  exports: [AppHeaderComponent, AppTabsComponent, SvgIconComponent, IconBtnComponent],
+  exports: [AppHeaderComponent, AppTabsComponent, SvgIconComponent, IconBtnComponent, LoadingComponent],
 })
 export class GeneralModule { }

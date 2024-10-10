@@ -1,25 +1,29 @@
 import { Component } from '@angular/core';
 import { ISoldier } from '../../../Models/soldiers';
-import { SoldiersService } from '../../../Services/soldiers.service';
 import { SEX_TYPE } from '../../../Models/general';
+import { ApiListComponent } from '../../../Services/list-api';
+import { ApiService } from '../../../Services/api';
 
 @Component({
   selector: 'app-soldiers-table',
   templateUrl: './soldiers-table.component.html',
   styleUrl: './soldiers-table.component.scss',
 })
-export class SoldiersTableComponent {
-  data: ISoldier[] = [];
+export class SoldiersTableComponent extends ApiListComponent<ISoldier> {
   editableSoldier: ISoldier | undefined = undefined;
   showForm: string | null = null;
   readonly set_types = SEX_TYPE;
-  constructor(private _SoldiersService: SoldiersService) {
-    this._SoldiersService.soldiersData.subscribe(
-      (_data: ISoldier[]) => (this.data = _data)
-    );
+  constructor(private apiService: ApiService) {
+    super();
   }
 
-  ngOnInit() {}
+  doGetData() {
+    return this.apiService.getSoldiers();
+  }
+
+  override onDataReceived(res: ISoldier[]) {
+    super.onDataReceived(res);
+  }
 
   openModalWindow(type: string, $event?: ISoldier) {
     if (type === 'visit' || type === 'vlk') {
@@ -35,6 +39,5 @@ export class SoldiersTableComponent {
 
   deleteSoldier($event: ISoldier) {
     if (!$event._id) return;
-    this._SoldiersService.deleteSoldier($event._id);
   }
 }

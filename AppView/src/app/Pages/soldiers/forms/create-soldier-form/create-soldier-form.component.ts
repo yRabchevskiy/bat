@@ -15,7 +15,6 @@ import {
   TYPE_OF_DISEASE_LIST,
   TYPE_OF_VISIT_LIST,
 } from '../../../../Models/General_Lists/general_lists';
-import { SoldiersService } from '../../../../Services/soldiers.service';
 
 @Component({
   selector: 'app-create-soldier-form',
@@ -74,12 +73,12 @@ export class CreateSoldierFormComponent implements OnInit {
   readonly disease_types: IListItem<TYPE_OF_DISEASE>[] = TYPE_OF_DISEASE_LIST;
   
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-  constructor(private _SoldiersService: SoldiersService) {}
+  constructor() {}
 
   ngOnInit() {}
 
   save() {
-    this._SoldiersService.postSoldier(this.soldierForm?.value);
+    // this._SoldiersService.postSoldier(this.soldierForm?.value);
     this.soldierForm.reset();
     this.cancel();
   }
@@ -87,10 +86,6 @@ export class CreateSoldierFormComponent implements OnInit {
   cancel() {
     this.soldierForm.reset();
     this.onClose.emit(false);
-  }
-
-  get ranks() {
-    return this.soldierForm?.get('rank') as FormArray;
   }
 
   get vlcs() {
