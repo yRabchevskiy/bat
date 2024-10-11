@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BaseApi } from './base.api';
 import { ISoldier, IVisit, IVisitPostData } from '../Models/soldiers';
 import { IUser } from '../Models/user';
+import { IApiRes } from '../Models/api';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -13,7 +14,7 @@ export class ApiService extends BaseApi {
 
   checkAuth(): Observable<boolean> { return this.doPost('/auth/auth-check', {}); }
   
-  login(data: any): Observable<IUser> {
+  login(data: any): Observable<IApiRes<IUser>> {
     return this.doPost('/auth', data);
   }
 

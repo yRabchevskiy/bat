@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../Services/api';
 import { UserService } from '../../Services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IApiRes } from '../../Models/api';
+import { IUser } from '../../Models/user';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  error?: IApiRes<IUser>;
   loginForm: FormGroup = new FormGroup({
     nickname: new FormControl<string>('', [Validators.required]),
     password: new FormControl<string>('', [Validators.required]),
@@ -20,9 +23,10 @@ export class LoginComponent {
 
   login() {
     this.apiService.login(this.loginForm?.value).subscribe({
-      next: (res) => {
-
-        this.userService.setLocal(res);
+      next: (res: IApiRes<IUser>) => {
+        console.log(res);
+        debugger
+        this.userService.setLocal(res.data);
         this.router.navigate(['/home']);
         // if (res.item.isAdmin) {
         //   this.router.navigate([urlAndParams.url], { queryParams: urlAndParams.params });
@@ -31,6 +35,7 @@ export class LoginComponent {
         // }
       },
       error: (err: any) => {
+        this.error = err.error.error as IApiRes<IUser>;
         console.log(err);
       }
     });

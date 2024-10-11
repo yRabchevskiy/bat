@@ -1,11 +1,13 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate class="form_wrapper">
-    <div class="form_control_wrapper form_field_left">
-        <label for="nickname" class="form_label">login</label>
+    <div class="form_control_wrapper">
+        <label for="nickname" class="form_label">Логін</label>
         <input id="nickname" pInputText formControlName="nickname" class="form_input">
     </div>
-    <div class="form_control_wrapper form_field_left">
-        <label for="password" class="form_label">password</label>
+    <div class="form_control_wrapper">
+        <label for="password" class="form_label">Пароль</label>
         <input id="password" pInputText formControlName="password" class="form_input">
     </div>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+    <div class="err-message">{{error?.message}}</div>
+    <button pButton type="submit" label="Увійти" [disabled]="loginForm.invalid"></button>
 </form>
