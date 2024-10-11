@@ -1,4 +1,7 @@
-<div class="page_body">
-  <app-graph [data]="batMapData" />
-  <app-loading *ngIf="loading" />
+<div class="home-link-wrapper">
+  <ng-container *ngFor="let page of pages">
+    <app-page-link [page]="page" />
+  </ng-container>
 </div>
+
+<router-outlet></router-outlet>
