@@ -11,3 +11,8 @@ content-type: application/json
     "nickname": "doctorishche",
     "password": "Qwert12345"
 }
+
+###
+GET  {{baseURL}}/structure
+###
+GET  {{baseURL}}/users

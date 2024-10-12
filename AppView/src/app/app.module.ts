@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from './Services/api';
 import { AuthGuard } from './shared/auth-guard';
 import { UserService } from './Services/user.service';
-
+import 'boxicons';
 @NgModule({
   declarations: [AppComponent],
   imports: [

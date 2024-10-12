@@ -1,0 +1,32 @@
+.structure-wrapper {
+    .structure-item {
+        .p-accordion-tab {
+            border-bottom: 2px solid var(--dark);
+        }
+    }
+
+    .p-accordion-header {
+        // border-bottom: 2px solid var(--dark);
+        padding: 8px 4px;
+
+        .p-accordion-header-link {
+            padding: 0;
+            border: none;
+            color: var(--dark);
+            background: transparent;
+            font-weight: 700;
+            border-radius: 0;
+            transition: none !important;
+            font-size: 16px;
+        }
+    }
+
+    .p-accordion-content {
+        padding: 4px;
+        border: none;
+        background: transparent;
+        color: var(--dark);
+        border-radius: 0;
+        box-shadow: none;
+    }
+}

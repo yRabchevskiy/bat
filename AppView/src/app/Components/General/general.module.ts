@@ -7,6 +7,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
 import { IconBtnComponent } from './icon-btn/icon-btn.component';
 import { LoadingComponent } from './loading/loading.component';
 import { PageLinkComponent } from './page-link/page-link.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FontIconComponent } from './font-icon/font-icon.component';
 
 
 @NgModule({
@@ -16,9 +18,16 @@ import { PageLinkComponent } from './page-link/page-link.component';
     SvgIconComponent,
     IconBtnComponent,
     LoadingComponent,
-    PageLinkComponent
+    PageLinkComponent,
+    NavBarComponent,
+    FontIconComponent
   ],
   imports: [CommonModule, RouterModule],
-  exports: [AppHeaderComponent, AppTabsComponent, SvgIconComponent, IconBtnComponent, LoadingComponent, PageLinkComponent],
+  exports: [
+    AppHeaderComponent, AppTabsComponent,
+    SvgIconComponent, IconBtnComponent,
+    LoadingComponent, PageLinkComponent,
+    NavBarComponent, FontIconComponent
+  ],
 })
 export class GeneralModule { }

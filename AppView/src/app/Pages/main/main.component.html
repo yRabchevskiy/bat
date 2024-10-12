@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<div class="app-page-layout">
+    <div class="app-page-nav-bar">
+        <app-nav-bar [pages]="pages" [selectedPage]="selectedPage" />
+    </div>
+    <div class="app-page-content"><router-outlet></router-outlet></div>
+</div>

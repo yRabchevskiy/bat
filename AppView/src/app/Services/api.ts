@@ -5,6 +5,7 @@ import { BaseApi } from './base.api';
 import { ISoldier, IVisit, IVisitPostData } from '../Models/soldiers';
 import { IUser } from '../Models/user';
 import { IApiRes } from '../Models/api';
+import { IBatStructure } from '../Models/structure';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -28,5 +29,9 @@ export class ApiService extends BaseApi {
 
   postVisit(data: IVisitPostData): Observable<IVisit> {
     return this.doPost<IVisitPostData>('/visit', data);
+  }
+
+  getStructure(): Observable<IApiRes<IBatStructure>> {
+    return this.doGet<any[]>('/structure');
   }
 }
