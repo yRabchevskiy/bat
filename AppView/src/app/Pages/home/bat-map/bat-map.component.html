@@ -7,28 +7,33 @@
     </ng-template>
 
     <div class="structure-sub-item" *ngFor="let subStructureItem of structureItem.structure">
-      <div class="structure-sub-item-name">{{subStructureItem.id}} <span>{{subStructureItem.name}}</span></div>
+      <div class="structure-sub-item-row">
+        <span>{{subStructureItem.id}}</span>
+        <span class="structure-sub-item-name">{{subStructureItem.name}}</span>
+      </div>
       <div class="structure-sub-data-item" *ngFor="let subStructureDataItem of subStructureItem.data">
-        <!-- <div class="structure-sub-data-item-name">{{subStructureDataItem.}}</div> -->
-        <div class="structure-sub-data-item-content">
-          <span class="data-item-position">{{subStructureDataItem.position}}:</span>
-          <span class="data-item-name">{{subStructureDataItem.name}}</span>
+        <span class="data-item-position">{{subStructureDataItem.position}}:</span>
+        <span class="data-item-name">{{subStructureDataItem.name}}</span>
+        <div class="structure-sub-item-action">
+          <app-font-btn *ngIf="subStructureDataItem.soldier_id" [useAsLink]="true" icon="bx-link-external"
+            size="32px" fontSize="22px" [url]="subStructureDataItem.soldier_id" />
+          <app-font-btn icon="bx-folder-minus" size="32px" fontSize="22px" (onClick)="blockSoldiers(subStructureDataItem.id)" />
         </div>
       </div>
       <div class="structure-sub-structure-item" *ngFor="let subStructureStructureItem of subStructureItem.structure">
         <div class="structure-sub-structure-item-name">{{subStructureStructureItem.id}}
-          <span>{{subStructureStructureItem.name}}</span></div>
+          <span>{{subStructureStructureItem.name}}</span>
+        </div>
         <div class="structure-sub-structure-data-item"
           *ngFor="let subStructureStructureDataItem of subStructureStructureItem.data">
-          <div class="structure-sub-data-item-content">
-            <span class="data-item-position">{{subStructureStructureDataItem.position}}:</span>
-            <span class="data-item-name">{{subStructureStructureDataItem.name}}</span>
-          </div>
+          <span class="data-item-position">{{subStructureStructureDataItem.position}}:</span>
+          <a [routerLink]="subStructureStructureDataItem.soldier_id"
+            class="data-item-name">{{subStructureStructureDataItem.name}}</a>
         </div>
         <div class="structure-sub-structure-sub-item" *ngFor="let a of subStructureStructureItem.structure">
           {{a.name}}
           <div class="structure-sub-structure-sub-data-item" *ngFor="let c of a.data">
-            <div class="structure-sub-structure-sub-item-name">{{c.name}}</div>
+            <div class="structure-sub-structure-sub-item-row">{{c.name}}</div>
           </div>
           <div class="structure-sub-structure-sub-structure-item" *ngFor="let b of a.structure">
             <div class="structure-sub-structure-sub-structure-item-name">{{b.name}}</div>

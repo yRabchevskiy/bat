@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BatMapComponent } from './bat-map.component';
 import { RouterModule, Routes } from '@angular/router';
-import { GraphModule } from '../../../Components/d3/graph.module';
 import { AccordionModule } from 'primeng/accordion';
+import { GeneralModule } from '../../../Components/General/general.module';
 
 
 const routes: Routes = [{
@@ -14,7 +14,7 @@ const routes: Routes = [{
   declarations: [
     BatMapComponent
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), AccordionModule, GraphModule],
+  imports: [CommonModule, RouterModule.forChild(routes), GeneralModule, AccordionModule],
   exports: []
 })
 

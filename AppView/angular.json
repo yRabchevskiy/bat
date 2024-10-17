@@ -32,7 +32,7 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "node_modules/boxicons/css/boxicons.min.css",
+              "./node_modules/boxicons/css/boxicons.min.css",
               "src/styles.scss"
             ],
             "scripts": []

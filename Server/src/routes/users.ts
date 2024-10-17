@@ -16,6 +16,7 @@ router.get('/:id', cors(corsOptions), async (req: Request, res: Response) => {
   res.status(service.code).send(service);
 });
 
+
 // router.post('/', async (req: Request, res: Response) => {
 //   const { error, value } = VisitSchemaValidate.validate(req.body);
 //   if (error) {

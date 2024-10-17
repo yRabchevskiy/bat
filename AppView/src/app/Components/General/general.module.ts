@@ -9,6 +9,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { PageLinkComponent } from './page-link/page-link.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FontIconComponent } from './font-icon/font-icon.component';
+import { FontBtnComponent } from './font-btn/font-btn.component';
 
 
 @NgModule({
@@ -20,14 +21,16 @@ import { FontIconComponent } from './font-icon/font-icon.component';
     LoadingComponent,
     PageLinkComponent,
     NavBarComponent,
-    FontIconComponent
+    FontIconComponent,
+    FontBtnComponent
   ],
   imports: [CommonModule, RouterModule],
   exports: [
     AppHeaderComponent, AppTabsComponent,
     SvgIconComponent, IconBtnComponent,
     LoadingComponent, PageLinkComponent,
-    NavBarComponent, FontIconComponent
+    NavBarComponent, FontIconComponent,
+    FontBtnComponent
   ],
 })
 export class GeneralModule { }

@@ -1,0 +1,13 @@
+.font-button {
+    display: inline-flex;
+    border: none;
+    background: transparent;
+    padding: 0;
+    outline: none;
+    &:active {
+        color: inherit;
+    }
+    &:hover:not(:disabled) {
+        color: var(--blue) !important;
+    }
+}

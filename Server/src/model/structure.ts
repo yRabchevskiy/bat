@@ -3,6 +3,7 @@ import Joi from 'joi';
 
 export const SubStructureDataSchema = Joi.object({
   name: Joi.string(),
+  soldier_id: Joi.string(),
   status: Joi.string(),
   rank: Joi.string(),
   position: Joi.string(),
@@ -30,7 +31,8 @@ export const BatStructureSchemaValidate = Joi.object({
   vch_name: Joi.string(),
   combat: Joi.object({
     name: Joi.string(),
-    rank: Joi.string()
+    rank: Joi.string(),
+    soldier_id: Joi.string(),
   }),
   version: Joi.string(),
   structure: [StructureSchema]
@@ -39,10 +41,12 @@ export const BatStructureSchemaValidate = Joi.object({
 export interface ICombat {
   name: string;
   rank: string;
+  soldier_id?: string;
 }
 
 export interface ISubStructureData {
   name: string;
+  soldier_id?: string;
   status: string;
   rank: string;
   position: string;
@@ -80,6 +84,7 @@ const structureSchema = new Schema<IBatStructure>({
   combat: {
     name: String,
     rank: String,
+    soldier_id: { type: mongoose.SchemaTypes.ObjectId, ref: 'Soldier' },
   },
   version: String,
   structure: [{
@@ -90,6 +95,7 @@ const structureSchema = new Schema<IBatStructure>({
       id: String,
       data: [{
         name: String,
+        soldier_id: { type: mongoose.SchemaTypes.ObjectId, ref: 'Soldier' },
         status: String,
         rank: String,
         position: String,
@@ -100,6 +106,7 @@ const structureSchema = new Schema<IBatStructure>({
         id: String,
         data: [{
           name: String,
+          soldier_id: { type: mongoose.SchemaTypes.ObjectId, ref: 'Soldier' },
           status: String,
           rank: String,
           position: String,
@@ -111,4 +118,4 @@ const structureSchema = new Schema<IBatStructure>({
   }]
 });
 
-export const Structure = model<IBatStructure>('structure', structureSchema);
+export const Structure = model<IBatStructure>('Structure', structureSchema);
