@@ -4,6 +4,11 @@ import { BatMapComponent } from './bat-map.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../../Components/General/general.module';
+import { StructureItemFormComponent } from './structure-item-form/structure-item-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 
 const routes: Routes = [{
@@ -12,9 +17,20 @@ const routes: Routes = [{
 
 @NgModule({
   declarations: [
-    BatMapComponent
+    BatMapComponent,
+    StructureItemFormComponent
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), GeneralModule, AccordionModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    GeneralModule,
+    ButtonModule,
+    AccordionModule,
+    DialogModule,
+    InputTextModule,
+  ],
   exports: []
 })
 

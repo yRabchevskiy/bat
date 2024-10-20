@@ -4,6 +4,20 @@
             border-bottom: 2px solid var(--dark);
         }
     }
+    .structure-item-add-row {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid var(--dark);
+        .structure-item-name {
+            padding-left: 12px;
+        }
+
+        &:hover {
+            .structure-item-name {
+                color: var(--blue);
+            }
+        }
+    }
 
     .p-accordion-header {
         // border-bottom: 2px solid var(--dark);

@@ -5,7 +5,7 @@ import { BaseApi } from './base.api';
 import { ISoldier, IVisit, IVisitPostData } from '../Models/soldiers';
 import { IUser } from '../Models/user';
 import { IApiRes } from '../Models/api';
-import { IBatStructure, IStructure } from '../Models/structure';
+import { IBatStructure, IStructure, IStructurePostData } from '../Models/Structure/structure';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -37,7 +37,7 @@ export class ApiService extends BaseApi {
     return this.doGet<any[]>('/structure');
   }
 
-  addStructureItem(data: IStructure): Observable<IApiRes<IStructure>> {
+  addStructureItem(data: IStructurePostData): Observable<IApiRes<IBatStructure>> {
     return this.doPost<IStructure>('/structure/add-structure-item', data);
 
   }

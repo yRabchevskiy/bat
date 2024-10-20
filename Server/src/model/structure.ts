@@ -18,9 +18,9 @@ export const SubStructureSchema = Joi.object({
 });
 
 export const StructureSchema = Joi.object({
+  _id: Joi.string(),
   name: Joi.string(),
-  id: Joi.string(),
-  structure: [SubStructureSchema]
+  data: Joi.array(), // [SubStructureSchema]
 });
 
 export const BatStructureSchemaValidate = Joi.object({
@@ -35,7 +35,7 @@ export const BatStructureSchemaValidate = Joi.object({
     soldier_id: Joi.string(),
   }),
   version: Joi.string(),
-  structure: [StructureSchema]
+  structure: Joi.array(), // [StructureSchema]
 });
 
 export interface ICombat {
@@ -60,9 +60,9 @@ export interface ISubStructure {
 }
 
 export interface IStructure {
+  _id?: string;
   name: string;
-  id: string;
-  structure: ISubStructure[];
+  data: ISubStructure[];
 }
 export interface IBatStructure {
   _id?: string;
@@ -88,9 +88,9 @@ const structureSchema = new Schema<IBatStructure>({
   },
   version: String,
   structure: [{
+    _id: mongoose.SchemaTypes.ObjectId,
     name: String,
-    id: String,
-    structure: [{
+    data: [{
       name: String,
       id: String,
       data: [{

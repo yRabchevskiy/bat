@@ -7,7 +7,7 @@ export class BaseApi {
   requestOptions: any = {
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
   };

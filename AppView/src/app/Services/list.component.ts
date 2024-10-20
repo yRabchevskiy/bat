@@ -48,6 +48,13 @@ export abstract class ListComponent<TCol> extends SecuredComponent {
     this.select(item);
   }
 
+  updateData(id: string, item: TCol) {
+    const i = this.data.findIndex(it => (<any>it)._id === id);
+    this.selectedItem = item;
+    this.data.splice(i, 1, item);
+    this.select(item);
+  }
+
   reselect(oldIndex: number | undefined = undefined) {
 
     if (this.keepSelection) return;

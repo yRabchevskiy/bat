@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class FontBtnComponent {
   @Input() icon: string = '';
+  @Input() label: string = '';
   @Input() size: string = '40px';
   @Input() color: string = 'var(--dark)';
   @Input() fontSize: string = '28px';

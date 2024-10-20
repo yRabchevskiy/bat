@@ -20,9 +20,13 @@ export interface ISubStructure {
 }
 
 export interface IStructure {
+    _id?: string;
     name: string;
-    id: string;
-    structure: ISubStructure[];
+    data: ISubStructure[];
+}
+
+export interface IStructurePostData extends IStructure {
+    structure_id: string;
 }
 export interface IBatStructure {
     _id?: string;
