@@ -1,7 +1,8 @@
 import { getSoldiers, createSoldier, updateSoldier, deleteSoldier } from '../CONTROLLERS/soldier';
-import { SoldierSchemaValidate } from '../model/soldier';
+
 import express, { Request, Response } from 'express';
 import { corsOptions } from '../cors/cors.option';
+import { SoldierSchemaValidate } from '../model/soldier/validation_schema';
 const cors = require('cors');
 
 const router = express.Router();

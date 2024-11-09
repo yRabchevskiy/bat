@@ -1,5 +1,4 @@
-import { Soldier } from "../model/soldier";
-
+import { Soldier } from "../model/soldier/soldier";
 
 export async function createSoldier(data: any) {
   try {

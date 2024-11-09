@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { API_CODE, API_STATUS } from "../model/api";
-import { IStructure, Structure } from "../model/structure";
+import { Structure } from "../model/structure/structure";
+import { IUnit } from "../model/structure/interfaces";
 
 export async function getStructure() {
   try {
@@ -30,11 +31,12 @@ export async function getStructure() {
   }
 }
 
-export async function createStructureItem(id: string, _data: IStructure) {
+export async function createStructureItem(id: string, _data: IUnit) {
   const _obj = {
     _id: new mongoose.Types.ObjectId(),
     name: _data.name,
-    data: _data.data
+    personnel: _data.personnel,
+    units: _data.units
   };
   return await Structure.findByIdAndUpdate(id, { $push: { "structure": _obj } }, { returnDocument: 'after' }).then(value => {
     return {

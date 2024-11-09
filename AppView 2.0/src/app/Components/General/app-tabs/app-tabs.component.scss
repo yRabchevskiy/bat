@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-shrink: 0;
+    height: 32px;
+    
+}
+
+.app_tab {
+    max-width: 120px;
+    text-overflow: ellipsis;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 32px;
+    padding: 0 12px;
+    border-bottom: 1px solid #000;
+    cursor: pointer;
+}
+.app_tab_active {
+    color: blue;
+    border-bottom-color: blue;
+}

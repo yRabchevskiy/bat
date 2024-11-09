@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import { corsOptions } from '../cors/cors.option';
 import { createStructureItem, getStructure } from '../CONTROLLERS/structure';
-import { StructureSchema } from '../model/structure';
 import { API_CODE, API_STATUS } from '../model/api';
+import { GeneralUnitSchema } from '../model/structure/validation_schema';
 const cors = require('cors');
 
 const router = express.Router();
@@ -14,7 +14,7 @@ router.get('/', cors(corsOptions), async (req: Request, res: Response) => {
 
 router.post('/add-structure-item', async (req: Request, res: Response) => {
   const { name, data, structure_id } = req.body;
-  const { error, value } = StructureSchema.validate({ name, data });
+  const { error, value } = GeneralUnitSchema.validate({ name, data });
   if (error) {
     res.status(API_CODE.API_500).send({
       data: null,

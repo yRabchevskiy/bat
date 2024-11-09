@@ -1,0 +1,76 @@
+<form [formGroup]="vlkForm" (ngSubmit)="save()" novalidate class="form_wrapper">
+  <div class="form_content">
+    <div class="form_fields_colums_group_wrapper">
+      <div class="form_control_wrapper form_field_left">
+        <label for="vlc_number" class="form_label">Номер наказу</label>
+        <input
+          id="vlc_number"
+          type="text"
+          pInputText
+          formControlName="vlc_number"
+          class="form_input"
+        />
+      </div>
+      <div class="form_control_wrapper form_field_right">
+        <label for="vlc_date" class="form_label">Дата проходження</label>
+        <p-calendar
+          formControlName="vlc_date"
+          class="form_calendar"
+          placeholder="../../...."
+          dateFormat="dd/mm/yy"
+        />
+      </div>
+    </div>
+    <div class="form_control_wrapper">
+      <label for="hospital_name" class="form_label">Місце проходження</label>
+      <textarea
+        id="hospital_name"
+        rows="4"
+        cols="30"
+        pInputTextarea
+        formControlName="hospital_name"
+        class="form_textarea"
+      >
+      </textarea>
+    </div>
+    <div class="form_control_wrapper">
+      <label for="diagnosis" class="form_label">Діагноз</label>
+      <textarea
+        id="diagnosis"
+        rows="4"
+        cols="30"
+        pInputTextarea
+        formControlName="diagnosis"
+        class="form_textarea form_textarea_h_120"
+      >
+      </textarea>
+    </div>
+    <div class="form_control_wrapper">
+      <label for="recomendation" class="form_label">Висновок</label>
+      <textarea
+        id="recomendation"
+        rows="4"
+        cols="30"
+        pInputTextarea
+        formControlName="recomendation"
+        class="form_textarea form_textarea_h_120"
+      >
+      </textarea>
+    </div>
+  </div>
+  <div class="form_footer">
+    <button
+      pButton
+      type="button"
+      label="Відмінити"
+      severity="secondary"
+      (click)="cancel()"
+    ></button>
+    <button
+      pButton
+      type="submit"
+      label="Зберегти"
+      [disabled]="vlkForm.invalid"
+    ></button>
+  </div>
+</form>

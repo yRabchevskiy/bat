@@ -1,0 +1,127 @@
+.form_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.form_content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: calc(100% - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.form_footer {
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+    justify-content: flex-end;
+    height: 64px;
+    padding: 12px 0 20px 0;
+    .p-button {
+        padding: 8px;
+        margin: 0 0 0 12px;
+        height: 100%;
+        max-width: 200px;
+    }
+}
+
+.form_fields_colums_group_wrapper {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form_control_wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 0 0 12px 0;
+    padding-bottom: 12px;
+    position: relative;
+    .form_error {
+        font-size: 10px;
+        position: absolute;
+        bottom: -2px;
+    }
+}
+
+.form_field_left {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+}
+
+.form_field_right {
+    width: calc(50% - 10px);
+    margin-left: 10px;
+}
+
+
+
+.form_label {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 4px;
+    font-size: 14px;
+    min-height: 16px;
+}
+.form_textarea {
+    height: 52px;
+    width: 100%;
+    resize: none;
+    padding: 8px;
+    box-shadow: none !important;
+}
+.form_textarea_h_120 {
+    height: 120px;
+}
+
+.form_input {
+    height: 32px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid;
+    outline: 0;
+    box-shadow: none !important;
+}
+.form_calendar,
+.form_mask,
+.form_dropdown {
+    height: 32px;
+    width: 100%;
+    box-shadow: none !important;
+    .p-calendar {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        box-shadow: none !important;
+        .p-inputtext {
+            box-shadow: none !important;
+            padding: 8px;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .p-inputtext {
+        box-shadow: none !important;
+        padding: 8px;
+        width: 100%;
+        height: 100%;
+    }
+    .p-dropdown {
+        width: 100%;
+        height: 100%;
+        box-shadow: none !important;
+        .p-dropdown-label {
+            line-height: 15px;
+        }
+    }
+}
