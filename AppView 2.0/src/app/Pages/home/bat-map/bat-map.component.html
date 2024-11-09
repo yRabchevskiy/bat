@@ -1,41 +1,41 @@
 <!-- <app-graph [data]="data" /> -->
 <p-accordion [multiple]="true" class="structure-wrapper" *ngFor="let bat of data; index as a">
   <div class="structure-name">{{bat.bat_name}}</div>
-  <p-accordionTab class="structure-item" *ngFor="let structureItem of bat.structure; index as b;">
+  <p-accordionTab class="structure-item" *ngFor="let main_unit of bat.main_units; index as b;">
     <ng-template pTemplate="header">
-      <div class="structure-item-name">{{a + 1}}.{{b + 1}} {{structureItem.name}}</div>
+      <div class="structure-item-name">{{a + 1}}.{{b + 1}} {{main_unit.name}}</div>
     </ng-template>
 
-    <div class="structure-sub-item" *ngFor="let subStructureItem of structureItem.data; index as c;">
+    <div class="structure-sub-item" *ngFor="let unit of main_unit.units; index as c;">
       <div class="structure-sub-item-row">
         <span>{{a + 1}}.{{b + 1}}.{{c + 1}}</span>
-        <span class="structure-sub-item-name">{{subStructureItem.name}}</span>
+        <span class="structure-sub-item-name">{{unit.name}}</span>
       </div>
-      <div class="structure-sub-data-item" *ngFor="let subStructureDataItem of subStructureItem.data">
-        <span class="data-item-position">{{subStructureDataItem.position}}:</span>
-        <span class="data-item-name">{{subStructureDataItem.name}}</span>
+      <div class="structure-sub-data-item" *ngFor="let personnel of unit.personnel">
+        <span class="data-item-position">{{personnel.position}}:</span>
+        <span class="data-item-name">{{personnel.name}}</span>
         <div class="structure-sub-item-action">
-          <app-font-btn *ngIf="subStructureDataItem.soldier_id" [useAsLink]="true" icon="bx-link-external"
-            size="32px" fontSize="22px" [url]="subStructureDataItem.soldier_id" />
-          <app-font-btn icon="bx-folder-minus" size="32px" fontSize="22px" (onClick)="blockSoldiers(subStructureDataItem.id)" />
+          <app-font-btn *ngIf="personnel.soldier_id" [useAsLink]="true" icon="bx-link-external"
+            size="32px" fontSize="22px" [url]="personnel.soldier_id" />
+          <app-font-btn icon="bx-folder-minus" size="32px" fontSize="22px" (onClick)="blockSoldiers(personnel.id)" />
         </div>
       </div>
-      <div class="structure-sub-structure-item" *ngFor="let subStructureStructureItem of subStructureItem.structure">
+      <div class="structure-sub-structure-item" *ngFor="let sub_unit of unit.units">
         <div class="structure-sub-structure-item-name">
-          <span>{{subStructureStructureItem.name}}</span>
+          <span>{{sub_unit.name}}</span>
         </div>
         <div class="structure-sub-structure-data-item"
-          *ngFor="let subStructureStructureDataItem of subStructureStructureItem.data">
-          <span class="data-item-position">{{subStructureStructureDataItem.position}}:</span>
-          <a [routerLink]="subStructureStructureDataItem.soldier_id"
-            class="data-item-name">{{subStructureStructureDataItem.name}}</a>
+          *ngFor="let sub_unit_personnel of sub_unit.personnel">
+          <span class="data-item-position">{{sub_unit_personnel.position}}:</span>
+          <a [routerLink]="sub_unit_personnel.soldier_id"
+            class="data-item-name">{{sub_unit_personnel.name}}</a>
         </div>
-        <div class="structure-sub-structure-sub-item" *ngFor="let d of subStructureStructureItem.structure">
+        <div class="structure-sub-structure-sub-item" *ngFor="let d of sub_unit.units">
           {{d.name}}
-          <div class="structure-sub-structure-sub-data-item" *ngFor="let f of d.data">
+          <div class="structure-sub-structure-sub-data-item" *ngFor="let f of d.personnel">
             <div class="structure-sub-structure-sub-item-row">{{f.name}}</div>
           </div>
-          <div class="structure-sub-structure-sub-structure-item" *ngFor="let g of d.structure">
+          <div class="structure-sub-structure-sub-structure-item" *ngFor="let g of d.units">
             <div class="structure-sub-structure-sub-structure-item-name">{{g.name}}</div>
           </div>
         </div>

@@ -1,7 +1,0 @@
-<div
-  [ngClass]="{ app_tab: true, app_tab_active: item.id === selectedTab }"
-  *ngFor="let item of tabs; let i = index"
-  (click)="selectTab(item)"
->
-  <div class="app_tab_label">{{ item.label }}</div>
-</div>

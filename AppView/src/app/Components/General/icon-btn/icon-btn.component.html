@@ -1,9 +1,0 @@
-<button class="app-btn" [ngStyle]="style" type="button" (click)="onClickBtn($event)">
-  <span *ngIf="label">{{ label }}</span>
-  <app-svg-icon
-    *ngIf="svgIconPath"
-    [width]="iconWidth"
-    [height]="iconHeight"
-    [path]="svgIconPath"
-  />
-</button>

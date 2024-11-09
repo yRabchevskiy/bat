@@ -35,7 +35,7 @@ export class AuthGuard  {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // user not logged in, force to re-login
-    if (!this.userService.getLocal()) return this.registerResult(false, state.url);
+    if (!this.userService.user) return this.registerResult(false, state.url);
     const handler = new AuthConnectionErrorHandler(this, state.url);
 
     const rez = this.checkServer(state.url).pipe(catchError ((err) => handler.handleConnectionError(err)));

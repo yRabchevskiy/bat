@@ -13,8 +13,10 @@ router.get('/', cors(corsOptions), async (req: Request, res: Response) => {
 });
 
 router.post('/add-structure-item', async (req: Request, res: Response) => {
-  const { name, data, structure_id } = req.body;
-  const { error, value } = GeneralUnitSchema.validate({ name, data });
+  const { name, personnel, units, structure_id } = req.body;
+  const { error, value } = GeneralUnitSchema.validate({ name, personnel, units });
+  console.log(value)
+  console.log(error)
   if (error) {
     res.status(API_CODE.API_500).send({
       data: null,

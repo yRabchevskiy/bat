@@ -23,16 +23,14 @@ export class MainComponent extends SecuredComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router, private apiService: ApiService) {
     super();
-    const user = this.userService.getLocal();
-    if (!user) return;
-    this.createPages(user);
+    if (!this.userService.user) return;
+    this.createPages(this.userService.user);
     this.getCurrentUrl(this.router.url);
     // this.work = new WorkProgress(() => this.apiService.logout(), (res) => this.onLogoutConfirmed(res), undefined);
 
   }
 
   ngOnInit() {
-    this.getUserFromLocal();
   }
 
   selectPage(page: string) {
@@ -42,10 +40,6 @@ export class MainComponent extends SecuredComponent implements OnInit {
   getCurrentUrl(page: string) {
     const _page = this.pages.find(it => page.includes(it.id));
     this.selectedPage = _page ? _page.id : this.pages[0].id;
-  }
-
-  getUserFromLocal() {
-    const user = this.userService.getLocal();
   }
 
   createPages(_user: IUser) {

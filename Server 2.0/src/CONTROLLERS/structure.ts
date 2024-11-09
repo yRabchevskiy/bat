@@ -38,7 +38,8 @@ export async function createStructureItem(id: string, _data: IUnit) {
     personnel: _data.personnel,
     units: _data.units
   };
-  return await Structure.findByIdAndUpdate(id, { $push: { "structure": _obj } }, { returnDocument: 'after' }).then(value => {
+  console.log(_obj)
+  return await Structure.findByIdAndUpdate(id, { $push: { "main_units": _obj } }, { returnDocument: 'after' }).then(value => {
     return {
       data: value,
       status: API_STATUS.SUCCESS,

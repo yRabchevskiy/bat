@@ -3,7 +3,7 @@ import { ApiService } from '../../../Services/api';
 import { ApiListComponent } from '../../../Services/list-api';
 import { IApiRes } from '../../../Models/api';
 import { Router } from '@angular/router';
-import { IBatStructure, IStructure } from '../../../Models/Structure/structure';
+import { IBatStructure, IUnit } from '../../../Models/Structure/structure';
 
 @Component({
   selector: 'app-bat-map',
@@ -23,7 +23,6 @@ export class BatMapComponent extends ApiListComponent<IBatStructure> {
   }
 
   override onDataReceived(res: IApiRes<IBatStructure>) {
-    console.log(res);
     super.onDataReceived(res.data);
   }
 
@@ -37,7 +36,7 @@ export class BatMapComponent extends ApiListComponent<IBatStructure> {
     // this.apiService.addStructureItem();
   }
 
-  onAddStructureItem(value: IStructure) {
+  onAddStructureItem(value: IUnit) {
     this.loading = true;
     this.apiService.addStructureItem({ ...value, structure_id: this.selectedBatId }).subscribe({
       next: value => {

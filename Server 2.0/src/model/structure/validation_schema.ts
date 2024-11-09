@@ -12,15 +12,15 @@ export const PersonnelDataSchema = Joi.object({
 export const UnitSchema = Joi.object({
   name: Joi.string(),
   id: Joi.string(),
-  personnel: [PersonnelDataSchema],
+  personnel: Joi.array(),
   units: Joi.array(), // GeneralUnitSchema[];
 });
 
 export const GeneralUnitSchema = Joi.object({
   _id: Joi.string(),
   name: Joi.string(),
-  personnel: [PersonnelDataSchema],
-  units: [UnitSchema],
+  personnel: Joi.array(),
+  units: Joi.array(),
 });
 
 export const BatStructureSchemaValidate = Joi.object({

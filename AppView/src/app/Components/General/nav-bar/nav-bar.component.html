@@ -1,5 +1,0 @@
-<a *ngFor="let link of pages"
-    [ngClass]="link.id === selectedPage ? 'link-active' : ''"
-    [routerLink]="link.url" routerLinkActive="active">
-    <app-font-icon icon="bx {{link.icon}}"></app-font-icon>
-</a>

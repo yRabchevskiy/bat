@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IStructure } from '../../../../Models/Structure/structure';
+import { IUnit } from '../../../../Models/Structure/structure';
 
 @Component({
   selector: 'app-structure-item-form',
@@ -9,14 +9,15 @@ import { IStructure } from '../../../../Models/Structure/structure';
 })
 export class StructureItemFormComponent {
   @Input() loading: boolean = false;
-  @Output() onSave: EventEmitter<IStructure> = new EventEmitter<IStructure>();
+  @Output() onSave: EventEmitter<IUnit> = new EventEmitter<IUnit>();
   @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
   
   structureItemForm: FormGroup = new FormGroup({
     name: new FormControl<string>('', Validators.required),
-    data: new FormArray<any>([])
+    personnel: new FormArray<any>([]),
+    units: new FormArray<any>([])
   });
-
+ 
   constructor() {}
 
   
