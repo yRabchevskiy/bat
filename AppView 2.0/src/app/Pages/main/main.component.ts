@@ -4,7 +4,7 @@ import { UserService } from '../../Services/user.service';
 import { IPage, Page } from '../../Models/pages/pages';
 import { Router } from '@angular/router';
 import { ApiService } from '../../Services/api';
-import { APP_ROLES, IUser } from '../../Models/user';
+import { IUser, APP_ROLES } from '../../Store/interfaces/user';
 
 @Component({
   selector: 'app-main',

@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BaseApi } from './base.api';
 import { ISoldier, IVisit, IVisitPostData } from '../Models/soldiers';
-import { IUser } from '../Models/user';
 import { IApiRes } from '../Models/api';
 import { IBatStructure, IStructurePostData, IUnit } from '../Models/Structure/structure';
+import { IUser } from '../Store/interfaces/user';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -34,11 +34,15 @@ export class ApiService extends BaseApi {
 
   // STRUCTURE
   getStructure(): Observable<IApiRes<IBatStructure>> {
-    return this.doGet<any[]>('/structure');
+    return this.doGet('/structure');
   }
 
   addStructureItem(data: IStructurePostData): Observable<IApiRes<IBatStructure>> {
     return this.doPost<IUnit>('/structure/add-structure-item', data);
+  }
 
+  // USERS
+  getUsers(): Observable<IApiRes<IUser[]>> {
+    return this.doGet('/users');
   }
 }

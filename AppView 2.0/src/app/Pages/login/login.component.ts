@@ -4,7 +4,7 @@ import { ApiService } from '../../Services/api';
 import { UserService } from '../../Services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IApiRes } from '../../Models/api';
-import { IUser } from '../../Models/user';
+import { IUser } from '../../Store/interfaces/user';
 
 @Component({
   selector: 'app-login',

@@ -1,12 +1,11 @@
 import { ISoldier } from "../soldiers";
 
 export interface IPersonnelData {
-  name: string;
+  _id?: string;
   soldier_id?: string;
-  status: string;
+  name: string;
   rank: string;
   position: string;
-  id: string;
 }
 
 export interface IGeneralUnit<T, V> {

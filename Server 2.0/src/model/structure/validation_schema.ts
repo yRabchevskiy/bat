@@ -3,15 +3,12 @@ import Joi from "joi";
 export const PersonnelDataSchema = Joi.object({
   name: Joi.string(),
   soldier_id: Joi.string(),
-  status: Joi.string(),
   rank: Joi.string(),
   position: Joi.string(),
-  id: Joi.string(),
 });
 
-export const UnitSchema = Joi.object({
+export const UnitDataSchema = Joi.object({
   name: Joi.string(),
-  id: Joi.string(),
   personnel: Joi.array(),
   units: Joi.array(), // GeneralUnitSchema[];
 });

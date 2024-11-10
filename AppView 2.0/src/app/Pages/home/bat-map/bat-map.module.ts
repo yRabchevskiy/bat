@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { PersonnelItemComponent } from './personnel-item/personnel-item.component';
+import { UnitItemComponent } from './unit-item/unit-item.component';
 
 
 const routes: Routes = [{
@@ -18,7 +20,9 @@ const routes: Routes = [{
 @NgModule({
   declarations: [
     BatMapComponent,
-    StructureItemFormComponent
+    StructureItemFormComponent,
+    PersonnelItemComponent,
+    UnitItemComponent
   ],
   imports: [
     CommonModule,

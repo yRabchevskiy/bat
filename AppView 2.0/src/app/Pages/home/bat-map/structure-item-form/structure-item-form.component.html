@@ -1,14 +1,64 @@
-<form [formGroup]="structureItemForm" (ngSubmit)="onSubmit()" novalidate class="form_wrapper">
+<form [formGroup]="unitItemForm" (ngSubmit)="onSubmit()" novalidate class="form_wrapper">
 
   <div class="form_content">
     <div class="form_control_wrapper">
       <label for="name" class="form_label">Назва підрозділу</label>
       <input id="name" type="text" pInputText formControlName="name" class="form_input" />
     </div>
+    <div formArrayName="personnel">
+      <ng-container *ngFor="let item of personnel.controls; index as i">
+        <ng-container [formGroupName]="i">
+          <app-personnel-item [id]="i + '_main_personnel_'" [data]="getFormGroup(personnel, i)" />
+        </ng-container>
+      </ng-container>
+      <button type="button" (click)="addPersonal()">Додати посаду</button>
+    </div>
+    <div formArrayName="units">
+      <ng-container *ngFor="let item of units.controls; index as i">
+        <ng-container [formGroupName]="i">
+          <app-unit-item [id]="i + '_main_unit_'" [data]="getFormGroup(units, i)" />
+        </ng-container>
+      </ng-container>
+      <button type="button" (click)="addUnit()">Додати підрозділ</button>
+    </div>
+    <!-- <ng-container formArrayName="units">
+     <div *ngFor="let item of units.controls; index as i">
+        <ng-container [formGroupName]="i">
+          <div class="form_control_wrapper">
+            <label [for]="i + 'name'" class="form_label">ПІБ</label>
+            <input [id]="i + 'name'" type="text" pInputText formControlName="name" class="form_input" />
+          </div>
+          <ng-container formArrayName="personnel">
+            <div *ngFor="let item of personnel.controls; index as j">
+              <ng-container [formGroupName]="j">
+                <div class="form_control_wrapper">
+                  <label [for]="j + 'name'" class="form_label">ПІБ</label>
+                  <input [id]="j + 'name'" type="text" pInputText formControlName="name" class="form_input" />
+                </div>
+                <div class="form_control_wrapper">
+                  <label [for]="j + 'position'" class="form_label">Посада</label>
+                  <input [id]="j + 'position'" type="text" pInputText formControlName="position" class="form_input" />
+                </div>
+                <div class="form_control_wrapper">
+                  <label [for]="j + 'rank'" class="form_label">Звання</label>
+                  <input [id]="j + 'rank'" type="text" pInputText formControlName="rank" class="form_input" />
+                </div>
+              </ng-container>
+            </div>
+            <button (click)="addPersonal()">Додати посаду</button>
+          </ng-container>
+          <div class="form_control_wrapper">
+            <label [for]="i + 'rank'" class="form_label">Звання</label>
+            <input [id]="i + 'rank'" type="text" pInputText formControlName="rank" class="form_input" />
+          </div>
+        </ng-container>
+      </div>
+      <button (click)="addPersonal()">Додати посаду</button>
+    </ng-container> -->
   </div>
   <div class="form_footer">
     <button pButton type="button" label="Відмінити" severity="secondary" (click)="closeForm()"></button>
-    <button pButton type="submit" label="Зберегти" [disabled]="structureItemForm.invalid"></button>
+    <button pButton type="submit" label="Зберегти" [disabled]="unitItemForm.invalid"></button>
   </div>
   <div *ngIf="loading">Зберігання...</div>
 </form>

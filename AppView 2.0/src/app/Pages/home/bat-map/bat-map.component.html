@@ -5,37 +5,45 @@
     <ng-template pTemplate="header">
       <div class="structure-item-name">{{a + 1}}.{{b + 1}} {{main_unit.name}}</div>
     </ng-template>
-
-    <div class="structure-sub-item" *ngFor="let unit of main_unit.units; index as c;">
+    <div class="structure-sub-item" *ngFor="let personnel of main_unit.personnel; index as c;">
+      <div class="structure-sub-data-item">
+        <span class="data-item-position">{{personnel.position}}:</span>
+        <span class="data-item-name">{{personnel.name}}</span>
+        <div class="structure-sub-item-action">
+          <app-font-btn *ngIf="personnel.soldier_id" [useAsLink]="true" icon="bx-link-external" size="32px"
+            fontSize="22px" [url]="personnel.soldier_id" />
+          <app-font-btn icon="bx-folder-minus" size="32px" fontSize="22px" (onClick)="blockSoldiers(personnel._id)" />
+        </div>
+      </div>
+    </div>
+    <div class="structure-sub-item" *ngFor="let unit of main_unit.units; index as d;">
       <div class="structure-sub-item-row">
-        <span>{{a + 1}}.{{b + 1}}.{{c + 1}}</span>
+        <span>{{a + 1}}.{{b + 1}}.{{d + 1}}</span>
         <span class="structure-sub-item-name">{{unit.name}}</span>
       </div>
       <div class="structure-sub-data-item" *ngFor="let personnel of unit.personnel">
         <span class="data-item-position">{{personnel.position}}:</span>
         <span class="data-item-name">{{personnel.name}}</span>
         <div class="structure-sub-item-action">
-          <app-font-btn *ngIf="personnel.soldier_id" [useAsLink]="true" icon="bx-link-external"
-            size="32px" fontSize="22px" [url]="personnel.soldier_id" />
-          <app-font-btn icon="bx-folder-minus" size="32px" fontSize="22px" (onClick)="blockSoldiers(personnel.id)" />
+          <app-font-btn *ngIf="personnel.soldier_id" [useAsLink]="true" icon="bx-link-external" size="32px"
+            fontSize="22px" [url]="personnel.soldier_id" />
+          <app-font-btn icon="bx-folder-minus" size="32px" fontSize="22px" (onClick)="blockSoldiers(personnel._id)" />
         </div>
       </div>
       <div class="structure-sub-structure-item" *ngFor="let sub_unit of unit.units">
         <div class="structure-sub-structure-item-name">
           <span>{{sub_unit.name}}</span>
         </div>
-        <div class="structure-sub-structure-data-item"
-          *ngFor="let sub_unit_personnel of sub_unit.personnel">
+        <div class="structure-sub-structure-data-item" *ngFor="let sub_unit_personnel of sub_unit.personnel">
           <span class="data-item-position">{{sub_unit_personnel.position}}:</span>
-          <a [routerLink]="sub_unit_personnel.soldier_id"
-            class="data-item-name">{{sub_unit_personnel.name}}</a>
+          <a [routerLink]="sub_unit_personnel.soldier_id" class="data-item-name">{{sub_unit_personnel.name}}</a>
         </div>
-        <div class="structure-sub-structure-sub-item" *ngFor="let d of sub_unit.units">
-          {{d.name}}
-          <div class="structure-sub-structure-sub-data-item" *ngFor="let f of d.personnel">
+        <div class="structure-sub-structure-sub-item" *ngFor="let e of sub_unit.units">
+          {{e.name}}
+          <div class="structure-sub-structure-sub-data-item" *ngFor="let f of e.personnel">
             <div class="structure-sub-structure-sub-item-row">{{f.name}}</div>
           </div>
-          <div class="structure-sub-structure-sub-structure-item" *ngFor="let g of d.units">
+          <div class="structure-sub-structure-sub-structure-item" *ngFor="let g of e.units">
             <div class="structure-sub-structure-sub-structure-item-name">{{g.name}}</div>
           </div>
         </div>
@@ -43,18 +51,16 @@
     </div>
   </p-accordionTab>
   <div class="structure-item-add-row">
-    <app-font-btn (onClick)="displayStructureItemDialog(bat._id)" icon="bx-book-add" label="Додати підрозділ"  />
+    <app-font-btn (onClick)="displayStructureItemDialog(bat._id)" icon="bx-book-add" label="Додати підрозділ" />
   </div>
 </p-accordion>
 
-<p-dialog [modal]="true" [closeOnEscape]="false" [closable]="false" [visible]="!!selectedBatId"
-  [style]="{
+<p-dialog [modal]="true" [closeOnEscape]="false" [closable]="false" [visible]="!!selectedBatId" [style]="{
     width: '90vw',
-    maxWidth: '520px',
-    height: '80vh',
-    maxHeight: '400px',
+    height: '90vh',
     borderRadius: 0,
     boxShadow: 'none'
   }" position="center" [contentStyle]="{ padding: '12px', overflow: 'hidden' }">
-  <app-structure-item-form *ngIf="!!selectedBatId" [loading]="loading" (onSave)="onAddStructureItem($event)" (onClose)="displayStructureItemDialog('')" />
+  <app-structure-item-form *ngIf="!!selectedBatId" [loading]="loading" (onSave)="onAddStructureItem($event)"
+    (onClose)="displayStructureItemDialog('')" />
 </p-dialog>

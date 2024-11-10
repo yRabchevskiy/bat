@@ -35,8 +35,31 @@ export async function createStructureItem(id: string, _data: IUnit) {
   const _obj = {
     _id: new mongoose.Types.ObjectId(),
     name: _data.name,
-    personnel: _data.personnel,
-    units: _data.units
+    personnel: _data.personnel.map(it => ({...it, _id: new mongoose.Types.ObjectId()})),
+    units: _data.units.map(it => {
+      const _it = { ...it, _id: new mongoose.Types.ObjectId()};
+      if (_it.personnel.length) {
+        _it.personnel.forEach(a => {
+          a._id = new mongoose.Types.ObjectId() as any;
+        });
+      }
+      if (_it.units.length) {
+        _it.units.forEach(a => {
+          a._id = new mongoose.Types.ObjectId() as any;
+          if (a.personnel.length) {
+            _it.personnel.forEach(b => {
+              b._id = new mongoose.Types.ObjectId() as any;
+            });
+          }
+          if (a.units.length) {
+            _it.units.forEach(b => {
+              b._id = new mongoose.Types.ObjectId() as any;
+            });
+          }
+        });
+      }
+      return it;
+    }),
   };
   console.log(_obj)
   return await Structure.findByIdAndUpdate(id, { $push: { "main_units": _obj } }, { returnDocument: 'after' }).then(value => {
