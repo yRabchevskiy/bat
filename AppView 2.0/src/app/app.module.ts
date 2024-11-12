@@ -18,6 +18,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './Store/reducers/app.reducers';
 import { UserEffects } from './Store/effects/user.effects';
+import { ConfigEffects } from './Store/effects/config.effects';
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent], imports: [BrowserModule,
@@ -29,7 +30,7 @@ import { UserEffects } from './Store/effects/user.effects';
     AppRoutingModule,
     GeneralModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, ConfigEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })], providers: [ApiService, UserService, AuthGuard, provideHttpClient(withInterceptorsFromDi())]
 })

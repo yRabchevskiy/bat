@@ -2,6 +2,8 @@ import { Action } from "@ngrx/store";
 import { IUser } from "../interfaces/user";
 
 export enum USER_ACTIONS {
+  Login = '[User] Login',
+  LoginSuccess = '[User] LoginSuccess',
   GetUsers = '[User] Get Users',
   GetUsersSuccess = '[User] Get Users Success',
   GetUser = '[User] Get User',
@@ -26,4 +28,5 @@ export class GetUserSuccess implements Action {
   constructor(public payload: IUser | null) {}
 }
 
-export type UserActions = GetUser | GetUserSuccess | GetUsers | GetUsersSuccess;
+export type UserActions =
+  GetUser | GetUserSuccess | GetUsers | GetUsersSuccess;

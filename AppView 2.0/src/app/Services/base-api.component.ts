@@ -15,12 +15,6 @@ export abstract class SecuredComponent {
     return JSON.parse(str);
   }
 
-
-  showApiErrorMessage(summary: string, res: any) {
-    const errors = res.errors || [];
-    // const message = errors.map((it: any) => `${it.field}: ${it.message}\n`).reduce((text, line) => text += line, '');
-  }
-
 }
 
 @Directive()

@@ -5,6 +5,10 @@ import { UserService } from '../../Services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IApiRes } from '../../Models/api';
 import { IUser } from '../../Store/interfaces/user';
+import { Store } from '@ngrx/store';
+import { login } from '../../Store/actions/config.action';
+import { selectCurrentUser } from '../../Store/selectors/config.selector';
+import { IAppState } from '../../Store/state/app.state';
 
 @Component({
   selector: 'app-login',
@@ -18,26 +22,21 @@ export class LoginComponent {
     password: new FormControl<string>('', [Validators.required]),
   });
 
-  constructor(private apiService: ApiService, public userService: UserService,
-    private router: Router, private activeRoute: ActivatedRoute) { }
-
-  login() {
-    this.apiService.login(this.loginForm?.value).subscribe({
-      next: (res: IApiRes<IUser>) => {
-        console.log(res);
-        debugger
-        this.userService.setLocal(res.data);
+  constructor(private store: Store<IAppState>, public userService: UserService, private router: Router) {
+    this.store.select(selectCurrentUser).subscribe({
+      next: (res: IUser | null) => {
+        if (!res) return;
+        this.userService.setLocal(res);
         this.router.navigate(['/home']);
-        // if (res.item.isAdmin) {
-        //   this.router.navigate([urlAndParams.url], { queryParams: urlAndParams.params });
-        // } else {
-        //   this.router.navigate(['/storage']);
-        // }
       },
       error: (err: any) => {
         this.error = err.error.error as IApiRes<IUser>;
         console.log(err);
       }
     });
+  }
+
+  login() {
+    this.store.dispatch(login(this.loginForm?.value));
   }
 }

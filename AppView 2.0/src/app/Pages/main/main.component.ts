@@ -1,45 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { SecuredComponent } from '../../Services/base-api.component';
 import { UserService } from '../../Services/user.service';
 import { IPage, Page } from '../../Models/pages/pages';
 import { Router } from '@angular/router';
-import { ApiService } from '../../Services/api';
 import { IUser, APP_ROLES } from '../../Store/interfaces/user';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../Store/state/app.state';
+import { selectCurrentUser } from '../../Store/selectors/config.selector';
+import { setSelectedPage } from '../../Store/actions/config.action';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent extends SecuredComponent implements OnInit {
-  
+export class MainComponent implements OnInit {
+
   pages: IPage[] = [];
 
-  private _selectedPage!: string;
-  get selectedPage() { return this._selectedPage; }
-  set selectedPage(page: string) {
-    this.selectPage(page);
-  }
-
-  constructor(private userService: UserService, private router: Router, private apiService: ApiService) {
-    super();
-    if (!this.userService.user) return;
-    this.createPages(this.userService.user);
-    this.getCurrentUrl(this.router.url);
-    // this.work = new WorkProgress(() => this.apiService.logout(), (res) => this.onLogoutConfirmed(res), undefined);
-
+  constructor(private store: Store<IAppState>, private router: Router, private _userService: UserService) {
+    if (!this._userService.isAuthcenticated()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.store.select(selectCurrentUser).subscribe(user => {
+      if (user) {
+        this.createPages(user);
+        this.getCurrentUrl(this.router.url);
+      }
+    });
   }
 
   ngOnInit() {
   }
 
-  selectPage(page: string) {
-    this._selectedPage = page;
-  }
-
   getCurrentUrl(page: string) {
     const _page = this.pages.find(it => page.includes(it.id));
-    this.selectedPage = _page ? _page.id : this.pages[0].id;
+    const selectedPage = _page ? _page.id : this.pages[0].id;
+    this.store.dispatch(setSelectedPage({ page: selectedPage}));
   }
 
   createPages(_user: IUser) {

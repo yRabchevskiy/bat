@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BaseApi } from './base.api';
 import { ISoldier, IVisit, IVisitPostData } from '../Models/soldiers';
 import { IApiRes } from '../Models/api';
 import { IBatStructure, IStructurePostData, IUnit } from '../Models/Structure/structure';
-import { IUser } from '../Store/interfaces/user';
+import { IAuth, IUser } from '../Store/interfaces/user';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -15,8 +15,8 @@ export class ApiService extends BaseApi {
 
   checkAuth(): Observable<boolean> { return this.doPost('/auth/auth-check', {}); }
   
-  login(data: any): Observable<IApiRes<IUser>> {
-    return this.doPost('/auth', data);
+  login(data: IAuth): Observable<IApiRes<IUser>> {
+    return this.doLogin('/auth', data);
   }
 
   getSoldiers(): Observable<ISoldier[]> {

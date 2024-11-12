@@ -10,6 +10,15 @@ import { ApiService } from "../../Services/api";
 
 @Injectable()
 export class UserEffects {
+  getUsers$ = createEffect(() => this._actions$.pipe(
+    ofType<GetUsers>(USER_ACTIONS.GetUsers),
+    switchMap(() => this._apiService.getUsers()),
+    switchMap((_: any) => {
+      console.log(_);
+      return of(new GetUsersSuccess(_));
+    })
+  ))
+  
   getUser$ = createEffect(() => this._actions$.pipe(
     ofType<GetUser>(USER_ACTIONS.GetUser),
     map(action => action.payload),
@@ -19,16 +28,6 @@ export class UserEffects {
       return of(new GetUserSuccess(selectedUser));
     })
   ));
-
-  getUsers$ = createEffect(() => this._actions$.pipe(
-    ofType<GetUsers>(USER_ACTIONS.GetUsers),
-    switchMap(() => this._apiService.getUsers()),
-    switchMap((_: any) => {
-      console.log(_);
-      debugger
-      return of(new GetUsersSuccess(_));
-    })
-  ))
 
   constructor(
     private _apiService: ApiService, 
