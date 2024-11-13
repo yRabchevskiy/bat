@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IVisit, IVisitPostData } from '../../../Models/soldiers';
 import { ApiService } from '../../../Services/api';
 import { ApiListComponent } from '../../../Services/list-api';
+import { IVisit, IVisitPostData } from '../../../Store/interfaces/visit';
 
 @Component({
   selector: 'app-hospitalisation',

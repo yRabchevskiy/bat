@@ -1,18 +1,31 @@
+import { API_CODE, API_STATUS } from "../model/api";
 import { Soldier } from "../model/soldier/soldier";
 
 export async function createSoldier(data: any) {
   try {
     const sold = await Soldier.create(data);
     console.log(sold);
+    if (!sold) {
+      return {
+        data: null,
+        status: API_STATUS.FAILED,
+        message: 'Something went wrong',
+        code: API_CODE.API_404
+      }
+    }
     return {
-      status: "Success",
-      data: sold
-    };
+      data: sold,
+      status: API_STATUS.SUCCESS,
+      message: "",
+      code: API_CODE.API_200
+    }
   } catch (error) {
     return {
-      status: "Failed",
-      message: error
-    };
+      data: null,
+      status: API_STATUS.FAILED,
+      message: error,
+      code: API_CODE.API_500
+    }
   }
 };
 
@@ -64,12 +77,27 @@ export async function deleteSoldier(id: string) {
 export async function getSoldiers() {
   try {
     const solds = await Soldier.find({});
-    return solds;
+    if (!solds) {
+      return {
+        data: null,
+        status: API_STATUS.FAILED,
+        message: 'Something went wrong',
+        code: API_CODE.API_404
+      }
+    }
+    return {
+      data: solds,
+      status: API_STATUS.SUCCESS,
+      message: '',
+      code: API_CODE.API_200
+    }
   }
   catch (error) {
     return {
-      status: "Failed",
-      message: error
+      data: null,
+      status: API_STATUS.FAILED,
+      message: error,
+      code: API_CODE.API_500
     }
   }
 }

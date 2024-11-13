@@ -35,7 +35,7 @@ const soldRankValidate = Joi.object().keys({
 });
 
 const soldSummomedValidate = Joi.object().keys({
-  value: Joi.string(),
+  organization: Joi.string(),
   date: Joi.date(),
 });
 
@@ -58,13 +58,21 @@ const soldVlcValidate = Joi.object({
   description: Joi.string(),
 });
 
+const soldPropertyValidation = Joi.object({
+  value: Joi.string(),
+  date: Joi.date(),
+  description: Joi.string(),
+});
+const soldPropertiesValidate = Joi.object({
+  med_properties: [soldPropertyValidation]
+});
 export const SoldierSchemaValidate = Joi.object({
   _id: Joi.string(),
   name: soldNameValidate,
   birthday: Joi.date(),
   phone: Joi.string(),
-  rank: soldRankValidate,
+  rank: [soldRankValidate],
   editional_data: soldEditionalDataValidate,
-  vlc: Joi.array().items(soldVlcValidate),
+  vlc: [soldVlcValidate],
   properties: Joi.object(),
 });

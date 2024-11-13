@@ -1,6 +1,5 @@
 import mongoose, { Schema, model } from 'mongoose';
-import { ISoldier, ISoldierEditionalData, ISoldPropertiesData, IVlc } from './interfaceses';
-import { IPropertyData } from '../interfaces';
+import { ISoldier, ISoldierEditionalData, ISoldierProperties, IVlc } from './interfaceses';
 
 const soldVlcSchema = new Schema<IVlc>({
   vlc_number: { type: String },
@@ -11,12 +10,13 @@ const soldVlcSchema = new Schema<IVlc>({
   description: { type: String},
 });
 
+
 const soldEditionalDataSchema = new Schema<ISoldierEditionalData>({
   blood_type: { type: String },
   sex_type: { type: String },
   address: { type: String },
   summoned: {
-    value: { type: String },
+    organization: { type: String },
     date: { type: Date },
   },
   position: { type: String },
@@ -24,7 +24,13 @@ const soldEditionalDataSchema = new Schema<ISoldierEditionalData>({
   description: { type: String },
 });
 
-const soldPropertiesDataSchema = new Schema<ISoldPropertiesData<IPropertyData>>({});
+const soldPropertiesDataSchema = new Schema<ISoldierProperties>({
+  med_properties: [{
+    value: { type: String },
+    date: { type: Date },
+    description: { type: String } 
+  }]
+});
 
 const soldierSchema = new Schema<ISoldier>({
   _id: mongoose.SchemaTypes.ObjectId,

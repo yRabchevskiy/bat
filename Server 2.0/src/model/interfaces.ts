@@ -70,15 +70,3 @@ export enum TYPE_OF_VISIT_STATUS {
   CLOSED = 'Завершений',
   OTHER = 'інше'
 }
-
-export interface IName {
-  first_name: string;
-  last_name: string;
-  middle_name: string;
-}
-
-export interface IPropertyData {
-  value: string;
-  data: Date;
-  description?: string;
-}

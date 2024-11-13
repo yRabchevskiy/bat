@@ -35,12 +35,20 @@ export async function login(data: IAuth): Promise<IApiRes> {
 export async function getUsers() {
   try {
     const users = await User.find({}).select('_id nickname first_name last_name email role').exec();
-    return users || [];
+    
+    return {
+      data: users || [],
+      status: API_STATUS.SUCCESS,
+      message: "",
+      code: API_CODE.API_200
+    }
   }
   catch (error) {
     return {
-      status: "Failed",
-      message: error
+      data: null,
+      status: API_STATUS.FAILED,
+      message: error as string,
+      code: API_CODE.API_500
     }
   }
 }

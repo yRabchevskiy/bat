@@ -1,30 +1,3 @@
-// import { Action } from "@ngrx/store";
-// import { IAuth, IUser } from "../interfaces/user";
-
-// export enum CONFIG_ACTIONS {
-//   Login = '[Config] Login',
-//   LoginSuccess = '[Config] LoginSuccess',
-//   LoginError = '[Config] LoginError',
-// }
-
-// export class Login implements Action {
-//   public readonly type = CONFIG_ACTIONS.Login;
-//   constructor(public payload: IAuth) { }
-// }
-// export class LoginSuccess implements Action {
-//   public readonly type = CONFIG_ACTIONS.LoginSuccess;
-//   constructor(public payload: IUser | null) { }
-// }
-
-
-// export class LoginError implements Action {
-//   public readonly type = CONFIG_ACTIONS.LoginError;
-//   constructor(public payload: any) { }
-// }
-
-// export type ConfigActions =
-//   Login | LoginSuccess | LoginError;
-
 import { createAction, props } from '@ngrx/store';
 import { IAuth, IUser } from '../interfaces/user';
 import { IApiRes } from '../../Models/api';

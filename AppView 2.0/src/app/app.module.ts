@@ -19,6 +19,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './Store/reducers/app.reducers';
 import { UserEffects } from './Store/effects/user.effects';
 import { ConfigEffects } from './Store/effects/config.effects';
+import { SoldierEffects } from './Store/effects/soldier.effects';
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent], imports: [BrowserModule,
@@ -30,7 +31,7 @@ import { ConfigEffects } from './Store/effects/config.effects';
     AppRoutingModule,
     GeneralModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects, ConfigEffects]),
+    EffectsModule.forRoot([UserEffects, ConfigEffects, SoldierEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })], providers: [ApiService, UserService, AuthGuard, provideHttpClient(withInterceptorsFromDi())]
 })

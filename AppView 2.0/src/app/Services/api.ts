@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BaseApi } from './base.api';
-import { ISoldier, IVisit, IVisitPostData } from '../Models/soldiers';
 import { IApiRes } from '../Models/api';
 import { IBatStructure, IStructurePostData, IUnit } from '../Models/Structure/structure';
 import { IAuth, IUser } from '../Store/interfaces/user';
+import { ISoldier } from '../Store/interfaces/soldiers';
+import { IVisit, IVisitPostData } from '../Store/interfaces/visit';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -19,12 +20,12 @@ export class ApiService extends BaseApi {
     return this.doLogin('/auth', data);
   }
 
-  getSoldiers(): Observable<ISoldier[]> {
-    return this.doGet<ISoldier[]>('/soldier');
+  getSoldiers(): Observable<IApiRes<ISoldier[]>> {
+    return this.doGet('/soldier');
   }
 
   getVisits(): Observable<IVisit[]> {
-    return this.doGet<IVisit[]>('/visit');
+    return this.doGet('/visit');
   }
 
   postVisit(data: IVisitPostData): Observable<IVisit> {

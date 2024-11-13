@@ -1,46 +1,71 @@
 .structure-wrapper {
-    .structure-item {
-        .p-accordion-tab {
-            border-bottom: 2px solid var(--dark);
-        }
+  .structure-item {
+    .p-accordion-tab {
+      border-bottom: 2px solid var(--dark);
     }
-    .structure-item-add-row {
-        display: flex;
-        align-items: center;
-        border-bottom: 2px solid var(--dark);
-        .structure-item-name {
-            padding-left: 12px;
-        }
+  }
 
-        &:hover {
-            .structure-item-name {
-                color: var(--blue);
-            }
-        }
+  .structure-item-add-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--dark);
+
+    .structure-item-name {
+      padding-left: 12px;
     }
 
+    &:hover {
+      .structure-item-name {
+        color: var(--blue);
+      }
+    }
+  }
+
+  .p-accordion-header {
+    // border-bottom: 2px solid var(--dark);
+    padding: 8px 4px;
+
+    .p-accordion-header-link {
+      padding: 0;
+      border: none;
+      color: var(--dark);
+      background: transparent;
+      font-weight: 700;
+      border-radius: 0;
+      transition: none !important;
+      font-size: 16px;
+    }
+  }
+
+  .p-accordion-content {
+    padding: 4px;
+    border: none;
+    background: transparent;
+    color: var(--dark);
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.soldier-wrapper {
+  .soldier-tab-panel {
     .p-accordion-header {
-        // border-bottom: 2px solid var(--dark);
-        padding: 8px 4px;
-
-        .p-accordion-header-link {
-            padding: 0;
-            border: none;
-            color: var(--dark);
-            background: transparent;
-            font-weight: 700;
-            border-radius: 0;
-            transition: none !important;
-            font-size: 16px;
-        }
-    }
-
-    .p-accordion-content {
-        padding: 4px;
-        border: none;
+      .p-accordion-header-link {
+        display: flex;
         background: transparent;
-        color: var(--dark);
+        border: none;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--dark);
+        color: var(--black);
         border-radius: 0;
-        box-shadow: none;
+      }
+      .p-accordion-toggle-icon {
+        margin-right: 12px;
+      }
     }
+    .p-accordion-content {
+      border: none;
+      padding: 12px 0 0 0;
+    }
+  }
 }

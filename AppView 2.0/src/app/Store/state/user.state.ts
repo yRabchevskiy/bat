@@ -1,11 +1,11 @@
 import { IUser } from "../interfaces/user";
 
 export interface IUserState {
-  users: IUser[] | null;
+  users: IUser[];
   selectedUser: IUser | null;
 }
 
 export const initialUserState: IUserState = {
-  users: null,
+  users: [],
   selectedUser: null
 }

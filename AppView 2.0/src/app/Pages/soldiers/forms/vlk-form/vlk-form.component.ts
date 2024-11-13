@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ISoldier } from '../../../../Models/soldiers';
-
+import { ISoldier } from '../../../../Store/interfaces/soldiers';
 @Component({
   selector: 'app-vlk-form',
   templateUrl: './vlk-form.component.html',

@@ -1,4 +1,5 @@
-import { BLOOD_TYPES, IListItem, RANK_TYPES, SEX_TYPE, TYPE_OF_DISEASE, TYPE_OF_VISIT } from "../general";
+import { IListItem, BLOOD_TYPES, SEX_TYPE, TYPE_OF_DISEASE, RANK_TYPES, TYPE_OF_VISIT } from "../../Store/interfaces/Enums/general";
+
 
 export const BLOOD_TYPES_LIST: IListItem<BLOOD_TYPES>[] = [
     { label: '0(-)', value: BLOOD_TYPES.O_NEGATIVE },

@@ -1,7 +1,7 @@
 import { getVisits, createVisit, updateVisit, deleteVisit } from '../CONTROLLERS/visit';
-import { VisitSchemaValidate } from '../model/visit';
 import express, { Request, Response } from 'express';
 import { corsOptions } from '../cors/cors.option';
+import { VisitSchemaValidate } from '../model/visit/validation_schema';
 const cors = require('cors');
 
 const router = express.Router();

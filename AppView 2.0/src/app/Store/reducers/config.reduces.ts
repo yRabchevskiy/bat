@@ -1,8 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { login, loginFailure, loginSuccess, setCurrentUser, setSelectedPage } from "../actions/config.action";
 import { IConfigState, initialConfigState } from "../state/config.state";
-import { IUser } from "../interfaces/user";
-import { IApiRes } from "../../Models/api";
 
 export const configReducers = createReducer(initialConfigState,
   on(setSelectedPage, (state: IConfigState, props) => {

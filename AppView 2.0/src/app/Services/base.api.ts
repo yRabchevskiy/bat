@@ -15,10 +15,8 @@ export class BaseApi {
 
   constructor(private _http: HttpClient) { }
 
-  public doGet<T>(url: string): Observable<any> {
-    return this._http.get<T>(this.getUrl(url), this.requestOptions).pipe(
-      catchError(this.handlerHttpError) // then handle the error
-    );
+  public doGet(url: string): Observable<any> {
+    return this._http.get(this.getUrl(url), this.requestOptions);
   }
   public doPost<T>(url: string, data: T): Observable<any> {
     return this._http.post<T>(this.getUrl(url), JSON.stringify(data), this.createParam()).pipe(

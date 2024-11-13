@@ -1,4 +1,5 @@
-import { ISoldier } from "../soldiers";
+import { ISoldier } from "../../Store/interfaces/soldiers";
+
 
 export interface IPersonnelData {
   _id?: string;

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropdownChangeEvent } from 'primeng/dropdown';
-import { RANK_TYPES, TYPE_OF_VISIT, TYPE_OF_DISEASE, TYPE_OF_VISIT_STATUS, IListItem } from '../../../Models/general';
 import { TYPE_OF_DISEASE_LIST, TYPE_OF_VISIT_LIST, RANK_TYPES_LIST } from '../../../Models/General_Lists/general_lists';
-import { IVisit, IVisitPostData } from '../../../Models/soldiers';
 import { ApiService } from '../../../Services/api';
+import { RANK_TYPES, TYPE_OF_VISIT, TYPE_OF_DISEASE, TYPE_OF_VISIT_STATUS, IListItem } from '../../../Store/interfaces/Enums/general';
+import { IVisit, IVisitPostData } from '../../../Store/interfaces/visit';
 
 @Component({
   selector: 'app-visit-form',

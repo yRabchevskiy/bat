@@ -8,7 +8,6 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SoldiersTableComponent } from './soldiers-table/soldiers-table.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
@@ -19,12 +18,19 @@ import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../Components/General/general.module';
 import { CreateSoldierFormComponent } from './forms/create-soldier-form/create-soldier-form.component';
 import { VlkFormComponent } from './forms/vlk-form/vlk-form.component';
+import { NameFormComponent } from './forms/children_forms/name-form/name-form.component';
+import { SoldEditionalDataFormComponent } from './forms/children_forms/sold-editional-data-form/sold-editional-data-form.component';
+import { SoldPropertyFormComponent } from './forms/children_forms/sold-property-form/sold-property-form.component';
+import { SoldiersTableComponent } from './soldiers-table/soldiers-table.component';
 @NgModule({
   declarations: [
     SoldiersComponent,
-    CreateSoldierFormComponent,
     SoldiersTableComponent,
-    VlkFormComponent
+    CreateSoldierFormComponent,
+    VlkFormComponent,
+    NameFormComponent,
+    SoldEditionalDataFormComponent,
+    SoldPropertyFormComponent
   ],
   imports: [
     CommonModule,
