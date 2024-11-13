@@ -16,17 +16,17 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../Components/General/general.module';
-import { CreateSoldierFormComponent } from './forms/create-soldier-form/create-soldier-form.component';
 import { VlkFormComponent } from './forms/vlk-form/vlk-form.component';
 import { NameFormComponent } from './forms/children_forms/name-form/name-form.component';
 import { SoldEditionalDataFormComponent } from './forms/children_forms/sold-editional-data-form/sold-editional-data-form.component';
 import { SoldPropertyFormComponent } from './forms/children_forms/sold-property-form/sold-property-form.component';
 import { SoldiersTableComponent } from './soldiers-table/soldiers-table.component';
+import { CreateSoldierComponent } from './create-soldier/create-soldier.component';
 @NgModule({
   declarations: [
     SoldiersComponent,
     SoldiersTableComponent,
-    CreateSoldierFormComponent,
+    CreateSoldierComponent,
     VlkFormComponent,
     NameFormComponent,
     SoldEditionalDataFormComponent,

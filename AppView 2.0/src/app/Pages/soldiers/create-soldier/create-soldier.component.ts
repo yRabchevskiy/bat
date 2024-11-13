@@ -1,22 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import {
-  BLOOD_TYPES_LIST,
-  RANK_TYPES_LIST,
-  SEX_TYPE_LIST,
-  TYPE_OF_DISEASE_LIST,
-} from '../../../../Models/General_Lists/general_lists';
-import { RANK_TYPES, BLOOD_TYPES, SEX_TYPE, IListItem, TYPE_OF_DISEASE } from '../../../../Store/interfaces/Enums/general';
+import { RANK_TYPES_LIST, TYPE_OF_DISEASE_LIST } from '../../../Models/General_Lists/general_lists';
+import { RANK_TYPES, IListItem, TYPE_OF_DISEASE } from '../../../Store/interfaces/Enums/general';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-soldier-form',
-  templateUrl: './create-soldier-form.component.html',
-  styleUrl: './create-soldier-form.component.scss',
+  selector: 'app-create-soldier',
+  templateUrl: './create-soldier.component.html',
+  styleUrl: './create-soldier.component.scss',
 })
 
-export class CreateSoldierFormComponent implements OnInit {
+export class CreateSoldierComponent implements OnInit {
   soldierForm: FormGroup = new FormGroup({
     // name: new FormGroup({
     //   first_name: new FormControl<string | null>('', Validators.required),
