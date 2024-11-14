@@ -7,7 +7,7 @@
         <div class="form_fields_colums_group_2">
           <div class="form_control_wrapper">
             <label for="birthday" class="form_label">Дата народження *</label>
-            <p-calendar inputId="birthday" class="form_calendar" formControlName="birthday" placeholder="../../...."
+            <p-calendar appendTo="body" inputId="birthday" class="form_calendar" formControlName="birthday" placeholder="../../...."
               dateFormat="dd/mm/yy" />
           </div>
           <div class="form_control_wrapper">
@@ -26,7 +26,7 @@
               </div>
               <div class="form_control_wrapper">
                 <label [for]="j + 'rank_date'" class="form_label">Дата присвоєння</label>
-                <p-calendar [inputId]="j + 'rank_date'" formControlName="date" class="form_calendar"
+                <p-calendar appendTo="body" [inputId]="j + 'rank_date'" formControlName="date" class="form_calendar"
                   placeholder="../../...." dateFormat="dd/mm/yy" />
               </div>
             </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form_control_wrapper">
                   <label for="vlc_date" class="form_label">Дата проходження</label>
-                  <p-calendar formControlName="vlc_date" class="form_calendar" placeholder="../../...."
+                  <p-calendar inputId="vlc_date" appendTo="body" formControlName="vlc_date" class="form_calendar" placeholder="../../...."
                     dateFormat="dd/mm/yy" />
                 </div>
               </div>
@@ -73,6 +73,7 @@
               </div>
             </ng-container>
           </ng-container>
+          <button type="button" (click)="addVlc()">Додати ВЛК</button>
         </ng-container>
       </p-accordionTab>
       <p-accordionTab class="soldier-tab-panel" header="Медичне майно">
@@ -93,3 +94,5 @@
     <button pButton type="submit" label="Зберегти" [disabled]="soldierForm.invalid"></button>
   </div>
 </form>
+<app-loading *ngIf="loading" />
+<div *ngIf="error">{{ error }}</div>

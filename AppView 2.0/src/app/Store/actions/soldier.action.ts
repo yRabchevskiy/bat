@@ -8,6 +8,10 @@ export enum SOLDIER_ACTIONS {
   GetSoldier = '[Soldier] Get Soldier',
   GetSoldierSuccess = '[Soldier] Get Soldier Success',
 
+  PostSoldier = '[Soldier] Post Soldier',
+  PostSoldierSuccess = '[Soldier] Post Soldier Success',
+  PostSoldierFailure = '[Soldier] Post Soldier Failure',
+
 }
 
 export const getSoldiers = createAction(
@@ -24,6 +28,20 @@ export const getSoldiersFailure = createAction(
   props<{ error: string }>()
 );
 
+export const postSoldier = createAction(
+  SOLDIER_ACTIONS.PostSoldier,
+  props<{ data: ISoldier }>()
+);
+
+export const postSoldierSuccess = createAction(
+  SOLDIER_ACTIONS.PostSoldierSuccess,
+  props<{ item: ISoldier }>()
+);
+
+export const postSoldierFailure = createAction(
+  SOLDIER_ACTIONS.PostSoldierFailure,
+  props<{ error: string }>()
+);
 
 export const getSoldier = createAction(
   SOLDIER_ACTIONS.GetSoldier,

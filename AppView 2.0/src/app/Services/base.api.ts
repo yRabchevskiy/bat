@@ -19,9 +19,7 @@ export class BaseApi {
     return this._http.get(this.getUrl(url), this.requestOptions);
   }
   public doPost<T>(url: string, data: T): Observable<any> {
-    return this._http.post<T>(this.getUrl(url), JSON.stringify(data), this.createParam()).pipe(
-      catchError(this.handlerHttpError) // then handle the error
-    );
+    return this._http.post<T>(this.getUrl(url), JSON.stringify(data), this.createParam());
   }
   public doDelete<T>(url: string, _id: string): Observable<any> {
     const param = this.createParam();

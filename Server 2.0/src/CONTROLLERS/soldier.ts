@@ -1,10 +1,11 @@
+import mongoose from "mongoose";
 import { API_CODE, API_STATUS } from "../model/api";
+import { ISoldier } from "../model/soldier/interfaceses";
 import { Soldier } from "../model/soldier/soldier";
 
-export async function createSoldier(data: any) {
+export async function createSoldier(data: ISoldier) {
   try {
-    const sold = await Soldier.create(data);
-    console.log(sold);
+    const sold = await Soldier.create({ ...data, _id: new mongoose.Types.ObjectId()});
     if (!sold) {
       return {
         data: null,

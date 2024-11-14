@@ -13,3 +13,13 @@ export const selectSelectedUser = createSelector(
   selectSoldiers,
   (state: ISoldierState) => state.selectedSoldier
 );
+
+export const selectSoldierStateLoading = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.loading
+);
+
+export const selectSoldierStateError = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.error
+);

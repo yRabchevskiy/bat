@@ -50,7 +50,7 @@ export interface ISoldier {
   _id?: string;
   name: IName;
   birthday: Date;
-  phone?: string;
+  phone: string;
   rank: IRank[];
   editional_data: ISoldierEditionalData;
   vlc: IVlc[];

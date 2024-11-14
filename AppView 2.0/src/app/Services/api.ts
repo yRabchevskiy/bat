@@ -24,6 +24,10 @@ export class ApiService extends BaseApi {
     return this.doGet('/soldier');
   }
 
+  postSoldier(data: ISoldier): Observable<IApiRes<ISoldier>> {
+    return this.doPost('/soldier', data);
+  }
+
   getVisits(): Observable<IVisit[]> {
     return this.doGet('/visit');
   }

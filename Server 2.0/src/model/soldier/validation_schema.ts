@@ -1,78 +1,55 @@
 import Joi from "joi";
-import { ranks } from "../general";
-
-const blood_types = Joi.object().keys({
-  type: Joi.string().valid(
-    '0(-)',
-    '0(+)',
-    'A(-)',
-    'A(+)',
-    'B(-)',
-    'B(+)',
-    'AB(-)',
-    'AB(+)',
-    'Невідома'
-  ),
-});
-
-const sex_types = Joi.object().keys({
-  type: Joi.string().valid(
-    'Чоловіча',
-    'Жіноча',
-    'Невідома'
-  ),
-});
 
 const soldNameValidate = Joi.object({
   first_name: Joi.string(),
   last_name: Joi.string(),
-  middle_name: Joi.string(),
+  middle_name: Joi.string().allow(''),
 });
 
 const soldRankValidate = Joi.object().keys({
-  value: ranks,
-  date: Joi.date(),
+  value: Joi.string(),
+  date: Joi.date().allow(null),
 });
 
 const soldSummomedValidate = Joi.object().keys({
-  organization: Joi.string(),
-  date: Joi.date(),
+  organization: Joi.string().allow(''),
+  date: Joi.date().allow(null),
 });
 
 const soldEditionalDataValidate = Joi.object({
-  blood_type: blood_types,
-  sex_type: sex_types,
-  address: Joi.string(),
+  blood_type: Joi.string().allow(''),
+  sex_type: Joi.string().allow(''),
+  address: Joi.string().allow(''),
   summoned: soldSummomedValidate,
-  position: Joi.string(),
-  unit: Joi.string(),
-  description: Joi.string(),
+  position: Joi.string().allow(''),
+  unit: Joi.string().allow(''),
+  description: Joi.string().allow(''),
 });
 
 const soldVlcValidate = Joi.object({
-  vlc_number: Joi.string(),
+  vlc_number: Joi.string().allow(''),
   vlc_date: Joi.string(),
-  hospital_name: Joi.string(),
-  diagnosis: Joi.string(),
-  recomendation: Joi.string(),
-  description: Joi.string(),
+  hospital_name: Joi.string().allow(''),
+  diagnosis: Joi.string().allow(''),
+  recomendation: Joi.string().allow(''),
+  description: Joi.string().allow(''),
 });
 
 const soldPropertyValidation = Joi.object({
   value: Joi.string(),
   date: Joi.date(),
-  description: Joi.string(),
+  description: Joi.string().allow(''),
 });
-const soldPropertiesValidate = Joi.object({
-  med_properties: [soldPropertyValidation]
-});
+
 export const SoldierSchemaValidate = Joi.object({
-  _id: Joi.string(),
+  // _id: Joi.string(),
   name: soldNameValidate,
   birthday: Joi.date(),
-  phone: Joi.string(),
-  rank: [soldRankValidate],
+  phone: Joi.string().allow(''),
+  rank: Joi.array().items(soldRankValidate),
   editional_data: soldEditionalDataValidate,
-  vlc: [soldVlcValidate],
-  properties: Joi.object(),
+  vlc: Joi.array().items(soldVlcValidate),
+  properties: Joi.object({
+    med_properties: Joi.array().items(soldPropertyValidation)
+  }),
 });

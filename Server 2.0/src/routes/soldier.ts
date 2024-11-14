@@ -3,6 +3,7 @@ import { getSoldiers, createSoldier, updateSoldier, deleteSoldier } from '../CON
 import express, { Request, Response } from 'express';
 import { corsOptions } from '../cors/cors.option';
 import { SoldierSchemaValidate } from '../model/soldier/validation_schema';
+import { API_CODE, API_STATUS } from '../model/api';
 const cors = require('cors');
 
 const router = express.Router();
@@ -15,10 +16,16 @@ router.get('/', cors(corsOptions), async (req: Request, res: Response) => {
 router.post('/', cors(corsOptions), async (req: Request, res: Response) => {
   const { error, value } = SoldierSchemaValidate.validate(req.body);
   if (error) {
-    res.send(error.message);
+    const api_res = {
+      data: null,
+      status: API_STATUS.FAILED,
+      message: error.message,
+      code: API_CODE.API_500
+    }
+    res.status(API_CODE.API_500).send(api_res);
   } else {
     const service = await createSoldier(value);
-    res.status(200).send(service);
+    res.status(API_CODE.API_200).send(service);
   }
 });
 

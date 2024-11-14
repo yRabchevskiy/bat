@@ -3,6 +3,10 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RANK_TYPES_LIST, TYPE_OF_DISEASE_LIST } from '../../../Models/General_Lists/general_lists';
 import { RANK_TYPES, IListItem, TYPE_OF_DISEASE } from '../../../Store/interfaces/Enums/general';
 import { Router } from '@angular/router';
+import { IAppState } from '../../../Store/state/app.state';
+import { Store } from '@ngrx/store';
+import { postSoldier } from '../../../Store/actions/soldier.action';
+import { selectSoldierStateError, selectSoldierStateLoading } from '../../../Store/selectors/soldier.selector';
 
 @Component({
   selector: 'app-create-soldier',
@@ -37,16 +41,7 @@ export class CreateSoldierComponent implements OnInit {
         value: new FormControl<RANK_TYPES>(RANK_TYPES.SOLDIER),
       }),
     ]),
-    vlc: new FormArray([
-      new FormGroup({
-        vlc_number: new FormControl<string>(''),
-        vlc_date: new FormControl<Date | null>(null),
-        hospital_name: new FormControl<string>(''),
-        diagnosis: new FormControl<string>(''),
-        recomendation: new FormControl<string>(''),
-        description: new FormControl<string>(''),
-      }),
-    ]),
+    vlc: new FormArray([]),
     properties: new FormGroup({
       med_properties: new FormArray([]),
     }),
@@ -55,17 +50,31 @@ export class CreateSoldierComponent implements OnInit {
   get med_properties(): FormArray {
     return (this.soldierForm.get('properties') as FormGroup).controls['med_properties'] as FormArray;
   }
+  get vlcs() {
+    return this.soldierForm?.get('vlc') as FormArray;
+  }
+  get ranks() {
+    return this.soldierForm?.get('rank') as FormArray;
+  }
   readonly rank_types: IListItem<RANK_TYPES>[] = RANK_TYPES_LIST;
   readonly disease_types: IListItem<TYPE_OF_DISEASE>[] = TYPE_OF_DISEASE_LIST;
-
-  constructor(private router: Router) { }
+  loading: boolean = false;
+  error: string | null = null;
+  constructor(private router: Router, private store: Store<IAppState>) {
+    this.store.select(selectSoldierStateLoading).subscribe(it => {
+      this.loading = it;
+    });
+    this.store.select(selectSoldierStateError).subscribe(it => {
+      this.error = it;
+    })
+  }
 
   ngOnInit() { }
   getMedPropertyGroup(i: number) {
     return this.med_properties.controls[i] as FormGroup;
   }
   save() {
-    console.log(this.soldierForm.value);
+    this.store.dispatch(postSoldier({ data: this.soldierForm.value }));
     // this._SoldiersService.postSoldier(this.soldierForm?.value);
     // this.soldierForm.reset();
     // this.cancel();
@@ -73,6 +82,22 @@ export class CreateSoldierComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/soldiers/table'])
+  }
+
+  addVlc() {
+    const _item: FormGroup = new FormGroup({
+      vlc_number: new FormControl<string>(''),
+      vlc_date: new FormControl<Date | null>(null),
+      hospital_name: new FormControl<string>(''),
+      diagnosis: new FormControl<string>(''),
+      recomendation: new FormControl<string>(''),
+      description: new FormControl<string>(''),
+    });
+    this.vlcs.push(_item);
+  }
+
+  removeVlk(index: number) {
+    this.vlcs.removeAt(index);
   }
 
   addMedProperty() {
@@ -86,14 +111,6 @@ export class CreateSoldierComponent implements OnInit {
 
   removeMedProperty(index: number) {
     this.med_properties.removeAt(index);
-  }
-
-  get vlcs() {
-    return this.soldierForm?.get('vlc') as FormArray;
-  }
-
-  get ranks() {
-    return this.soldierForm?.get('rank') as FormArray;
   }
 
 }

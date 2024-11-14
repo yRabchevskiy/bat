@@ -5,7 +5,7 @@ export interface IConfigState {
   currentUser: IUser | null;
   selectedPage: string;
   loading: boolean;
-  error: any;
+  error: string | null;
 }
 
 export const initialConfigState: IConfigState = {
@@ -13,5 +13,5 @@ export const initialConfigState: IConfigState = {
   currentUser: null,
   selectedPage: '',
   loading: false,
-  error: null
+  error: null,
 }
