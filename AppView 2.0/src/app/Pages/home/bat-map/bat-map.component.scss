@@ -29,7 +29,7 @@
 
 .structure-sub-item {
     border-style: dashed;
-    border-color: var(--dark);
+    border-color: var(--primary-bg-color);
     border-width: 1px;
     font-size: 14px;
     font-weight: 500;
@@ -61,7 +61,7 @@
     align-items: center;
     padding: 4px;
     margin-left: 24px;
-    border-bottom: 1px solid var(--dark);
+    border-bottom: 1px solid var(--primary-bg-color);
     &:last-child {
         border-bottom: none;
     }
@@ -75,7 +75,7 @@
 .structure-sub-structure-item {
     padding: 4px 4px 4px 0;
     margin-left: 32px;
-    border-bottom: 1px dashed var(--dark);
+    border-bottom: 1px dashed var(--primary-bg-color);
     &:last-child {
         border-bottom-width: 0;
     }

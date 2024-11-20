@@ -1,8 +1,8 @@
 <div>
   <button (click)="openVisitForm()">Створити візит</button>
-  <button (click)="refresh()">Завантажити</button>
+  <!-- <button (click)="refresh()">Завантажити</button> -->
 </div>
-<p-table class="table" [value]="data" [scrollable]="true" scrollHeight="100%">
+<p-table class="table" [value]="[]" [scrollable]="true" scrollHeight="100%">
   <ng-template pTemplate="header">
     <tr>
       <th width="40px">№</th>
@@ -31,5 +31,5 @@
   </ng-template>
 </p-table>
 
-<app-visit-form *ngIf="showVisitForm" [item]="selectedItem" (onSave)="createVisit($event)" (onClose)="closeModalWindow()" />
+<!-- <app-visit-form *ngIf="showVisitForm" [item]="selectedItem" (onSave)="createVisit($event)" (onClose)="closeModalWindow()" /> -->
 <!-- <app-loading *ngIf="loading" /> -->

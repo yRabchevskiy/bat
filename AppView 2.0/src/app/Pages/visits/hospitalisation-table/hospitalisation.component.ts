@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../../Services/api';
-import { ApiListComponent } from '../../../Services/list-api';
 import { IVisit, IVisitPostData } from '../../../Store/interfaces/visit';
 
 @Component({
@@ -8,31 +7,30 @@ import { IVisit, IVisitPostData } from '../../../Store/interfaces/visit';
   templateUrl: './hospitalisation.component.html',
   styleUrl: './hospitalisation.component.scss'
 })
-export class HospitalisationComponent extends ApiListComponent<IVisit> {
+export class HospitalisationComponent {
  
   showVisitForm: boolean = false;
 
   constructor(private apiService: ApiService) {
-    super();
   }
 
   // ngOnInit() {
   //   this.apiService.getVisits('/visits');
   // }
  
-  doGetData() {
-    return this.apiService.getVisits();
-  }
+  // doGetData() {
+  //   return this.apiService.getVisits();
+  // }
 
-  override onDataReceived(res: IVisit[]) {
-    super.onDataReceived(res);
-  }
+  // override onDataReceived(res: IVisit[]) {
+  //   super.onDataReceived(res);
+  // }
 
   createVisit(data: IVisitPostData) {
     this.apiService.postVisit(data).subscribe({
       next: res => {
-        this.add(res);
-        this.selectedItem = res;
+        // this.add(res);
+        // this.selectedItem = res;
       },
       error: (err: any) => {
       }
@@ -42,7 +40,7 @@ export class HospitalisationComponent extends ApiListComponent<IVisit> {
 
   openVisitForm(item?: IVisit) {
     if (item) {
-      this.selectedItem = item;
+      // this.selectedItem = item;
     }
     this.showVisitForm = true;
   }

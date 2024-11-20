@@ -5,16 +5,16 @@
     height: 100%;
     overflow: hidden;
     padding: 12px 0;
-    border-right: 1px solid var(--blue);
+    border-right: 1px solid var(--accent-color);
 }
 
 a {
     text-decoration: none;
     cursor: pointer;
     text-align: center;
-    color: var(--dark);
+    color: var(--text-secondary-color);
     &.link-active,
     &:hover {
-        color: var(--blue);
+        color: var(--accent-color);
     }
 }

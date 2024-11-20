@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../Services/api';
-import { ApiListComponent } from '../../../Services/list-api';
 import { IApiRes } from '../../../Models/api';
 import { Router } from '@angular/router';
 import { IBatStructure, IUnit } from '../../../Models/Structure/structure';
@@ -10,21 +9,21 @@ import { IBatStructure, IUnit } from '../../../Models/Structure/structure';
   templateUrl: './bat-map.component.html',
   styleUrl: './bat-map.component.scss'
 })
-export class BatMapComponent extends ApiListComponent<IBatStructure> {
+export class BatMapComponent {
+  data: IBatStructure[] = [];
   selectedBatId: string = '';
   loading: boolean = false;
   constructor(private apiService: ApiService, private router: Router) {
-    super();
   }
 
 
-  doGetData() {
-    return this.apiService.getStructure();
-  }
+  // doGetData() {
+  //   return this.apiService.getStructure();
+  // }
 
-  override onDataReceived(res: IApiRes<IBatStructure>) {
-    super.onDataReceived(res.data);
-  }
+  // override onDataReceived(res: IApiRes<IBatStructure>) {
+  //   super.onDataReceived(res.data);
+  // }
 
   blockSoldiers(id?: string) {
     if (!id) return;
@@ -43,7 +42,7 @@ export class BatMapComponent extends ApiListComponent<IBatStructure> {
         this.loading = false;
         this.selectedBatId = '';
         console.log('Observable emitted the next value: ' + value);
-        this.updateData(this.selectedBatId, value.data);
+        // this.updateData(this.selectedBatId, value.data);
       },
       error: err => {
         this.loading = false;

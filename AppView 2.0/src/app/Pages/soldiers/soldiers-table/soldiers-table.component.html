@@ -1,8 +1,13 @@
-<p-table class="table" [value]="soldiers" [scrollable]="true" scrollHeight="calc(100% - 36px)" dataKey="_id">
-  <ng-template pTemplate="footer">
-    <td colSpan="8">
-      <a routerLink="../create" routerLinkActive="home-link-active">Додати солдата</a>
-    </td>
+<p-table class="table" #st [value]="soldiers" [scrollable]="true" scrollHeight="100%" dataKey="_id"
+  [globalFilterFields]="['name.first_name', 'name.last_name', 'name.middle_name', 'editional_data.position']"
+  [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true">
+  <ng-template pTemplate="caption">
+    <div class="table_action_row">
+      <a class="app_action_link" routerLink="../create" routerLinkActive="home-link-active">Додати</a>
+      <input class="app_table_input" type="text" (input)="globalFilter(st, $event)"
+        placeholder="Пошук" />
+    </div>
+
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
@@ -37,7 +42,7 @@
       <td>
         <!-- <app-icon-btn (onClick)="openModalWindow('visit', item)" svgIconPath="url('assets/icons/visit.svg')" />
         <app-icon-btn (onClick)="openModalWindow('vlk', item)" svgIconPath="url('assets/icons/vlk.svg')" /> -->
-        <app-icon-btn (onClick)="deleteSoldier(item)" svgIconPath="url('assets/icons/delete.svg')" />
+        <app-font-btn (onClick)="deleteSoldier(item)" icon="bxs-trash" />
       </td>
     </tr>
   </ng-template>
@@ -92,15 +97,3 @@
     </tr>
   </ng-template>
 </p-table>
-
-<!-- <app-visit-form *ngIf="!!editableSoldier" [soldier]="editableSoldier" (onClose)="closeModalWindow()" /> -->
-<!-- <p-dialog [modal]="true" [closeOnEscape]="false" [closable]="false" [visible]="!!(showForm && showForm === 'vlk')"
-  [style]="{
-  width: '100vw',
-  height: 'calc(100vh - 32px)',
-  maxHeight: 'none',
-  borderRadius: 0,
-  boxShadow: 'none'
-}" position="bottom" [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }">
-  <app-vlk-form *ngIf="!!editableSoldier" [soldier]="editableSoldier" (onClose)="closeModalWindow()" />
-</p-dialog> -->

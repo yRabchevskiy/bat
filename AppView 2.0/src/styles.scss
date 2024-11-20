@@ -9,9 +9,16 @@
 @import './assets/general.scss';
 @import './assets/button.scss';
 :root {
-    --blue: #2ca9bc;
-    --dark: #0F0F0F;
-    --grey: #e5e7eb;
+    --accent-color: #B655C8;
+
+    --text-main-color: #171710;
+    --text-secondary-color: #707370;
+
+    --primary-bg-color: #FFFFFF;
+    --secondary-bg-color: #E5CEF6;
+
+    --table-border-color: #707370;
+    --table-border-highlight: #171710;
 }
 * {
     margin: 0;
@@ -24,6 +31,7 @@ html, body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: var(--primary-bg-color);
 }
 
 a {

@@ -1,9 +1,9 @@
 <button *ngIf="!useAsLink" class="font-button" type="button" (click)="doCLick($event)" [ngStyle]="{'color': color}">
-    <app-font-icon [icon]="icon" [fontSize]="fontSize" [size]="size" />
-    <div class="font-button-label-after" *ngIf="label">{{label}}</div>
+  <app-font-icon [icon]="icon" [fontSize]="fontSize" [size]="size" />
+  <div class="font-button-label-after" *ngIf="label">{{label}}</div>
 </button>
 
 <a class="font-button" *ngIf="useAsLink" [routerLink]="url" [ngStyle]="{'color': color}">
-    <app-font-icon [icon]="icon" [fontSize]="fontSize" [size]="size" />
-    <div class="font-button-label-after" *ngIf="label">{{label}}</div>
+  <app-font-icon [icon]="icon" [fontSize]="fontSize" [size]="size" />
+  <div class="font-button-label-after" *ngIf="label">{{label}}</div>
 </a>
