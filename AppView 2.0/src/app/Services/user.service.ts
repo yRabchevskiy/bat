@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { APP_ROLES, IUser } from '../Store/interfaces/user';
 import { IAppState } from '../Store/state/app.state';
 import { Store } from '@ngrx/store';
-import { setCurrentUser } from '../Store/actions/config.action';
+import { logout, setCurrentUser } from '../Store/actions/config.action';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
   private _isAuthenticated: boolean = false;
   private _isAdmin: boolean = false;
-  constructor(private store: Store<IAppState>) {
+  constructor(private store: Store<IAppState>, private router: Router) {
     this.getUserFromLocal();
   }
 
@@ -35,6 +36,8 @@ export class UserService {
     this._isAuthenticated = false;
     this._isAdmin = false;
     localStorage.removeItem('bat_202_user');
+    this.store.dispatch(logout());
+    this.router.navigate(['/login']);
   }
  
   isAuthcenticated(): boolean {

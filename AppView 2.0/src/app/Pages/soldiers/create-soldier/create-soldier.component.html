@@ -32,10 +32,9 @@
             </div>
           </ng-container>
         </ng-container>
-      </p-accordionTab>
-      <p-accordionTab class="soldier-tab-panel" header="Додаткова інформація">
         <app-sold-editional-data-form></app-sold-editional-data-form>
       </p-accordionTab>
+      
       <p-accordionTab class="soldier-tab-panel" header="ВЛК">
         <ng-container formArrayName="vlc">
           <ng-container *ngFor="let vlc_item of vlcs.controls; let j = index">
@@ -73,7 +72,7 @@
               </div>
             </ng-container>
           </ng-container>
-          <button type="button" (click)="addVlc()">Додати ВЛК</button>
+          <button class="app_action_button" type="button" (click)="addVlc()">Додати ВЛК</button>
         </ng-container>
       </p-accordionTab>
       <p-accordionTab class="soldier-tab-panel" header="Медичне майно">
@@ -83,7 +82,7 @@
             <app-sold-property-form [id]="i + '_med_property'" [data]="getMedPropertyGroup(i)"
               (onDelete)="removeMedProperty(i)"></app-sold-property-form>
           </ng-container>
-          <button type="button" (click)="addMedProperty()">Додати інвентар</button>
+          <button class="app_action_button" type="button" (click)="addMedProperty()">Додати інвентар</button>
         </ng-container>
       </p-accordionTab>
     </p-accordion>

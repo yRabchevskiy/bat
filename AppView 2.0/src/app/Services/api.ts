@@ -7,6 +7,7 @@ import { IBatStructure, IStructurePostData, IUnit } from '../Models/Structure/st
 import { IAuth, IUser } from '../Store/interfaces/user';
 import { ISoldier } from '../Store/interfaces/soldiers';
 import { IVisit, IVisitPostData } from '../Store/interfaces/visit';
+import { IRemission, IRemissionPostData } from '../Store/interfaces/remission';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -26,6 +27,15 @@ export class ApiService extends BaseApi {
 
   postSoldier(data: ISoldier): Observable<IApiRes<ISoldier>> {
     return this.doPost('/soldier', data);
+  }
+
+  // Remissions
+  getRemisions(): Observable<IApiRes<IRemission[]>> {
+    return this.doGet('/remission');
+  }
+
+  postRemision(data: IRemissionPostData): Observable<IApiRes<IRemission>> {
+    return this.doPost('/remission', data);
   }
 
   getVisits(): Observable<IVisit[]> {

@@ -1,0 +1,39 @@
+<p-table class="table" #st [value]="data" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
+  [globalFilterFields]="['soldier.name.first_name', 'soldier.name.last_name', 'start_date', 'end_date']" [rows]="10"
+  [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
+  <ng-template pTemplate="caption">
+    <div class="table_action_row">
+      
+      <input class="app_table_input" type="text" (input)="globalFilter(st, $event)" placeholder="Пошук" />
+      <app-font-btn fontSize="28px" icon="bx-refresh" (onClick)="onLoadData()"></app-font-btn>
+    </div>
+
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6">Дані відсутні</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 60px">№</th>
+      <th style="width: 120px">З:</th>
+      <th style="width: 120px">До:</th>
+      <th>ПІБ</th>
+      <th>Діагноз</th>
+      <th>Опис</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ item.start_date | date : "dd/MM/yyyy" }}</td>
+      <td>{{ item.end_date | date : "dd/MM/yyyy" }}</td>
+      <td>{{ item.soldier.name.last_name }} {{ item.soldier.name.first_name }} {{ item.soldier.name.middle_name }}</td>
+      <td>{{ item.diagnosis }}</td>
+      <td>{{ item.description }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-loading *ngIf="loading | async"/>

@@ -3,7 +3,7 @@ import { ITab } from '../../Models/Tabs/tabs';
 import { SoldiersTabs } from './soldiers_tabs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../Store/state/app.state';
-import { getSoldiers } from '../../Store/actions/soldier.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-soldiers',
@@ -12,20 +12,26 @@ import { getSoldiers } from '../../Store/actions/soldier.action';
 })
 export class SoldiersComponent implements OnInit {
   
-  // readonly tabs: ITab[] = SoldiersTabs;
-  // selectedTab: string = this.tabs[0].id;
+  readonly tabs: ITab[] = SoldiersTabs;
+  selectedTab: string = '';
 
    
-  constructor(private _store: Store<IAppState>) {
+  constructor(private _store: Store<IAppState>, private route: Router) {
     
   }
 
   ngOnInit(): void {
-    this._store.dispatch(getSoldiers());
+    this.setInitialSelectedTab();
   }
 
-  // onSelectTab($event: string) {
-    // this.selectedTab = $event;
-    // this._store.dispatch(getUser({ id: this.users[0]._id }))
-  // }
+  setInitialSelectedTab() {
+    const _tab = SoldiersTabs.find(it => this.route.url.includes(it.url as string));
+    this.selectedTab = _tab ? _tab.id : this.tabs[0].id;
+  }
+
+
+  onSelectTab($event: ITab) {
+    this.selectedTab = $event.id;
+    this.route.navigate([$event.url]);
+  }
 }

@@ -30,3 +30,9 @@ export const selectConfigError = createSelector(
   selectConfig,
   (state: IConfigState) => state.error
 );
+
+
+export const selectDialogType = createSelector(
+  selectConfig,
+  (state: IConfigState) => state.dialogType
+);

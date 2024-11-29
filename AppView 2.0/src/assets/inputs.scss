@@ -9,9 +9,19 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: calc(100% - 64px);
+  max-height: 100%;
+  flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+
+.form_header {
+  display: flex;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 0 0 20px 0;
+  position: relative;
 }
 
 .form_footer {
@@ -115,6 +125,7 @@
 }
 
 .form_textarea_h_120 {
+  @extend .form_textarea;
   height: 120px;
 }
 

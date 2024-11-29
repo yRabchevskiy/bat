@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { GeneralModule } from '../../Components/General/general.module';
 import { AuthGuard } from '../../shared/auth-guard';
+import { ToastModule } from 'primeng/toast';
 
 const routes: Routes = [{
   path: '', component: MainComponent,
@@ -23,6 +24,7 @@ const routes: Routes = [{
     CommonModule,
     RouterModule.forChild(routes),
     GeneralModule,
+    ToastModule
   ],
   providers: []
 })

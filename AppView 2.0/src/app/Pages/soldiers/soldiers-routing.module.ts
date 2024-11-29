@@ -4,11 +4,13 @@ import { SoldiersComponent } from './soldiers.component';
 import { SoldiersTableComponent } from './soldiers-table/soldiers-table.component';
 import { VlkFormComponent } from './forms/vlk-form/vlk-form.component';
 import { CreateSoldierComponent } from './create-soldier/create-soldier.component';
+import { RemissionTableComponent } from './remission-table/remission-table.component';
 
 const routes: Routes = [
   { path: '', component: SoldiersComponent,
     children: [
       { path: 'table', component: SoldiersTableComponent },
+      { path: 'remission', component: RemissionTableComponent },
       { path: 'create', component: CreateSoldierComponent },
       { path: 'vlc/:id', component: VlkFormComponent },
       { path: '', redirectTo: 'table', pathMatch: 'full' },

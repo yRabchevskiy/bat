@@ -1,13 +1,19 @@
-<p-table class="table" #st [value]="soldiers" [scrollable]="true" scrollHeight="100%" dataKey="_id"
+<p-table class="table" #st [value]="soldiers" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
   [globalFilterFields]="['name.first_name', 'name.last_name', 'name.middle_name', 'editional_data.position']"
-  [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true">
+  [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
   <ng-template pTemplate="caption">
     <div class="table_action_row">
-      <a class="app_action_link" routerLink="../create" routerLinkActive="home-link-active">Додати</a>
-      <input class="app_table_input" type="text" (input)="globalFilter(st, $event)"
-        placeholder="Пошук" />
+      <a class="app_action_button" routerLink="../create" routerLinkActive="home-link-active">Додати</a>
+      <input class="app_table_input" type="text" (input)="globalFilter(st, $event)" placeholder="Пошук" />
+      <app-font-btn fontSize="28px" icon="bx-refresh" (onClick)="onLoadData()"></app-font-btn>
     </div>
 
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">Дані відсутні</td>
+    </tr>
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
@@ -42,7 +48,9 @@
       <td>
         <!-- <app-icon-btn (onClick)="openModalWindow('visit', item)" svgIconPath="url('assets/icons/visit.svg')" />
         <app-icon-btn (onClick)="openModalWindow('vlk', item)" svgIconPath="url('assets/icons/vlk.svg')" /> -->
+        <app-font-btn (onClick)="openRemission(item, dialogTypes.Remission)" icon="bx-food-menu" />
         <app-font-btn (onClick)="deleteSoldier(item)" icon="bxs-trash" />
+
       </td>
     </tr>
   </ng-template>
@@ -97,3 +105,7 @@
     </tr>
   </ng-template>
 </p-table>
+
+<app-loading *ngIf="loading | async"/>
+<app-remission-form *ngIf="selectedSoldier && dialogType === dialogTypes.Remission" [soldier]="selectedSoldier"
+  (onClose)="closeDialog($event)"></app-remission-form>

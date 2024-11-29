@@ -4,6 +4,13 @@ import { selectSoldierList, selectSoldierStateLoading } from '../../../Store/sel
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../Store/state/app.state';
 import { Table } from 'primeng/table';
+import { ITab } from '../../../Models/Tabs/tabs';
+import { SoldiersTabs } from '../soldiers_tabs';
+import { SoldierDialogType } from '../../../Store/interfaces/general';
+import { setDialogType } from '../../../Store/actions/config.action';
+import { selectDialogType } from '../../../Store/selectors/config.selector';
+import { getSoldiers } from '../../../Store/actions/soldier.action';
+
 
 @Component({
   selector: 'app-soldiers-table',
@@ -12,21 +19,50 @@ import { Table } from 'primeng/table';
 })
 export class SoldiersTableComponent {
   soldiers: ISoldier[] = [];
-  loading: boolean = false;
+  loading = this._store.select(selectSoldierStateLoading);
+  selectedSoldier: ISoldier | null = null;
+
+  dialogType: SoldierDialogType | null = null;
+  dialogTypes = SoldierDialogType;
+
+  
   constructor(private _store: Store<IAppState>) {
     this._store.select(selectSoldierList).subscribe(_soldiers => {
       this.soldiers = _soldiers;
     });
-    this._store.select(selectSoldierStateLoading).subscribe(_it => {
-      this.loading = _it;
-    })
+    this._store.select(selectDialogType).subscribe(it => {
+      this.dialogType = it;
+      if (!it) {
+        this.selectedSoldier = null;
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    if (!this.soldiers || !this.soldiers.length) {
+      this._store.dispatch(getSoldiers());
+    }    
   }
 
   deleteSoldier($event: ISoldier) {
     if (!$event._id) return;
   }
 
+  openRemission($event: ISoldier, type: SoldierDialogType) {
+    this.selectedSoldier = $event;
+    this._store.dispatch(setDialogType({ dialogType: type }));
+  }
+
+  closeDialog($event: boolean) {
+    this.selectedSoldier = null;
+    this._store.dispatch(setDialogType({ dialogType: null }));
+  }
+
   globalFilter(dataTable: Table, e: Event) {
     dataTable.filterGlobal((e.target as HTMLInputElement).value, 'contains')
+  }
+
+  onLoadData() {
+    this._store.dispatch(getSoldiers());
   }
 }

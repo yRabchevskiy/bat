@@ -1,0 +1,46 @@
+<p-dialog [modal]="true" [closeOnEscape]="false" [closable]="false" [visible]="true" [style]="{
+  maxWidth: '90vw',
+  maxHeight: '90vh',
+  width: '800px',
+  height: '640px',
+  borderRadius: 0,
+  boxShadow: 'none'
+}" position="center" [contentStyle]="{ padding: '12px', overflow: 'hidden' }">
+  <form [formGroup]="remissionForm" (ngSubmit)="save()" novalidate class="form_wrapper">
+    <div class="form_header">
+      <div class="soldier_name">{{ soldier.name.last_name }} {{soldier.name.first_name }} {{soldier.name.middle_name }}
+      </div>
+    </div>
+    <div class="form_content">
+      <div class="form_fields_colums_group_2">
+        <div class="form_control_wrapper form_field_margin_r_20">
+          <label for="remission_start_date" class="form_label">Звільнення з:</label>
+          <p-calendar appendTo="body" inputId="remission_start_date" formControlName="start_date" class="form_calendar"
+            placeholder="../../...." dateFormat="dd/mm/yy" />
+        </div>
+        <div class="form_control_wrapper form_field_margin_r_20">
+          <label for="remission_end_date" class="form_label">Звільнення до:</label>
+          <p-calendar appendTo="body" inputId="remission_end_date" formControlName="end_date" class="form_calendar"
+            placeholder="../../...." dateFormat="dd/mm/yy" />
+        </div>
+      </div>
+      <div class="form_control_wrapper form_field_margin_r_20">
+        <label for="remission_diagnosis" class="form_label">Діагноз</label>
+        <textarea autofocus id="remission_diagnosis" rows="4" cols="30" pInputTextarea formControlName="diagnosis"
+          class="form_textarea_h_120">
+        </textarea>
+      </div>
+      <div class="form_control_wrapper form_field_margin_r_20">
+        <label for="remission_description" class="form_label">Опис</label>
+        <textarea id="remission_description" rows="4" cols="30" pInputTextarea formControlName="description"
+          class="form_textarea_h_120">
+        </textarea>
+      </div>
+    </div>
+    <div class="form_footer">
+      <button pButton type="button" label="Відмінити" severity="secondary" (click)="cancel()"></button>
+      <button pButton type="submit" label="Зберегти" [disabled]="remissionForm.invalid"></button>
+    </div>
+    <app-loading *ngIf="loading | async" [styles]="{ width: '100%', height: '100%' }" />
+  </form>
+</p-dialog>

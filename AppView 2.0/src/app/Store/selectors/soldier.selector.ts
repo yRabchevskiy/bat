@@ -4,6 +4,16 @@ import { ISoldierState } from "../state/soldier.state";
 
 const selectSoldiers = (state: IAppState) => state.soldiers;
 
+export const selectSoldierStateLoading = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.loading
+);
+
+export const selectSoldierStateError = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.error
+);
+
 export const selectSoldierList = createSelector(
   selectSoldiers,
   (state: ISoldierState) => state.soldiers
@@ -14,12 +24,17 @@ export const selectSelectedUser = createSelector(
   (state: ISoldierState) => state.selectedSoldier
 );
 
-export const selectSoldierStateLoading = createSelector(
+export const selectRemissionList = createSelector(
   selectSoldiers,
-  (state: ISoldierState) => state.loading
+  (state: ISoldierState) => state.remissions
 );
 
-export const selectSoldierStateError = createSelector(
+export const selectSelectedRemission = createSelector(
   selectSoldiers,
-  (state: ISoldierState) => state.error
+  (state: ISoldierState) => state.selectedRemission
+);
+
+export const selectRemisionList = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.remissions
 );

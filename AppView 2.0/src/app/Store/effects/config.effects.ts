@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap } from "rxjs/operators";
-import { Store } from "@ngrx/store";
-import { IAppState } from "../state/app.state";
 import { of } from "rxjs";
 import { ApiService } from "../../Services/api";
 import { CONFIG_ACTIONS, loginFailure, loginSuccess } from "../actions/config.action";
@@ -32,6 +30,5 @@ export class ConfigEffects {
   constructor(
     private _apiService: ApiService,
     private _actions$: Actions,
-    private _store: Store<IAppState>
   ) { }
 }

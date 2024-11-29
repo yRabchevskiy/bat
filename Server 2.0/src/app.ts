@@ -1,11 +1,14 @@
 import express from 'express';
 import { db } from './DB_CONNECTION/dbConnection';
+import { corsOptions } from './cors/cors.option';
+
 import visits from './routes/visits';
 import soldier from './routes/soldier';
 import auth from './routes/auth';
 import user from './routes/users';
-import { corsOptions } from './cors/cors.option';
 import structure from './routes/structure';
+import remission from './routes/remission';
+
 const cors = require('cors');
 
 const app = express();
@@ -20,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/auth', auth);
 app.use('/users', user);
 app.use('/soldier', soldier);
+app.use('/remission', remission);
 app.use('/visit', visits);
 app.use('/structure', structure);
 

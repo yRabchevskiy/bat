@@ -11,5 +11,5 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
   users: userReducers,
   visits: visitReducers,
   soldiers: soldierReducers,
-  config: configReducers
+  config: configReducers,
 };

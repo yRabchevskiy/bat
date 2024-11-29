@@ -8,7 +8,7 @@ import { ITab } from '../../../Models/Tabs/tabs';
 })
 export class AppTabsComponent {
   @Input() tabs: ITab[] = [];
-  @Output() onSelectTab: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSelectTab: EventEmitter<ITab> = new EventEmitter<ITab>();
 
   _selectedTab: string = '';
 
@@ -19,6 +19,6 @@ export class AppTabsComponent {
     return this._selectedTab;
   }
   selectTab($event: ITab) {
-    this.onSelectTab.emit($event.id);
+    this.onSelectTab.emit($event);
   }
 }

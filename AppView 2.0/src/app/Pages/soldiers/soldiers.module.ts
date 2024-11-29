@@ -22,6 +22,8 @@ import { SoldEditionalDataFormComponent } from './forms/children_forms/sold-edit
 import { SoldPropertyFormComponent } from './forms/children_forms/sold-property-form/sold-property-form.component';
 import { SoldiersTableComponent } from './soldiers-table/soldiers-table.component';
 import { CreateSoldierComponent } from './create-soldier/create-soldier.component';
+import { RemissionFormComponent } from './forms/remission-form/remission-form.component';
+import { RemissionTableComponent } from './remission-table/remission-table.component';
 @NgModule({
   declarations: [
     SoldiersComponent,
@@ -30,7 +32,9 @@ import { CreateSoldierComponent } from './create-soldier/create-soldier.componen
     VlkFormComponent,
     NameFormComponent,
     SoldEditionalDataFormComponent,
-    SoldPropertyFormComponent
+    SoldPropertyFormComponent,
+    RemissionFormComponent,
+    RemissionTableComponent
   ],
   imports: [
     CommonModule,

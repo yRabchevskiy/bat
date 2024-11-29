@@ -20,6 +20,9 @@ import { appReducers } from './Store/reducers/app.reducers';
 import { UserEffects } from './Store/effects/user.effects';
 import { ConfigEffects } from './Store/effects/config.effects';
 import { SoldierEffects } from './Store/effects/soldier.effects';
+import { MessageService } from 'primeng/api';
+import { clearState } from './Store/state/app.state';
+
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent], imports: [BrowserModule,
@@ -30,9 +33,10 @@ import { SoldierEffects } from './Store/effects/soldier.effects';
     RouterLinkActive,
     AppRoutingModule,
     GeneralModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, { metaReducers: [clearState] }),
     EffectsModule.forRoot([UserEffects, ConfigEffects, SoldierEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })], providers: [ApiService, UserService, AuthGuard, provideHttpClient(withInterceptorsFromDi())]
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],
+    providers: [ApiService, UserService, AuthGuard, MessageService, provideHttpClient(withInterceptorsFromDi())]
 })
 export class AppModule { }
