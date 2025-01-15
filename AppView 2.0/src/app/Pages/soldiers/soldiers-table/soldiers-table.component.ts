@@ -20,7 +20,7 @@ export class SoldiersTableComponent {
   soldiers: ISoldier[] = [];
   loading = this._store.select(selectSoldierStateLoading);
   selectedSoldier: ISoldier | null = null;
-
+  expandedRows = {}
   dialogType: SoldierDialogType | null = null;
   dialogTypes = SoldierDialogType;
   

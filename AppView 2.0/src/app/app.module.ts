@@ -25,7 +25,9 @@ import { clearState } from './Store/state/app.state';
 
 @NgModule({
   declarations: [AppComponent],
-  bootstrap: [AppComponent], imports: [BrowserModule,
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     RouterOutlet,
