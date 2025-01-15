@@ -1,9 +1,10 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-svg-icon',
-  templateUrl: './svg-icon.component.html',
-  styleUrl: './svg-icon.component.scss'
+    selector: 'app-svg-icon',
+    templateUrl: './svg-icon.component.html',
+    styleUrl: './svg-icon.component.scss',
+    standalone: false
 })
 export class SvgIconComponent {
   @HostBinding('style.background-image') @Input() path: string = '';

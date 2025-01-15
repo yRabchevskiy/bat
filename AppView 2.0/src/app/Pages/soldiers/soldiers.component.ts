@@ -6,9 +6,10 @@ import { IAppState } from '../../Store/state/app.state';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-soldiers',
-  templateUrl: './soldiers.component.html',
-  styleUrl: './soldiers.component.scss',
+    selector: 'app-soldiers',
+    templateUrl: './soldiers.component.html',
+    styleUrl: './soldiers.component.scss',
+    standalone: false
 })
 export class SoldiersComponent implements OnInit {
   

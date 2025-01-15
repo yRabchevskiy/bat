@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { IPage } from '../../../Models/pages/pages';
 
 @Component({
-  selector: 'app-page-link',
-  templateUrl: './page-link.component.html',
-  styleUrl: './page-link.component.scss'
+    selector: 'app-page-link',
+    templateUrl: './page-link.component.html',
+    styleUrl: './page-link.component.scss',
+    standalone: false
 })
 export class PageLinkComponent {
   @Input() page!: IPage;

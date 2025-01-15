@@ -1,13 +1,12 @@
+@use "sass:meta";
 /* You can add global styles to this file, and also import other style files */
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
-@import './assets/accordion.scss';
-@import './assets/page.scss';
-@import './assets/table.scss';
-@import './assets/sidebar.scss';
-@import './assets/inputs.scss';
-@import './assets/general.scss';
-@import './assets/button.scss';
+@include meta.load-css('assets/accordion.scss');
+@include meta.load-css('assets/page.scss');
+@include meta.load-css('assets/table.scss');
+@include meta.load-css('assets/sidebar.scss');
+@include meta.load-css('assets/inputs.scss');
+@include meta.load-css('assets/general.scss');
+@include meta.load-css('assets/button.scss');
 :root {
     --accent-color: #B655C8;
 

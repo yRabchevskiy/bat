@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-name-form',
-  templateUrl: './name-form.component.html',
-  styleUrl: './name-form.component.scss',
-  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
+    selector: 'app-name-form',
+    templateUrl: './name-form.component.html',
+    styleUrl: './name-form.component.scss',
+    standalone: false,
+    viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class NameFormComponent {
   childForm: any;

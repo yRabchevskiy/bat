@@ -4,8 +4,6 @@ import { selectSoldierList, selectSoldierStateLoading } from '../../../Store/sel
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../Store/state/app.state';
 import { Table } from 'primeng/table';
-import { ITab } from '../../../Models/Tabs/tabs';
-import { SoldiersTabs } from '../soldiers_tabs';
 import { SoldierDialogType } from '../../../Store/interfaces/general';
 import { setDialogType } from '../../../Store/actions/config.action';
 import { selectDialogType } from '../../../Store/selectors/config.selector';
@@ -13,9 +11,10 @@ import { getSoldiers } from '../../../Store/actions/soldier.action';
 
 
 @Component({
-  selector: 'app-soldiers-table',
-  templateUrl: './soldiers-table.component.html',
-  styleUrl: './soldiers-table.component.scss',
+    selector: 'app-soldiers-table',
+    templateUrl: './soldiers-table.component.html',
+    styleUrl: './soldiers-table.component.scss',
+    standalone: false,
 })
 export class SoldiersTableComponent {
   soldiers: ISoldier[] = [];
@@ -24,7 +23,6 @@ export class SoldiersTableComponent {
 
   dialogType: SoldierDialogType | null = null;
   dialogTypes = SoldierDialogType;
-
   
   constructor(private _store: Store<IAppState>) {
     this._store.select(selectSoldierList).subscribe(_soldiers => {

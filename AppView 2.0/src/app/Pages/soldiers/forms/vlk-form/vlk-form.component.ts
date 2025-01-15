@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ISoldier } from '../../../../Store/interfaces/soldiers';
 @Component({
-  selector: 'app-vlk-form',
-  templateUrl: './vlk-form.component.html',
-  styleUrl: './vlk-form.component.scss',
+    selector: 'app-vlk-form',
+    templateUrl: './vlk-form.component.html',
+    styleUrl: './vlk-form.component.scss',
+    standalone: false,
 })
 export class VlkFormComponent implements OnInit {
   vlkForm: FormGroup = new FormGroup({

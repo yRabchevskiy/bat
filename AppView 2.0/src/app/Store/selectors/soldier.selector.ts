@@ -24,17 +24,34 @@ export const selectSelectedUser = createSelector(
   (state: ISoldierState) => state.selectedSoldier
 );
 
-export const selectRemissionList = createSelector(
-  selectSoldiers,
-  (state: ISoldierState) => state.remissions
-);
-
 export const selectSelectedRemission = createSelector(
   selectSoldiers,
   (state: ISoldierState) => state.selectedRemission
 );
 
-export const selectRemisionList = createSelector(
+export const selectRemissionList = createSelector(
   selectSoldiers,
   (state: ISoldierState) => state.remissions
+);
+
+
+export const selectSelectedHospitalization = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.selectedHospitalization
+);
+
+export const selectHospitalizationList = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.hospitalizations
+);
+
+
+export const selectSelectedVlk = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.selectedVlk
+);
+
+export const selectVlkList = createSelector(
+  selectSoldiers,
+  (state: ISoldierState) => state.vlks
 );

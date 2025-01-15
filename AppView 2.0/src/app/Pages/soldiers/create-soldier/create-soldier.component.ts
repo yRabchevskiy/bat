@@ -9,9 +9,10 @@ import { postSoldier } from '../../../Store/actions/soldier.action';
 import { selectSoldierStateError, selectSoldierStateLoading } from '../../../Store/selectors/soldier.selector';
 
 @Component({
-  selector: 'app-create-soldier',
-  templateUrl: './create-soldier.component.html',
-  styleUrl: './create-soldier.component.scss',
+    selector: 'app-create-soldier',
+    templateUrl: './create-soldier.component.html',
+    styleUrl: './create-soldier.component.scss',
+    standalone: false
 })
 
 export class CreateSoldierComponent implements OnInit {

@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ControlContainer, FormGroupDirective, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-sold-property-form',
-  templateUrl: './sold-property-form.component.html',
-  styleUrl: './sold-property-form.component.scss',
+    selector: 'app-sold-property-form',
+    templateUrl: './sold-property-form.component.html',
+    styleUrl: './sold-property-form.component.scss',
+    standalone: false,
 })
 export class SoldPropertyFormComponent {
   @Input() data!: FormGroup;

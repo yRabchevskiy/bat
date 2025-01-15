@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SoldiersRoutingModule } from './soldiers-routing.module';
 import { SoldiersComponent } from './soldiers.component';
 import { TableModule } from 'primeng/table';
@@ -11,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarModule } from 'primeng/sidebar';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TextareaModule } from 'primeng/textarea';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
@@ -24,6 +23,8 @@ import { SoldiersTableComponent } from './soldiers-table/soldiers-table.componen
 import { CreateSoldierComponent } from './create-soldier/create-soldier.component';
 import { RemissionFormComponent } from './forms/remission-form/remission-form.component';
 import { RemissionTableComponent } from './remission-table/remission-table.component';
+import { VlkComponent } from './vlk-table/vlk.component';
+import { HospitalisationComponent } from './hospitalisation-table/hospitalisation.component';
 @NgModule({
   declarations: [
     SoldiersComponent,
@@ -34,7 +35,9 @@ import { RemissionTableComponent } from './remission-table/remission-table.compo
     SoldEditionalDataFormComponent,
     SoldPropertyFormComponent,
     RemissionFormComponent,
-    RemissionTableComponent
+    RemissionTableComponent,
+    VlkComponent,
+    HospitalisationComponent
   ],
   imports: [
     CommonModule,
@@ -48,11 +51,11 @@ import { RemissionTableComponent } from './remission-table/remission-table.compo
     AccordionModule,
     InputTextModule,
     DropdownModule,
-    InputTextareaModule,
+    TextareaModule,
     FormsModule,
     ReactiveFormsModule,
     SidebarModule,
-    GeneralModule,
+    GeneralModule
   ],
   providers: []
 })

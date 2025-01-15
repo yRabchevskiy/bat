@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HospitalisationComponent } from './hospitalisation-table/hospitalisation.component';
+import { VisitFormComponent } from './visit-form/visit-form.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HospitalisationComponent,
+    component: VisitFormComponent,
     // children: [
     //   { path: '', component: SoldiersTableComponent },
     //   { path: 'create', component: CreateSoldierFormComponent }

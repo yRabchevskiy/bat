@@ -1,3 +1,4 @@
+import { IHospitalization } from "../interfaces/hospitalization";
 import { IRemission } from "../interfaces/remission";
 import { ISoldier } from "../interfaces/soldiers";
 
@@ -10,6 +11,11 @@ export interface ISoldierState {
   remissions: IRemission[];
   selectedRemission: IRemission | null;
 
+  hospitalizations: IHospitalization[],
+  selectedHospitalization: IHospitalization |null,
+  vlks: any[],
+  selectedVlk: any | null,
+
 }
 
 export const initialSoldierState: ISoldierState = {
@@ -19,4 +25,8 @@ export const initialSoldierState: ISoldierState = {
   selectedSoldier: null,
   remissions: [],
   selectedRemission: null,
+  hospitalizations: [],
+  selectedHospitalization: null,
+  vlks: [],
+  selectedVlk: null,
 }

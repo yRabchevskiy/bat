@@ -11,7 +11,7 @@ const routes: Routes = [{
   children: [
     { path: 'home', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) },
     { path: 'soldiers', loadChildren: () => import('../soldiers/soldiers.module').then(m => m.SoldiersModule) },
-    { path: 'visits', loadChildren: () => import('../visits/visits.module').then(m => m.VisitsModule) },
+    // { path: 'visits', loadChildren: () => import('../visits/visits.module').then(m => m.VisitsModule) },
     { path: 'inventory', loadChildren: () => import('../drugs/drugs.module').then(m => m.DrugsModule), canActivateChild: [AuthGuard] },
     // Unexpected URL handling.
     { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { IBatStructure, IUnit } from '../../../Models/Structure/structure';
 
 @Component({
-  selector: 'app-bat-map',
-  templateUrl: './bat-map.component.html',
-  styleUrl: './bat-map.component.scss'
+    selector: 'app-bat-map',
+    templateUrl: './bat-map.component.html',
+    styleUrl: './bat-map.component.scss',
+    standalone: false
 })
 export class BatMapComponent {
   data: IBatStructure[] = [];

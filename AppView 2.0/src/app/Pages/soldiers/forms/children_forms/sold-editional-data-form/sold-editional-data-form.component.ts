@@ -4,10 +4,11 @@ import { BLOOD_TYPES, IListItem, SEX_TYPE } from '../../../../../Store/interface
 import { BLOOD_TYPES_LIST, SEX_TYPE_LIST } from '../../../../../Models/General_Lists/general_lists';
 
 @Component({
-  selector: 'app-sold-editional-data-form',
-  templateUrl: './sold-editional-data-form.component.html',
-  styleUrl: './sold-editional-data-form.component.scss',
-  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
+    selector: 'app-sold-editional-data-form',
+    templateUrl: './sold-editional-data-form.component.html',
+    styleUrl: './sold-editional-data-form.component.scss',
+    standalone: false,
+    viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class SoldEditionalDataFormComponent {
   childForm: any;

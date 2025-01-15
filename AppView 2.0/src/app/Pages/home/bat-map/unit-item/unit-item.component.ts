@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-unit-item',
-  templateUrl: './unit-item.component.html',
-  styleUrl: './unit-item.component.scss'
+    selector: 'app-unit-item',
+    templateUrl: './unit-item.component.html',
+    styleUrl: './unit-item.component.scss',
+    standalone: false
 })
 export class UnitItemComponent {
   @Input() data!: FormGroup;

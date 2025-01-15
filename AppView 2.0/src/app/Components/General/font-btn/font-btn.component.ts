@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-font-btn',
-  templateUrl: './font-btn.component.html',
-  styleUrl: './font-btn.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-font-btn',
+    templateUrl: './font-btn.component.html',
+    styleUrl: './font-btn.component.scss',
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FontBtnComponent {
   @Input() icon: string = '';

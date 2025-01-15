@@ -11,9 +11,10 @@ import { selectCurrentUser } from '../../Store/selectors/config.selector';
 import { IAppState } from '../../Store/state/app.state';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss',
+    standalone: false
 })
 export class LoginComponent {
   error?: IApiRes<IUser>;

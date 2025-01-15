@@ -15,6 +15,9 @@ import { getRemissionsFailure, getRemissionsSuccess, postRemissionFailure, postR
 import { IRemission } from "../interfaces/remission";
 import { setDialogType } from "../actions/config.action";
 import { MessageService } from "primeng/api";
+import { getVlksFailure, getVlksSuccess, VLK_ACTIONS } from "../actions/vlk.action";
+import { getHospitalizationsFailure, getHospitalizationsSuccess, HOSPITALIZATION_ACTIONS } from "../actions/hospitalization.action";
+import { IHospitalization } from "../interfaces/hospitalization";
 
 @Injectable()
 export class SoldierEffects {
@@ -80,6 +83,30 @@ export class SoldierEffects {
       const selectedSoldier = soldiers && soldiers.length ? soldiers.find(it => it._id === id) : null;
       return of(selectSoldierByIdSuccess({ soldier: selectedSoldier || null }));
     })
+  ));
+
+  getHospitalizations$ = createEffect(() => this._actions$.pipe(
+    ofType(HOSPITALIZATION_ACTIONS.GetHospitalizations),
+    switchMap(() => this._apiService.getHospitalizations().pipe(
+      map((data: IApiRes<IHospitalization[]>) => {
+        return getHospitalizationsSuccess({ data: data.data });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of(getHospitalizationsFailure({ error: error.error }));
+      })
+    ))
+  ));
+
+  getVlks$ = createEffect(() => this._actions$.pipe(
+    ofType(VLK_ACTIONS.GetVlks),
+    switchMap(() => this._apiService.getVlks().pipe(
+      map((data: IApiRes<any[]>) => {
+        return getVlksSuccess({ data: data.data });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of(getVlksFailure({ error: error.error }));
+      })
+    ))
   ));
 
   constructor(

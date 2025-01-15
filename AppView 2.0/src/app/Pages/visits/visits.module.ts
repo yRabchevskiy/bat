@@ -14,12 +14,10 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../Components/General/general.module';
-import { HospitalisationComponent } from './hospitalisation-table/hospitalisation.component';
 import { VisitsRoutingModule } from './visits-routing.module';
 import { VisitFormComponent } from './visit-form/visit-form.component';
 @NgModule({
   declarations: [
-    HospitalisationComponent,
     VisitFormComponent
   ],
   imports: [

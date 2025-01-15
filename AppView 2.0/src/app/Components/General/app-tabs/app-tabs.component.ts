@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ITab } from '../../../Models/Tabs/tabs';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './app-tabs.component.html',
-  styleUrl: './app-tabs.component.scss',
+    selector: 'app-tabs',
+    templateUrl: './app-tabs.component.html',
+    styleUrl: './app-tabs.component.scss',
+    standalone: false
 })
 export class AppTabsComponent {
   @Input() tabs: ITab[] = [];

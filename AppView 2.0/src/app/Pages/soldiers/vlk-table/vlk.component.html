@@ -1,0 +1,39 @@
+
+<p-table class="table" [value]="vlks" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
+  [globalFilterFields]="['name.first_name', 'name.last_name', 'name.middle_name', 'editional_data.position']"
+  [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="9">Дані відсутні</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th width="40px">№</th>
+      <th>ПІБ</th>
+      <th width="130px">Дата направлення / госпіталізації</th>
+      <th width="200px">Діагноз при направленні</th>
+      <th width="200px">Діагноз при виписці</th>
+      <th width="130px">Дата виписки</th>
+      <th width="120px">Заклад <br/>МОЗ/МО</th>
+      <th width="140px">Тип звернення</th>
+      <th width="140px">Характер звернення</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{item.name.first_name}} {{item.name.last_name}}</td>
+      <td>{{ item.date_in | date:'dd/MM/yyyy' }}</td>
+      <td>{{ item.pre_diagnosis }}</td>
+      <td>{{ item.final_diagnosis }}</td>
+      <td>{{ item.date_out | date:'dd/MM/yyyy' }}</td>
+      <td>{{ item.hospital_name }}</td>
+      <td>{{ item.type_of_visit }}</td>
+      <td>{{ item.type_of_disease }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- <app-visit-form *ngIf="showVisitForm" [item]="selectedItem" (onSave)="createVisit($event)" (onClose)="closeModalWindow()" /> -->
+<!-- <app-loading *ngIf="loading" /> -->

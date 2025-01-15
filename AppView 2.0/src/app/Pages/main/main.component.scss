@@ -1,3 +1,4 @@
+$bar-size: 48px;
 :host {
     display: flex;
     width: 100%;
@@ -11,14 +12,14 @@
 }
 
 .app-page-nav-bar {
-    width: 80px;
+    width: $bar-size;
     height: 100vh;
     flex-shrink: 0;
     position: fixed;
 }
 
 .app-page-content {
-    padding: 0px 0px 0px 80px;
+    padding: 0px 0px 0px $bar-size;
     overflow: auto;
     display: flex;
     flex-grow: 1;

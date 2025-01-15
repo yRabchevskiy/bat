@@ -7,9 +7,10 @@ import { RANK_TYPES, TYPE_OF_VISIT, TYPE_OF_DISEASE, TYPE_OF_VISIT_STATUS, IList
 import { IVisit, IVisitPostData } from '../../../Store/interfaces/visit';
 
 @Component({
-  selector: 'app-visit-form',
-  templateUrl: './visit-form.component.html',
-  styleUrl: './visit-form.component.scss',
+    selector: 'app-visit-form',
+    templateUrl: './visit-form.component.html',
+    styleUrl: './visit-form.component.scss',
+    standalone: false
 })
 export class VisitFormComponent implements OnInit { 
   visitForm: FormGroup = new FormGroup({

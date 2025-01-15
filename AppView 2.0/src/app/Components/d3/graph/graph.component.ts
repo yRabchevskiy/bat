@@ -11,10 +11,11 @@ import { GraphInitOptions, GraphTypes } from '../../../Models/d3/models';
 import { ITreeNode } from '../../../Models/d3/node';
 
 @Component({
-  selector: 'app-graph',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './graph.component.html',
-  styleUrl: './graph.component.scss',
+    selector: 'app-graph',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './graph.component.html',
+    styleUrl: './graph.component.scss',
+    standalone: false
 })
 export class GraphComponent<T> {
   @ViewChild('svg') svg!: ElementRef;

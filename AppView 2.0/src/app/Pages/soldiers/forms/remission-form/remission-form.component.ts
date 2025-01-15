@@ -7,9 +7,10 @@ import { postRemission } from '../../../../Store/actions/remission.action';
 import { selectSoldierStateLoading, selectSoldierStateError } from '../../../../Store/selectors/soldier.selector';
 
 @Component({
-  selector: 'app-remission-form',
-  templateUrl: './remission-form.component.html',
-  styleUrl: './remission-form.component.scss'
+    selector: 'app-remission-form',
+    templateUrl: './remission-form.component.html',
+    styleUrl: './remission-form.component.scss',
+    standalone: false,
 })
 export class RemissionFormComponent {
   private _soldier!: ISoldier;

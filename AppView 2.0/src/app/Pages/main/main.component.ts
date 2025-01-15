@@ -9,9 +9,10 @@ import { selectCurrentUser } from '../../Store/selectors/config.selector';
 import { setSelectedPage } from '../../Store/actions/config.action';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrl: './main.component.scss',
+    standalone: false
 })
 export class MainComponent implements OnInit {
 

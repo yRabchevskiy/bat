@@ -3,9 +3,10 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPersonnelData, IUnit } from '../../../../Models/Structure/structure';
 
 @Component({
-  selector: 'app-structure-item-form',
-  templateUrl: './structure-item-form.component.html',
-  styleUrl: './structure-item-form.component.scss'
+    selector: 'app-structure-item-form',
+    templateUrl: './structure-item-form.component.html',
+    styleUrl: './structure-item-form.component.scss',
+    standalone: false
 })
 export class StructureItemFormComponent {
   @Input() loading: boolean = false;

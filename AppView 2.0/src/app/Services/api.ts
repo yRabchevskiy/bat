@@ -38,6 +38,16 @@ export class ApiService extends BaseApi {
     return this.doPost('/remission', data);
   }
 
+  // Hospitalizations
+  getHospitalizations(): Observable<IApiRes<any[]>> {
+    return this.doGet('/hospitalization');
+  }
+
+  // Vlks
+  getVlks(): Observable<IApiRes<any[]>> {
+    return this.doGet('/vlk');
+  }
+
   getVisits(): Observable<IVisit[]> {
     return this.doGet('/visit');
   }

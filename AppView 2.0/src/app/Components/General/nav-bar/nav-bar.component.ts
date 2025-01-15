@@ -8,9 +8,10 @@ import { selectSelectedPage } from '../../../Store/selectors/config.selector';
 import { UserService } from '../../../Services/user.service';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss'
+    selector: 'app-nav-bar',
+    templateUrl: './nav-bar.component.html',
+    styleUrl: './nav-bar.component.scss',
+    standalone: false
 })
 export class NavBarComponent {
   @Input() pages: IPage[] = [];

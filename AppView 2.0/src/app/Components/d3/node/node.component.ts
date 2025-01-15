@@ -3,9 +3,10 @@ import { ITreeNode } from '../../../Models/d3/node';
 import { GraphService } from '../../../Services/graph/graph.service';
 
 @Component({
-  selector: '[node]',
-  templateUrl: './node.component.html',
-  styleUrl: './node.component.scss'
+    selector: '[node]',
+    templateUrl: './node.component.html',
+    styleUrl: './node.component.scss',
+    standalone: false
 })
 export class NodeComponent {
   @Input('node') node!: ITreeNode;
