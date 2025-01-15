@@ -7,9 +7,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
-import { CalendarModule } from 'primeng/calendar';
+import { DatePickerModule } from 'primeng/datepicker';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TextareaModule } from 'primeng/textarea';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
@@ -26,14 +26,14 @@ import { VisitFormComponent } from './visit-form/visit-form.component';
     VisitsRoutingModule,
     TableModule,
     DialogModule,
-    CalendarModule,
+    DatePickerModule,
     InputMaskModule,
     ButtonModule,
     TabViewModule,
     AccordionModule,
     InputTextModule,
     DropdownModule,
-    InputTextareaModule,
+    TextareaModule,
     FormsModule,
     ReactiveFormsModule,
     SidebarModule,

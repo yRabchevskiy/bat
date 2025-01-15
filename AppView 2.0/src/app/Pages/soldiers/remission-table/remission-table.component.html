@@ -3,7 +3,7 @@
   [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
   <ng-template pTemplate="caption">
     <div class="table_action_row">
-      
+      <button (click)="onCreateRemission()">create remision</button>
       <input class="app_table_input" type="text" (input)="globalFilter(st, $event)" placeholder="Пошук" />
       <app-font-btn fontSize="28px" icon="bx-refresh" (onClick)="onLoadData()"></app-font-btn>
     </div>
@@ -35,5 +35,14 @@
     </tr>
   </ng-template>
 </p-table>
+
+<p-drawer #drawerRef header="Right Drawer" [(visible)]="showRemissionForm" position="right" [closable]="false">
+  <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat.
+  </p>
+  <button (click)="onCloseCreateRemission($event)">Close</button>
+</p-drawer>
 
 <app-loading *ngIf="loading | async"/>

@@ -7,13 +7,13 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SidebarModule } from 'primeng/sidebar';
-import { CalendarModule } from 'primeng/calendar';
+import { DatePickerModule } from 'primeng/datepicker';
 import { DropdownModule } from 'primeng/dropdown';
 import { TextareaModule } from 'primeng/textarea';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
+import { DrawerModule } from 'primeng/drawer';
 import { GeneralModule } from '../../Components/General/general.module';
 import { VlkFormComponent } from './forms/vlk-form/vlk-form.component';
 import { NameFormComponent } from './forms/children_forms/name-form/name-form.component';
@@ -44,7 +44,7 @@ import { HospitalisationComponent } from './hospitalisation-table/hospitalisatio
     SoldiersRoutingModule,
     TableModule,
     DialogModule,
-    CalendarModule,
+    DatePickerModule,
     InputMaskModule,
     ButtonModule,
     TabViewModule,
@@ -54,7 +54,7 @@ import { HospitalisationComponent } from './hospitalisation-table/hospitalisatio
     TextareaModule,
     FormsModule,
     ReactiveFormsModule,
-    SidebarModule,
+    DrawerModule,
     GeneralModule
   ],
   providers: []

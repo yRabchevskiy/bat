@@ -22,7 +22,9 @@ import { ConfigEffects } from './Store/effects/config.effects';
 import { SoldierEffects } from './Store/effects/soldier.effects';
 import { MessageService } from 'primeng/api';
 import { clearState } from './Store/state/app.state';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent],
@@ -39,6 +41,18 @@ import { clearState } from './Store/state/app.state';
     EffectsModule.forRoot([UserEffects, ConfigEffects, SoldierEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],
-    providers: [ApiService, UserService, AuthGuard, MessageService, provideHttpClient(withInterceptorsFromDi())]
+    providers: [
+      ApiService, 
+      UserService,
+      AuthGuard,
+      MessageService,
+      provideHttpClient(withInterceptorsFromDi()),
+      provideAnimationsAsync(),
+      providePrimeNG({
+        theme: {
+          preset: Aura
+        }
+      })
+    ]
 })
 export class AppModule { }

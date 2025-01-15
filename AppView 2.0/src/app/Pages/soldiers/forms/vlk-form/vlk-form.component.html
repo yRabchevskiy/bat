@@ -13,7 +13,8 @@
       </div>
       <div class="form_control_wrapper form_field_right">
         <label for="vlc_date" class="form_label">Дата проходження</label>
-        <p-calendar
+        <p-datepicker
+          [showIcon]="true" [showOnFocus]="false"
           formControlName="vlc_date"
           class="form_calendar"
           placeholder="../../...."
@@ -27,7 +28,7 @@
         id="hospital_name"
         rows="4"
         cols="30"
-        pInputTextarea
+        pTextarea 
         formControlName="hospital_name"
         class="form_textarea"
       >
@@ -39,7 +40,7 @@
         id="diagnosis"
         rows="4"
         cols="30"
-        pInputTextarea
+        pTextarea 
         formControlName="diagnosis"
         class="form_textarea_h_120"
       >
@@ -51,7 +52,7 @@
         id="recomendation"
         rows="4"
         cols="30"
-        pInputTextarea
+        pTextarea 
         formControlName="recomendation"
         class="form_textarea_h_120"
       >

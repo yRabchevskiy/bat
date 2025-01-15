@@ -1,7 +1,7 @@
 <!-- <app-graph [data]="data" /> -->
 <p-accordion [multiple]="true" class="structure-wrapper" *ngFor="let bat of data; index as a">
   <div class="structure-name">{{bat.bat_name}}</div>
-  <p-accordionTab class="structure-item" *ngFor="let main_unit of bat.main_units; index as b;">
+  <p-accordion-panel class="structure-item" *ngFor="let main_unit of bat.main_units; index as b;">
     <ng-template pTemplate="header">
       <div class="structure-item-name">{{a + 1}}.{{b + 1}} {{main_unit.name}}</div>
     </ng-template>
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-  </p-accordionTab>
+  </p-accordion-panel>
   <div class="structure-item-add-row">
     <app-font-btn (onClick)="displayStructureItemDialog(bat._id)" icon="bx-book-add" label="Додати підрозділ" />
   </div>

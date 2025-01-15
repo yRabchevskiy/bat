@@ -1,6 +1,6 @@
 @use "sass:meta";
 /* You can add global styles to this file, and also import other style files */
-@include meta.load-css('assets/fonts.scss');
+// @include meta.load-css('assets/fonts.scss');
 @include meta.load-css('assets/accordion.scss');
 @include meta.load-css('assets/page.scss');
 @include meta.load-css('assets/table.scss');
@@ -21,7 +21,8 @@
     --table-border-highlight: #171710;
 }
 * {
-    font-family: 'Open Sans', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     font-weight: 500;
     margin: 0;
     padding: 0;

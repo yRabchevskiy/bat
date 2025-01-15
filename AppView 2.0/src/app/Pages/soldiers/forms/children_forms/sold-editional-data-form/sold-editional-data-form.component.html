@@ -25,25 +25,25 @@
   </div>
   <div class="form_control_wrapper form_field_margin_r_20">
     <label for="address" class="form_label">Місце проживання</label>
-    <textarea id="address" rows="4" cols="30" pInputTextarea formControlName="address" class="form_textarea">
+    <textarea id="address" rows="4" cols="30" pTextarea  formControlName="address" class="form_textarea">
     </textarea>
   </div>
   <ng-container formGroupName="summoned">
     <div class="form_control_wrapper form_field_margin_r_20">
       <label for="summoned_date" class="form_label">Дата призову</label>
-      <p-calendar appendTo="body" inputId="summoned_date" formControlName="date" placeholder="../../...." class="form_calendar"
+      <p-datepicker [showIcon]="true" [showOnFocus]="false" appendTo="body" inputId="summoned_date" formControlName="date" placeholder="../../...." class="form_calendar"
         dateFormat="dd/mm/yy" />
     </div>
     <div class="form_control_wrapper form_field_margin_r_20">
       <label for="organization" class="form_label">Ким призваний</label>
-      <textarea id="organization" rows="4" cols="30" pInputTextarea formControlName="organization"
+      <textarea id="organization" rows="4" cols="30" pTextarea  formControlName="organization"
         class="form_textarea">
       </textarea>
     </div>
   </ng-container>
   <div class="form_control_wrapper form_field_margin_r_20">
     <label for="editional_data_description" class="form_label">Додаткова інформація</label>
-    <textarea id="editional_data_description" rows="4" cols="30" pInputTextarea formControlName="description"
+    <textarea id="editional_data_description" rows="4" cols="30" pTextarea  formControlName="description"
       class="form_textarea">
     </textarea>
   </div>

@@ -2,21 +2,21 @@
   <div class="form_fields_colums_group_2">
     <div class="form_control_wrapper">
       <label [for]="id + 'med_property_value'" class="form_label">Інвентар</label>
-      <!-- <textarea [id]="id + 'med_property_value'" rows="4" cols="30" pInputTextarea formControlName="value"
+      <!-- <textarea [id]="id + 'med_property_value'" rows="4" cols="30" pTextarea  formControlName="value"
         class="form_textarea">
         </textarea> -->
       <input [id]="id + 'med_property_value'" type="text" pInputText formControlName="value" class="form_input" />
     </div>
     <div class="form_control_wrapper">
       <label [for]="id + 'med_property_date'" class="form_label">Дата отримання</label>
-      <p-calendar appendTo="body" [inputId]="id + 'med_property_date'" class="form_calendar" formControlName="date"
+      <p-datepicker [showIcon]="true" [showOnFocus]="false" appendTo="body" [inputId]="id + 'med_property_date'" class="form_calendar" formControlName="date"
         placeholder="../../...." dateFormat="dd/mm/yy" />
     </div>
   </div>
 
   <div class="form_control_wrapper form_field_margin_r_20">
     <label [for]="id + 'med_property_desc'" class="form_label">Опис</label>
-    <textarea [id]="id + 'med_property_desc'" rows="4" cols="30" pInputTextarea formControlName="description"
+    <textarea [id]="id + 'med_property_desc'" rows="4" cols="30" pTextarea  formControlName="description"
       class="form_textarea">
       </textarea>
   </div>

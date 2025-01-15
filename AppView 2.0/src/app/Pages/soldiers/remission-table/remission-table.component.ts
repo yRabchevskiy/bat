@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../Store/state/app.state';
 import { IRemission } from '../../../Store/interfaces/remission';
 import { selectRemissionList, selectSoldierStateLoading } from '../../../Store/selectors/soldier.selector';
 import { getRemissions } from '../../../Store/actions/remission.action';
 import { Table } from 'primeng/table';
+import { Drawer } from 'primeng/drawer';
 
 @Component({
     selector: 'app-remission-table',
@@ -13,7 +14,9 @@ import { Table } from 'primeng/table';
     standalone: false
 })
 export class RemissionTableComponent implements OnInit {
+  @ViewChild('drawerRef') drawerRef!: Drawer;
   data: IRemission[] = [];
+  showRemissionForm: boolean = false;
   loading = this._store.select(selectSoldierStateLoading);
   
   constructor(private _store: Store<IAppState>) {
@@ -26,6 +29,14 @@ export class RemissionTableComponent implements OnInit {
     if (!this.data || !this.data.length) {
       this._store.dispatch(getRemissions());
     }
+  }
+
+  onCreateRemission() {
+    this.showRemissionForm = true;
+  }
+
+  onCloseCreateRemission(e: any) {
+    this.drawerRef.close(e);
   }
 
   onLoadData() {
