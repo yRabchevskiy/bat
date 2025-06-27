@@ -8,8 +8,11 @@
 @include meta.load-css('assets/inputs.scss');
 @include meta.load-css('assets/general.scss');
 @include meta.load-css('assets/button.scss');
+@include meta.load-css('assets/dialog.scss');
 :root {
     --accent-color: #B655C8;
+
+    --error-color: #ff0a54;
 
     --text-main-color: #171710;
     --text-secondary-color: #707370;

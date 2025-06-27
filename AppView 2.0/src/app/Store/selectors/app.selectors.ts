@@ -3,7 +3,7 @@ import { IAppState } from "../state/app.state";
 
 const selectApp = (state: IAppState) => state;
 
-export const selectDialogType = createSelector(
-  selectApp,
-  (state: IAppState) => state.dialogType
-);
+// export const selectDialogType = createSelector(
+//   selectApp,
+//   (state: IAppState) => state.dialogType
+// );

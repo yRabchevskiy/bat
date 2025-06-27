@@ -8,11 +8,28 @@ POST {{baseURL}}/auth
 content-type: application/json
 
 {
-    "nickname": "doctorishche",
-    "password": "Qwert12345"
+    "nickname": "admin",
+    "password": "+"
 }
 
 ###
 GET  {{baseURL}}/structure
 ###
 GET  {{baseURL}}/users
+
+###
+GET  {{baseURL}}/remission
+###
+POST {{baseURL}}/remission
+content-type: application/json
+
+{
+    "soldier_id": "",
+    "start_date": "2025-06-21T21:00:00.000Z",
+    "end_date": "2025-06-25T21:00:00.000Z",
+    "diagnosis": "pre",
+    "description": "",
+    "rank": "soldat",
+    "name": "Yurii",
+    "union": "mtz"
+}

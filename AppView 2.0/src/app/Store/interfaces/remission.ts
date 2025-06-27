@@ -2,15 +2,25 @@ import { ISoldier } from "./soldiers";
 
 export interface IRemission {
   _id?: string;
-  soldier: ISoldier;
+  soldier?: ISoldier;
+  rank: string;
+  name: string;
+  union: string;
   start_date: Date;
   end_date: Date;
   diagnosis: string;
   description: string;
+
+  /// UI fields
+  diffOfDays?: number | null;
+  expDays?: number;
 }
 
 export interface IRemissionPostData {
-  soldier: string;
+  soldier_id: string;
+  rank: string;
+  name: string;
+  union: string;
   start_date: Date;
   end_date: Date;
   diagnosis: string;

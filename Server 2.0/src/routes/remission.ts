@@ -3,6 +3,7 @@ import { corsOptions } from '../cors/cors.option';
 import { API_CODE, API_STATUS } from '../model/api';
 import { RemissionSchemaValidate } from '../model/remission/validation_schema';
 import { createRemission, getRemissions } from '../CONTROLLERS/remission';
+import { IRemissionPostData } from '../model/remission/interface';
 const cors = require('cors');
 
 const router = express.Router();
@@ -13,7 +14,8 @@ router.get('/', cors(corsOptions), async (req: Request, res: Response) => {
 });
 
 router.post('/', cors(corsOptions), async (req: Request, res: Response) => {
-  const { error, value } = RemissionSchemaValidate.validate(req.body);
+  
+  const { error, value } = RemissionSchemaValidate.validate(req.body as IRemissionPostData);
   if (error) {
     const api_res = {
       data: null,

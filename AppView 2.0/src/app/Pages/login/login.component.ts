@@ -7,7 +7,7 @@ import { IApiRes } from '../../Models/api';
 import { IUser } from '../../Store/interfaces/user';
 import { Store } from '@ngrx/store';
 import { login } from '../../Store/actions/config.action';
-import { selectCurrentUser } from '../../Store/selectors/config.selector';
+import { selectConfigError, selectCurrentUser } from '../../Store/selectors/config.selector';
 import { IAppState } from '../../Store/state/app.state';
 
 @Component({
@@ -17,13 +17,14 @@ import { IAppState } from '../../Store/state/app.state';
     standalone: false
 })
 export class LoginComponent {
-  error?: IApiRes<IUser>;
+  error$ = this.store.select(selectConfigError);
+  userError: IApiRes<IUser> | null = null;
   loginForm: FormGroup = new FormGroup({
     nickname: new FormControl<string>('', [Validators.required]),
     password: new FormControl<string>('', [Validators.required]),
   });
 
-  constructor(private store: Store<IAppState>, public userService: UserService, private router: Router) {
+  constructor(public store: Store<IAppState>, public userService: UserService, private router: Router) {
     this.store.select(selectCurrentUser).subscribe({
       next: (res: IUser | null) => {
         if (!res) return;
@@ -31,7 +32,7 @@ export class LoginComponent {
         this.router.navigate(['/home']);
       },
       error: (err: any) => {
-        this.error = err.error.error as IApiRes<IUser>;
+        this.userError = err.error.error as IApiRes<IUser>;
         console.log(err);
       }
     });

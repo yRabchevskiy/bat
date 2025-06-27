@@ -1,46 +1,156 @@
-<p-dialog [modal]="true" [closeOnEscape]="false" [closable]="false" [visible]="true" [style]="{
-  maxWidth: '90vw',
-  maxHeight: '90vh',
-  width: '800px',
-  height: '640px',
-  borderRadius: 0,
-  boxShadow: 'none'
-}" position="center" [contentStyle]="{ padding: '12px', overflow: 'hidden' }">
-  <form [formGroup]="remissionForm" (ngSubmit)="save()" novalidate class="form_wrapper">
-    <div class="form_header">
-      <div class="soldier_name">{{ soldier.name.last_name }} {{soldier.name.first_name }} {{soldier.name.middle_name }}
-      </div>
+<p-dialog
+  [closeOnEscape]="false"
+  [closable]="false"
+  [draggable]="false"
+  [visible]="true"
+  [style]="{
+    maxWidth: '90vw',
+    maxHeight: '90vh',
+    width: '800px',
+    height: '640px',
+    borderRadius: 0,
+    boxShadow: 'none'
+  }"
+  position="center"
+  styleClass="remission-form-dialog"
+  [contentStyle]="{ padding: '12px', overflow: 'hidden' }"
+>
+  <form
+    [formGroup]="remissionForm"
+    (ngSubmit)="save()"
+    novalidate
+    class="form_wrapper"
+  >
+    <div class="form_header" *ngIf="soldier">
+      <div class="soldier_name">{{ remissionForm?.get("rank")?.value }}</div>
+      <div class="soldier_name">{{ remissionForm?.get("name")?.value }}</div>
     </div>
+    <div class="remission_period form_field_margin_r_20">
+      <span
+        >Звільнення з:
+        {{
+          remissionForm?.get("start_date")?.value | date : "dd/MM/yyyy"
+        }}</span
+      >
+      <span
+        >до
+        {{ remissionForm?.get("end_date")?.value | date : "dd/MM/yyyy" }}</span
+      >
+      <span class="days_count">{{ diffOfDays }}</span>
+    </div>
+    <div class="remission_after">
+      Приступити до виконання: {{ tomorrow | date : "dd/MM/yyyy" }}
+    </div>
+
     <div class="form_content">
-      <div class="form_fields_colums_group_2">
-        <div class="form_control_wrapper form_field_margin_r_20">
-          <label for="remission_start_date" class="form_label">Звільнення з:</label>
-          <p-datepicker [showIcon]="true" [showOnFocus]="false" appendTo="body" inputId="remission_start_date" formControlName="start_date" class="form_calendar"
-            placeholder="../../...." dateFormat="dd/mm/yy" />
-        </div>
-        <div class="form_control_wrapper form_field_margin_r_20">
-          <label for="remission_end_date" class="form_label">Звільнення до:</label>
-          <p-datepicker [showIcon]="true" [showOnFocus]="false" appendTo="body" inputId="remission_end_date" formControlName="end_date" class="form_calendar"
-            placeholder="../../...." dateFormat="dd/mm/yy" />
-        </div>
+      <div class="form_control_wrapper">
+        <p-datepicker
+          styleClass="app-datepiker"
+          iconDisplay="button"
+          [showButtonBar]="true"
+          formControlName="start_date"
+          (onSelect)="onDateChange($event, 'start_date')"
+          dateFormat="dd.mm.yy"
+          [showIcon]="true"
+          [readonlyInput]="true"
+          placeholder="dd.mm.yy"
+        />
       </div>
-      <div class="form_control_wrapper form_field_margin_r_20">
-        <label for="remission_diagnosis" class="form_label">Діагноз</label>
-        <textarea autofocus id="remission_diagnosis" rows="4" cols="30" pTextarea  formControlName="diagnosis"
-          class="form_textarea_h_120">
+      <div class="form_control_wrapper">
+        <p-datepicker
+          styleClass="app-datepiker"
+          iconDisplay="button"
+          [showButtonBar]="true"
+          formControlName="end_date"
+          (onSelect)="onDateChange($event, 'end_date')"
+          dateFormat="dd.mm.yy"
+          [showIcon]="true"
+          [readonlyInput]="true"
+          placeholder="dd.mm.yy"
+        />
+      </div>
+      <div class="form_control_wrapper">
+        <label for="remission_name" class="form_label">ПІБ</label>
+        <textarea
+          [autofocus]="true"
+          id="remission_name"
+          pTextarea
+          formControlName="name"
+          class="form_textarea_mh_64"
+        >
         </textarea>
       </div>
-      <div class="form_control_wrapper form_field_margin_r_20">
+      <div class="form_control_wrapper">
+        <label for="rank" class="form_label">Звання</label>
+        <p-autocomplete
+          inputId="rank"
+          formControlName="rank"
+          [suggestions]="filteredRanks"
+          (completeMethod)="search($event)"
+          optionLabel="label"
+          optionValue="value"
+          class="form_dropdown"
+        />
+
+        <!-- <p-select
+          inputId="rank"
+          formControlName="rank"
+          [options]="rank_types"
+          optionLabel="label"
+          optionValue="value"
+          class="form_dropdown"
+        /> -->
+      </div>
+      <div class="form_control_wrapper">
+        <label for="union" class="form_label">Підрозділ</label>
+        <input
+          id="union"
+          type="text"
+          pInputText
+          formControlName="union"
+          class="form_input"
+        />
+      </div>
+      <div class="form_control_wrapper">
+        <label for="remission_diagnosis" class="form_label">Діагноз</label>
+        <textarea
+          id="remission_diagnosis"
+          rows="4"
+          cols="30"
+          pTextarea
+          formControlName="diagnosis"
+          class="form_textarea_h_120"
+        >
+        </textarea>
+      </div>
+      <div class="form_control_wrapper">
         <label for="remission_description" class="form_label">Опис</label>
-        <textarea id="remission_description" rows="4" cols="30" pTextarea  formControlName="description"
-          class="form_textarea_h_120">
+        <textarea
+          id="remission_description"
+          rows="4"
+          cols="30"
+          pTextarea
+          formControlName="description"
+          class="form_textarea_h_120"
+        >
         </textarea>
       </div>
     </div>
     <div class="form_footer">
-      <button pButton type="button" label="Відмінити" severity="secondary" (click)="cancel()"></button>
-      <button pButton type="submit" label="Зберегти" [disabled]="remissionForm.invalid"></button>
+      <button
+        pButton
+        type="button"
+        label="Відмінити"
+        severity="secondary"
+        (click)="cancel()"
+      ></button>
+      <button pButton type="submit" label="Зберегти"></button>
+      <!-- [disabled]="remissionForm.invalid" -->
     </div>
-    <app-loading *ngIf="loading | async" [styles]="{ width: '100%', height: '100%' }" />
+    {{ error | async }}
+    <app-loading
+      *ngIf="loading | async"
+      [styles]="{ width: '100%', height: '100%' }"
+    />
   </form>
 </p-dialog>

@@ -3,49 +3,157 @@ import { ISoldier } from '../../../../Store/interfaces/soldiers';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../../Store/state/app.state';
-import { postRemission } from '../../../../Store/actions/remission.action';
-import { selectSoldierStateLoading, selectSoldierStateError } from '../../../../Store/selectors/soldier.selector';
+import {
+  postRemission,
+  postRemissionSuccess,
+} from '../../../../Store/actions/remission.action';
+import {
+  selectSoldierStateLoading,
+  selectSoldierStateError,
+} from '../../../../Store/selectors/soldier.selector';
+import {
+  buildSoldierFullName,
+  getDiffOfDays,
+} from '../../../../Helpers/soldier.helper';
+import { IRemissionPostData } from '../../../../Store/interfaces/remission';
+import {
+  IListItem,
+  RANK_TYPES,
+} from '../../../../Store/interfaces/Enums/general';
+import { RANK_TYPES_LIST } from '../../../../Models/General_Lists/general_lists';
+import {
+  selectRemissionStateError,
+  selectRemissionStateLoading,
+} from '../../../../Store/selectors/remission.selector';
+import { Subject, takeUntil } from 'rxjs';
+import { Actions, ofType } from '@ngrx/effects';
+import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 
 @Component({
-    selector: 'app-remission-form',
-    templateUrl: './remission-form.component.html',
-    styleUrl: './remission-form.component.scss',
-    standalone: false,
+  selector: 'app-remission-form',
+  templateUrl: './remission-form.component.html',
+  styleUrl: './remission-form.component.scss',
+  standalone: false,
 })
 export class RemissionFormComponent {
-  private _soldier!: ISoldier;
-  get soldier() { return this._soldier; }
-  @Input() set soldier(val: ISoldier) {
+  readonly rank_types: IListItem<RANK_TYPES>[] = RANK_TYPES_LIST;
+  filteredRanks: IListItem<RANK_TYPES>[] = [];
+
+  remissionForm = new FormGroup({
+    soldier_id: new FormControl<string>(''),
+    rank: new FormControl<string>(
+      this.rank_types[0].value,
+      Validators.required
+    ),
+    name: new FormControl<string>('', Validators.required),
+    union: new FormControl<string>('', Validators.required),
+    start_date: new FormControl<Date | null>(null, Validators.required),
+    end_date: new FormControl<Date | null>(null, Validators.required),
+    diagnosis: new FormControl<string>('', Validators.required),
+    description: new FormControl<string>(''),
+  });
+
+  diffOfDays: number | null | undefined = undefined;
+  tomorrow: Date = new Date();
+
+  @Input() rangeDates: Date[] | undefined = undefined;
+  private _soldier: ISoldier | undefined = undefined;
+  get soldier() {
+    return this._soldier;
+  }
+
+  @Input() set soldier(val: ISoldier | undefined) {
     this._soldier = val;
-    this.buildForm(val);
-  };
+  }
+
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-  remissionForm!: FormGroup;
-  loading = this.store.select(selectSoldierStateLoading);
-  error = this.store.select(selectSoldierStateError);
 
-  constructor(private store: Store<IAppState>) { }
+  loading = this.store.select(selectRemissionStateLoading);
+  error = this.store.select(selectRemissionStateError);
 
-  buildForm(val: ISoldier) {
-    const _today = new Date(Date.now());
-    const _endDate = new Date(_today);
-    _endDate.setDate(_today.getDate() + 4);
+  destroyed$ = new Subject<boolean>();
 
-    this.remissionForm = new FormGroup({
-      soldier: new FormControl(val._id),
-      start_date: new FormControl(_today, Validators.required),
-      end_date: new FormControl(_endDate, Validators.required),
-      diagnosis: new FormControl('', Validators.required),
-      description: new FormControl(''),
+  constructor(createSuccess$: Actions, private store: Store<IAppState>) {
+    createSuccess$
+      .pipe(ofType(postRemissionSuccess), takeUntil(this.destroyed$))
+      .subscribe(() => {
+        this.cancel();
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
+
+  ngOnInit() {
+    this.filteredRanks = [...this.rank_types];
+    this.buildForm();
+  }
+  buildForm() {
+    if (!this.rangeDates || this.rangeDates.length < 2) return;
+    this.diffOfDays = getDiffOfDays(
+      this.rangeDates[0],
+      this.rangeDates[this.rangeDates.length - 1]
+    );
+    this.tomorrow.setDate(
+      this.rangeDates[this.rangeDates.length - 1].getDate() + 1
+    );
+
+    this.remissionForm.patchValue({
+      start_date: this.rangeDates[0],
+      end_date: this.rangeDates[this.rangeDates.length - 1],
     });
+    this.setSoldierData();
+  }
+
+  setSoldierData() {
+    if (this.soldier) {
+      this.remissionForm.patchValue({
+        soldier_id: this.soldier._id,
+        rank:
+          this.soldier.rank && this.soldier.rank.length
+            ? this.soldier.rank[this.soldier.rank.length - 1].value
+            : this.rank_types[0].value,
+        name: buildSoldierFullName(this.soldier),
+        union: this.soldier.editional_data?.unit || '',
+      });
+    }
   }
 
   save() {
-    this.store.dispatch(postRemission({ data: this.remissionForm.value }));
+    if (this.remissionForm.invalid) return;
+    this.store.dispatch(
+      postRemission({ data: this.remissionForm.value as IRemissionPostData })
+    );
   }
 
   cancel() {
     this.onClose.emit(false);
   }
 
+  search(event: AutoCompleteCompleteEvent) {
+    if (!event.query || !event.query.length) {
+      this.filteredRanks = [...this.rank_types];
+      return;
+    }
+    let query = event.query.toLowerCase();
+
+    this.filteredRanks = this.rank_types.filter(
+      (it) => it.label.toLowerCase().indexOf(query) == 0
+    );
+  }
+
+  onDateChange(e: Date, field: string) {
+    const end_control = this.remissionForm.get('end_date') as FormControl;
+    const end_date = end_control.value;
+    if (field === 'start_date') {
+      this.diffOfDays = getDiffOfDays(e, end_date);
+      return;
+    }
+    const start_control = this.remissionForm.get('start_date') as FormControl;
+    const start_date = start_control.value;
+    this.diffOfDays = getDiffOfDays(start_date, e);
+    // this.tomorrow = new Date().setDate(end_date.getDate() + 1);
+  }
 }

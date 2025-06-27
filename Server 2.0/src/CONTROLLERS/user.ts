@@ -2,7 +2,6 @@ import { API_CODE, API_STATUS, IApiRes } from "../model/api";
 import { IAuth, User } from "../model/user";
 
 export async function login(data: IAuth): Promise<IApiRes> {
-
   try {
     const user = await User
       .findOne({ "nickname": data.nickname, "password": data.password })

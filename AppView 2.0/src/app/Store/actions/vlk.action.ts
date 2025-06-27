@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { IRemission, IRemissionPostData } from '../interfaces/remission';
 
 export enum VLK_ACTIONS {
   

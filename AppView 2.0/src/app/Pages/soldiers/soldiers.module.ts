@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TabViewModule } from 'primeng/tabview';
@@ -25,6 +26,9 @@ import { RemissionFormComponent } from './forms/remission-form/remission-form.co
 import { RemissionTableComponent } from './remission-table/remission-table.component';
 import { VlkComponent } from './vlk-table/vlk.component';
 import { HospitalisationComponent } from './hospitalisation-table/hospitalisation.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ChartModule } from 'primeng/chart';
+
 @NgModule({
   declarations: [
     SoldiersComponent,
@@ -50,12 +54,15 @@ import { HospitalisationComponent } from './hospitalisation-table/hospitalisatio
     TabViewModule,
     AccordionModule,
     InputTextModule,
+    AutoCompleteModule,
     DropdownModule,
+    SelectModule,
     TextareaModule,
     FormsModule,
     ReactiveFormsModule,
     DrawerModule,
-    GeneralModule
+    GeneralModule,
+    ChartModule
   ],
   providers: []
 })

@@ -8,6 +8,9 @@
         <input id="password" pInputText formControlName="password" class="form_input">
     </div>
 
-    <div class="err-message">{{error?.message}}</div>
+    <div class="err-message">
+        {{error$ | async}}
+        {{userError?.message}}
+    </div>
     <button pButton type="submit" label="Увійти" [disabled]="loginForm.invalid"></button>
 </form>

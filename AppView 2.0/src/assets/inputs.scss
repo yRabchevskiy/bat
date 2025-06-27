@@ -124,6 +124,12 @@
   box-shadow: none !important;
 }
 
+.form_textarea_mh_64 {
+  @extend .form_textarea;
+  height: auto;
+  min-height: 80px;
+}
+
 .form_textarea_h_120 {
   @extend .form_textarea;
   height: 120px;
@@ -144,6 +150,7 @@
 .form_dropdown {
   height: 32px;
   width: 100%;
+  line-height: 14px;
   box-shadow: none !important;
 
   .p-calendar {
@@ -174,6 +181,26 @@
 
     .p-dropdown-label {
       line-height: 15px;
+    }
+  }
+}
+
+.app-datepiker {
+  height: 32px;
+  .p-inputtext.p-datepicker-input {
+    // pointer-events: none;
+    font-size: 14px;
+    box-shadow: none;
+    outline: none;
+    outline-offset: 0;
+    color: var(--text-secondary-color);
+    border: 1px solid var(--text-secondary-color);
+    &:focus {
+      box-shadow: none;
+      outline: none;
+      outline-offset: 0;
+      color: var(--text-secondary-color);
+      border: 1px solid var(--text-secondary-color);
     }
   }
 }
