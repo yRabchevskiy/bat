@@ -15,7 +15,6 @@
   overflow-x: hidden;
 }
 
-
 .form_header {
   display: flex;
   flex-shrink: 0;
@@ -54,7 +53,8 @@
   flex-shrink: 0;
   width: 100%;
 
-  .form_control_wrapper {
+  .form_control_wrapper,
+  .form_control_wrapper_inline {
     flex-grow: 1;
     min-width: 260px;
     margin-right: 20px;
@@ -62,7 +62,8 @@
 }
 .form_fields_colums_group_2 {
   @extend .form_fields_colums_group;
-  .form_control_wrapper {
+  .form_control_wrapper,
+  .form_control_wrapper_inline {
     width: calc(100% / 2 - 20px);
   }
 }
@@ -70,7 +71,8 @@
 .form_fields_colums_group_3 {
   @extend .form_fields_colums_group;
 
-  .form_control_wrapper {
+  .form_control_wrapper,
+  .form_control_wrapper_inline {
     width: calc(100% / 3 - 20px);
   }
 }
@@ -90,6 +92,13 @@
   }
 }
 
+.form_control_wrapper_inline {
+  @extend .form_control_wrapper;
+  flex-direction: row;
+  .form_label_before {
+    line-height: 30px;
+  }
+}
 .form_field_margin_r_20 {
   margin-right: 20px;
 }
@@ -104,10 +113,19 @@
   margin-left: 10px;
 }
 
-
-
 .form_label {
   width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 4px;
+  font-size: 14px;
+  min-height: 16px;
+}
+
+.form_label_before {
+  margin-right: 8px;
+  width: auto;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

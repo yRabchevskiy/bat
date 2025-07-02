@@ -9,8 +9,9 @@
 @include meta.load-css('assets/general.scss');
 @include meta.load-css('assets/button.scss');
 @include meta.load-css('assets/dialog.scss');
+@include meta.load-css('assets/calendar.scss');
 :root {
-    --accent-color: #B655C8;
+    --accent-color: #10b981;
 
     --error-color: #ff0a54;
 

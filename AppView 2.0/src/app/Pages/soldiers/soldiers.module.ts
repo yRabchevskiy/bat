@@ -28,6 +28,7 @@ import { VlkComponent } from './vlk-table/vlk.component';
 import { HospitalisationComponent } from './hospitalisation-table/hospitalisation.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ChartModule } from 'primeng/chart';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ChartModule } from 'primeng/chart';
     ReactiveFormsModule,
     DrawerModule,
     GeneralModule,
-    ChartModule
+    ChartModule,
+    ToggleSwitchModule
   ],
   providers: []
 })

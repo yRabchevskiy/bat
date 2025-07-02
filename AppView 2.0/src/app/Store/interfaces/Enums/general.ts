@@ -46,6 +46,14 @@ export enum SEX_TYPE {
   UNKNOWN = 'Невідома',
 }
 
+export enum TYPE_OF_PLANNING {
+  CONSULTATION = 'Консультація',
+  HOSPITALIZATION = 'Госпіталізація',
+  REGISTRATION = 'Реєстрація',
+  EXAMINATION = 'Обстеження',
+  OTHER = 'Інше',
+}
+
 export enum TYPE_OF_DISEASE {
   DISEASE = 'Захворювання',
   TRAUMA = 'Травма',

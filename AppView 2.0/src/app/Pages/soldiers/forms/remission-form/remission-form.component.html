@@ -6,8 +6,8 @@
   [style]="{
     maxWidth: '90vw',
     maxHeight: '90vh',
-    width: '800px',
-    height: '640px',
+    width: '720px',
+    height: '800px',
     borderRadius: 0,
     boxShadow: 'none'
   }"
@@ -41,33 +41,46 @@
     <div class="remission_after">
       Приступити до виконання: {{ tomorrow | date : "dd/MM/yyyy" }}
     </div>
-
+    <div class="form_control_wrapper" style="margin-bottom: 0">
+      <label for="remission_more" class="form_label">Додати ще</label>
+      <p-toggleswitch
+        inputId="remission_more"
+        [(ngModel)]="addMore"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
     <div class="form_content">
-      <div class="form_control_wrapper">
-        <p-datepicker
-          styleClass="app-datepiker"
-          iconDisplay="button"
-          [showButtonBar]="true"
-          formControlName="start_date"
-          (onSelect)="onDateChange($event, 'start_date')"
-          dateFormat="dd.mm.yy"
-          [showIcon]="true"
-          [readonlyInput]="true"
-          placeholder="dd.mm.yy"
-        />
-      </div>
-      <div class="form_control_wrapper">
-        <p-datepicker
-          styleClass="app-datepiker"
-          iconDisplay="button"
-          [showButtonBar]="true"
-          formControlName="end_date"
-          (onSelect)="onDateChange($event, 'end_date')"
-          dateFormat="dd.mm.yy"
-          [showIcon]="true"
-          [readonlyInput]="true"
-          placeholder="dd.mm.yy"
-        />
+      <div class="form_fields_colums_group_2">
+        <div class="form_control_wrapper_inline">
+          <label for="remission_from" class="form_label_before">З:</label>
+          <p-datepicker
+            inputId="remission_from"
+            styleClass="app-datepiker"
+            iconDisplay="button"
+            [showButtonBar]="true"
+            formControlName="start_date"
+            (onSelect)="onDateChange($event, 'start_date')"
+            dateFormat="dd.mm.yy"
+            [showIcon]="true"
+            [readonlyInput]="true"
+            placeholder="dd.mm.yy"
+          />
+        </div>
+        <div class="form_control_wrapper_inline">
+          <label for="remission_to" class="form_label_before">До:</label>
+          <p-datepicker
+            inputId="remission_to"
+            styleClass="app-datepiker"
+            iconDisplay="button"
+            [showButtonBar]="true"
+            formControlName="end_date"
+            (onSelect)="onDateChange($event, 'end_date')"
+            dateFormat="dd.mm.yy"
+            [showIcon]="true"
+            [readonlyInput]="true"
+            placeholder="dd.mm.yy"
+          />
+        </div>
       </div>
       <div class="form_control_wrapper">
         <label for="remission_name" class="form_label">ПІБ</label>
@@ -91,15 +104,6 @@
           optionValue="value"
           class="form_dropdown"
         />
-
-        <!-- <p-select
-          inputId="rank"
-          formControlName="rank"
-          [options]="rank_types"
-          optionLabel="label"
-          optionValue="value"
-          class="form_dropdown"
-        /> -->
       </div>
       <div class="form_control_wrapper">
         <label for="union" class="form_label">Підрозділ</label>
@@ -144,8 +148,12 @@
         severity="secondary"
         (click)="cancel()"
       ></button>
-      <button pButton type="submit" label="Зберегти"></button>
-      <!-- [disabled]="remissionForm.invalid" -->
+      <button
+        pButton
+        type="submit"
+        label="Зберегти"
+        [disabled]="remissionForm.invalid"
+      ></button>
     </div>
     {{ error | async }}
     <app-loading

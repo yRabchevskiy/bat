@@ -31,8 +31,7 @@ export class RemissionEffects {
               return getRemissionsSuccess({
                 data: data.data
                   .map((item) => this.prepareRemissionItem(item))
-                  .sort((a, b) => a.expDays && b.expDays && b.expDays >= a.expDays ? 1 : -1)
-                  .reverse(),
+                  .sort((a, b) => new Date(b.start_date) >= new Date(a.start_date) ? 1 : -1),
               });
             },
             catchError((error: HttpErrorResponse) => {

@@ -1,0 +1,90 @@
+<form
+  [formGroup]="planningForm"
+  (ngSubmit)="save()"
+  novalidate
+  class="form_wrapper"
+>
+  <div class="form_control_wrapper">
+    <p-datepicker
+      styleClass="app-datepiker"
+      iconDisplay="button"
+      formControlName="planning_date"
+      dateFormat="dd.mm.yy"
+      [showIcon]="true"
+      [readonlyInput]="true"
+      placeholder="dd.mm.yy"
+      [showTime]="true"
+      hourFormat="24"
+    />
+  </div>
+  <div class="form_control_wrapper">
+    <label for="planning_type" class="form_label">Тип завдання</label>
+    <p-select
+      inputId="planning_type"
+      formControlName="type"
+      [options]="planning_types"
+      optionLabel="label"
+      optionValue="value"
+    />
+  </div>
+  <div class="form_control_wrapper">
+    <label for="planning_name" class="form_label">ПІБ</label>
+    <textarea
+      [autofocus]="true"
+      id="planning_name"
+      pTextarea
+      formControlName="name"
+      class="form_textarea_mh_64"
+    >
+    </textarea>
+  </div>
+  <div class="form_control_wrapper">
+    <label for="rank" class="form_label">Звання</label>
+    <p-autocomplete
+      inputId="rank"
+      formControlName="rank"
+      [suggestions]="filteredRanks"
+      (completeMethod)="search($event)"
+      optionLabel="label"
+      optionValue="value"
+      class="form_dropdown"
+    />
+  </div>
+  <div class="form_control_wrapper">
+    <label for="union" class="form_label">Підрозділ</label>
+    <input
+      id="union"
+      type="text"
+      pInputText
+      formControlName="union"
+      class="form_input"
+    />
+  </div>
+  <div class="form_control_wrapper">
+    <label for="planning_desc" class="form_label">Опис завдання</label>
+    <textarea
+      id="planning_desc"
+      rows="4"
+      cols="30"
+      pTextarea
+      formControlName="description"
+      class="form_textarea_h_120"
+    >
+    </textarea>
+  </div>
+  <div class="form_footer">
+    <button
+      pButton
+      type="button"
+      label="Відмінити"
+      severity="secondary"
+      (click)="cancel()"
+    ></button>
+    <button
+      pButton
+      type="submit"
+      label="Зберегти"
+      [disabled]="planningForm.invalid"
+    ></button>
+  </div>
+</form>

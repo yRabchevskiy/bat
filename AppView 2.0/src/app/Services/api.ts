@@ -8,6 +8,7 @@ import { IAuth, IUser } from '../Store/interfaces/user';
 import { ISoldier } from '../Store/interfaces/soldiers';
 import { IVisit, IVisitPostData } from '../Store/interfaces/visit';
 import { IRemission, IRemissionPostData } from '../Store/interfaces/remission';
+import { IPlanning } from '../Store/interfaces/planning';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -36,6 +37,15 @@ export class ApiService extends BaseApi {
 
   postRemision(data: IRemissionPostData): Observable<IApiRes<IRemission>> {
     return this.doPost('/remission', data);
+  }
+
+  // Plannings
+  getPlannings(): Observable<IApiRes<IPlanning[]>> {
+    return this.doGet('/planning');
+  }
+
+  postPlanning(data: IPlanning): Observable<IApiRes<IPlanning>> {
+    return this.doPost('/planning', data);
   }
 
   // Hospitalizations

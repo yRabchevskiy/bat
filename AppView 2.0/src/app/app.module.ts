@@ -26,6 +26,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { RemissionEffects } from './Store/effects/remission.effects';
+import { PlanningEffects } from './Store/effects/planning.effects';
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent],
@@ -39,7 +40,7 @@ import { RemissionEffects } from './Store/effects/remission.effects';
     AppRoutingModule,
     GeneralModule,
     StoreModule.forRoot(appReducers, { metaReducers: [clearState] }),
-    EffectsModule.forRoot([UserEffects, ConfigEffects, SoldierEffects, RemissionEffects]),
+    EffectsModule.forRoot([UserEffects, ConfigEffects, SoldierEffects, RemissionEffects, PlanningEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],
     providers: [

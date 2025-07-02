@@ -22,6 +22,18 @@ export class RemissionTableComponent implements OnInit {
   chartData: any = {};
   options: any = {};
   today: Date = new Date();
+
+  columns: any[] = [
+    { field: 'start_date', format: 'dd/MM/yyyy', header: 'З:', width: '120px', hidden: false },
+    { field: 'end_date', format: 'dd/MM/yyyy', header: 'До:', width:    '120px', hidden: false },
+    { field: 'diffOfDays', format: '', header: 'К-сть', width: '120px', hidden: false },
+    { field: 'name', format: '', header: 'ПІБ', width: '240px', hidden: false },
+    { field: 'rank', format: '', header: 'Звання', width: '120px', hidden: false },
+    { field: 'union', format: '', header: 'Підрозділ', width: '120px', hidden: false },
+    { field: 'diagnosis', format: '', header: 'Діагноз', hidden: false },
+    { field: 'description', format: '', header: 'Опис', hidden: true },
+  ];
+
   private _rangeDates: Date[] | undefined = undefined;
 
   get rangeDates(): Date[] | undefined {
@@ -41,27 +53,27 @@ export class RemissionTableComponent implements OnInit {
   constructor(private _store: Store<IAppState>) {
     this._store.select(selectRemissionList).subscribe((_data) => {
       this.data = _data;
-      const groupedData: any = {};
-      this.data.forEach((item) => {
-        const date = format(item.end_date, 'dd.MM.yyyy');
-        const quantity = item.diffOfDays || 0;
-        if (groupedData[date]) {
-          groupedData[date] += quantity;
-        } else {
-          groupedData[date] = quantity;
-        }
-      });
-      this.chartData = {
-        labels: Object.keys(groupedData), // Масив дат
-        datasets: [
-          {
-            type: 'line',
-            label: 'Кількість днів звільнення',
-            data: Object.values(groupedData), // Масив кількостей
-            // Можна додати інші налаштування для dataset, наприклад, колір, стиль тощо
-          },
-        ],
-      };
+      // const groupedData: any = {};
+      // this.data.forEach((item) => {
+      //   const date = format(item.end_date, 'dd.MM.yyyy');
+      //   const quantity = item.diffOfDays || 0;
+      //   if (groupedData[date]) {
+      //     groupedData[date] += quantity;
+      //   } else {
+      //     groupedData[date] = quantity;
+      //   }
+      // });
+      // this.chartData = {
+      //   labels: Object.keys(groupedData), // Масив дат
+      //   datasets: [
+      //     {
+      //       type: 'line',
+      //       label: 'Кількість днів звільнення',
+      //       data: Object.values(groupedData), // Масив кількостей
+      //       // Можна додати інші налаштування для dataset, наприклад, колір, стиль тощо
+      //     },
+      //   ],
+      // };
     });
   }
 

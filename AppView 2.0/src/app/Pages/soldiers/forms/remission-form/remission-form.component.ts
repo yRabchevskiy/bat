@@ -38,7 +38,7 @@ import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 export class RemissionFormComponent {
   readonly rank_types: IListItem<RANK_TYPES>[] = RANK_TYPES_LIST;
   filteredRanks: IListItem<RANK_TYPES>[] = [];
-
+  addMore: boolean = true;
   remissionForm = new FormGroup({
     soldier_id: new FormControl<string>(''),
     rank: new FormControl<string>(
@@ -77,7 +77,7 @@ export class RemissionFormComponent {
     createSuccess$
       .pipe(ofType(postRemissionSuccess), takeUntil(this.destroyed$))
       .subscribe(() => {
-        this.cancel();
+        this.actionAfterSave();
       });
   }
 
@@ -90,6 +90,7 @@ export class RemissionFormComponent {
     this.filteredRanks = [...this.rank_types];
     this.buildForm();
   }
+
   buildForm() {
     if (!this.rangeDates || this.rangeDates.length < 2) return;
     this.diffOfDays = getDiffOfDays(
@@ -121,11 +122,34 @@ export class RemissionFormComponent {
     }
   }
 
+  setupDefaultValues() {
+    this.remissionForm.patchValue({
+      soldier_id: '',
+      description: '',
+      rank: this.rank_types[0].value,
+      name: '',
+      union: '',
+      diagnosis: '',
+      start_date: null,
+      end_date: null,
+    });
+  }
+
   save() {
     if (this.remissionForm.invalid) return;
     this.store.dispatch(
       postRemission({ data: this.remissionForm.value as IRemissionPostData })
     );
+  }
+
+  actionAfterSave() {
+    if (this.addMore) {
+      this.setupDefaultValues();
+      this.buildForm();
+      this.filteredRanks = [...this.rank_types];
+      return;
+    }
+    this.cancel();
   }
 
   cancel() {
@@ -154,6 +178,7 @@ export class RemissionFormComponent {
     const start_control = this.remissionForm.get('start_date') as FormControl;
     const start_date = start_control.value;
     this.diffOfDays = getDiffOfDays(start_date, e);
-    // this.tomorrow = new Date().setDate(end_date.getDate() + 1);
+    const updateTommorow = new Date().setDate(end_date.getDate() + 1);
+    this.tomorrow = new Date(updateTommorow);
   }
 }

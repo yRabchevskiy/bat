@@ -1,5 +1,5 @@
 <p-table
-  class="table"
+  class="table remission-table"
   #st
   [value]="data"
   [scrollable]="true"
@@ -12,13 +12,13 @@
     'end_date',
     'diagnosis'
   ]"
-  [rows]="10"
+  [rows]="25"
   [rowsPerPageOptions]="[5, 10, 25, 50]"
   [paginator]="true"
 >
   <ng-template pTemplate="caption">
     <div class="table_action_row">
-      <div>{{ today | date : "dd/MM/yyyy" }}</div>
+      <div class="app-today">{{ today | date : "dd.MM.yyyy" }}</div>
       <p-datepicker
         styleClass="app-datepiker"
         iconDisplay="button"
@@ -50,34 +50,28 @@
   <ng-template pTemplate="header">
     <tr>
       <th style="width: 60px">№</th>
-      <th style="width: 120px">З:</th>
-      <th style="width: 120px">До:</th>
-      <th style="width: 120px">К-сть</th>
-      <th style="width: 240px">ПІБ</th>
-      <th style="width: 120px">Звання</th>
-      <th style="width: 120px">Підрозділ</th>
-      <th>Діагноз</th>
-      <th>Опис</th>
+      <ng-container *ngFor="let col of columns">
+        <th *ngIf="!col.hidden">{{ col.header }}</th>
+      </ng-container>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
     <tr [ngClass]="getBorderStyle(item)">
       <td>{{ rowIndex + 1 }}</td>
-      <td>{{ item.start_date | date : "dd/MM/yyyy" }}</td>
-      <td>{{ item.end_date | date : "dd/MM/yyyy" }}</td>
-      <td>{{ item.diffOfDays }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.rank }}</td>
-      <td>{{ item.union }}</td>
-      <td>{{ item.diagnosis }}</td>
-      <td>{{ item.description }}</td>
+
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="!col.hidden">
+          <span *ngIf="col.format">{{ item[col.field] | date : col.format }}</span>
+          <span *ngIf="!col.format">{{ item[col.field] }}</span>
+        </td>
+      </ng-container>
     </tr>
   </ng-template>
 </p-table>
-
+<!-- 
 <div>
   <p-chart [data]="chartData" />
-</div>
+</div> -->
 <app-remission-form
   *ngIf="showRemissionForm"
   [rangeDates]="rangeDates"

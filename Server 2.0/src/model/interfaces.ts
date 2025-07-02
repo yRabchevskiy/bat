@@ -64,6 +64,14 @@ export enum TYPE_OF_VISIT {
   OTHER = 'інше'
 }
 
+export enum TYPE_OF_PLANNING {
+  CONSULTATION = 'Консультація',
+  HOSPITALIZATION = 'Госпіталізація',
+  REGISTRATION = 'Реєстрація',
+  EXAMINATION = 'Обстеження',
+  OTHER = 'Інше',
+}
+
 export enum TYPE_OF_VISIT_STATUS {
   ACTIVE = 'Активний',
   PENDING = 'Очікування',

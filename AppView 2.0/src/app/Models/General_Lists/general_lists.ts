@@ -1,4 +1,4 @@
-import { IListItem, BLOOD_TYPES, SEX_TYPE, TYPE_OF_DISEASE, RANK_TYPES, TYPE_OF_VISIT } from "../../Store/interfaces/Enums/general";
+import { IListItem, BLOOD_TYPES, SEX_TYPE, TYPE_OF_PLANNING, TYPE_OF_DISEASE, RANK_TYPES, TYPE_OF_VISIT } from "../../Store/interfaces/Enums/general";
 
 
 export const BLOOD_TYPES_LIST: IListItem<BLOOD_TYPES>[] = [
@@ -17,6 +17,14 @@ export const SEX_TYPE_LIST: IListItem<SEX_TYPE>[] = [
     { label: 'Чоловіча', value: SEX_TYPE.MALE },
     { label: 'Жіноча', value: SEX_TYPE.FEMALE },
     { label: 'Невідома', value: SEX_TYPE.UNKNOWN }
+];
+
+export const TYPE_OF_PLANNING_LIST: IListItem<TYPE_OF_PLANNING>[] = [
+    { label: 'Консультація', value: TYPE_OF_PLANNING.CONSULTATION },
+    { label: 'Госпіталізація', value: TYPE_OF_PLANNING.HOSPITALIZATION },
+    { label: 'Реєстрація', value: TYPE_OF_PLANNING.REGISTRATION },
+    { label: 'Обстеження', value: TYPE_OF_PLANNING.EXAMINATION },
+    { label: 'Інше', value: TYPE_OF_PLANNING.OTHER },
 ];
 
 export const TYPE_OF_DISEASE_LIST: IListItem<TYPE_OF_DISEASE>[] = [

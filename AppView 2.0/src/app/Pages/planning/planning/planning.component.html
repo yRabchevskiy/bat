@@ -1,0 +1,40 @@
+<div class="page_body_column">
+  <p-datepicker
+    class="app-inline-calendar planning_calendar"
+    [(ngModel)]="selectedDate"
+    [inline]="true"
+    [fluid]="true"
+    [showTime]="true"
+    hourFormat="24"
+  >
+    <ng-template #date let-date>
+      <span *ngIf="date">
+        {{ date.day }}
+        {{ getTaskCount(date) }}
+      </span>
+    </ng-template>
+  </p-datepicker>
+  <ng-container *ngIf="!showPlanningForm">
+    <div>
+      <h3>Планування на {{ selectedDate | date : "dd.MM.yyyy" }}</h3>
+      <button (click)="openPlanningForm()">Додати завдання</button>
+    </div>
+    <ul>
+      <ng-container *ngIf="data && data.length">
+        <li *ngFor="let item of data">
+          {{ item.planning_date | date : "dd.MM.yyyy" }}
+          {{ item.type }}
+          {{ item.name }}
+        </li>
+      </ng-container>
+      <ng-container *ngIf="!data || !data.length">
+        <div>Запланованих завдань не має</div>
+      </ng-container>
+    </ul>
+  </ng-container>
+  <app-planning-form
+    *ngIf="showPlanningForm"
+    [selectedDate]="selectedDate"
+    (onClose)="closePlanningForm()"
+  />
+</div>

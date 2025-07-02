@@ -5,12 +5,14 @@ import { initialVisitState, IVisitState } from "./visit.state";
 import { initialSoldierState, ISoldierState } from "./soldier.state";
 import { CONFIG_ACTIONS } from "../actions/config.action";
 import { initialRemissionState, IRemissionState } from "./remission.state";
+import { initialPlanningState, IPlanningState } from "./planning.state";
 
 export interface IAppState {
   router?: RouterReducerState;
   users: IUserState;
   visits: IVisitState;
   remissions: IRemissionState;
+  plannings: IPlanningState;
   soldiers: ISoldierState;
   config: IConfigState;
 }
@@ -20,6 +22,7 @@ export const initialAppState: IAppState = {
   visits: initialVisitState,
   soldiers: initialSoldierState,
   remissions: initialRemissionState,
+  plannings: initialPlanningState,
   config: initialConfigState,
 }
 

@@ -45,6 +45,7 @@ export class MainComponent implements OnInit {
       new Page({ id: 'home', title: 'Основна', url: '/home', icon: 'bx-home', view: true }),
       new Page({ id: 'soldiers', title: 'ОС', url: '/soldiers', icon: 'bxs-group', view: !!_user.role }),
       new Page({ id: 'visits', title: 'Візити', url: '/visits', icon: 'bx-plus-medical', view: !!_user.role }),
+      new Page({ id: 'planning', title: 'Планування', url: '/planning', icon: 'bx-calendar', view: _user.role === APP_ROLES.ADMIN }),
       new Page({ id: 'inventory', title: 'Майно', url: '/inventory', icon: 'bx-library', view: _user.role === APP_ROLES.ADMIN }),
     ];
   }
