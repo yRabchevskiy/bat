@@ -8,3 +8,36 @@
 .page_body_column {
   padding-top: 20px;
 }
+
+.planning-header {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.planning-selected-day {
+  margin-right: 20px;
+  font-size: 22px;
+}
+.add-task {
+  font-size: 14px;
+  height: 30px;
+  margin-left: auto;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.task-list-item {
+  margin-bottom: 8px;
+  border-bottom: 1px solid;
+  padding: 4px 0 8px 0;
+  span {
+    margin-right: 4px;
+  }
+  .task-list-item-index {
+    margin-right: 12px;
+  }
+}

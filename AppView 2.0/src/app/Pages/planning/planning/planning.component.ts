@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../Store/state/app.state';
 import { getPlannings } from '../../../Store/actions/planning.action';
-import { selectPlanningsStateError, selectPlanningsStateLoading } from '../../../Store/selectors/planning.selectors';
+import {
+  selectPlanningsStateError,
+  selectPlanningsStateLoading,
+} from '../../../Store/selectors/planning.selectors';
 import { IPlanning } from '../../../Store/interfaces/planning';
 import { format } from 'date-fns';
 
@@ -18,17 +21,19 @@ interface IPlanningCounter {
 })
 export class PlanningComponent {
   data: IPlanning[] = [];
+  filteredData: IPlanning[] = [];
   taskCounter: IPlanningCounter = {};
   error = this._store.select(selectPlanningsStateError);
   loading = this._store.select(selectPlanningsStateLoading);
   selectedDate: Date = new Date();
 
+  today: Date = new Date();
   showPlanningForm: boolean = false;
 
-  
   constructor(private _store: Store<IAppState>) {
     this._store.select('plannings').subscribe((state) => {
       this.data = state.plannings;
+      this.getFilteredData(state.plannings, this.selectedDate);
       this.taskCounter = state.plannings.reduce((acc, item) => {
         const d = new Date(item.planning_date);
         const key = `${d.getDate()}-${d.getMonth()}-${d.getFullYear()}`;
@@ -46,7 +51,7 @@ export class PlanningComponent {
 
   onDateSelect($event: Date): void {
     this.selectedDate = $event;
-    
+    this.getFilteredData(this.data, $event);
   }
 
   openPlanningForm(): void {
@@ -62,4 +67,11 @@ export class PlanningComponent {
     return this.taskCounter[key] || '';
   }
 
+  private getFilteredData(data: IPlanning[], date: Date) {
+    this.filteredData = data.filter(
+      (it) =>
+        format(it.planning_date, 'dd.MM.yyyy') ==
+        format(date, 'dd.MM.yyyy')
+    );
+  }
 }

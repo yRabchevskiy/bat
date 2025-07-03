@@ -1,36 +1,38 @@
 <div class="page_body_column">
   <p-datepicker
     class="app-inline-calendar planning_calendar"
-    [(ngModel)]="selectedDate"
+    [ngModel]="selectedDate"
+    (ngModelChange)="onDateSelect($event)"
     [inline]="true"
     [fluid]="true"
     [showTime]="true"
     hourFormat="24"
   >
     <ng-template #date let-date>
-      <span *ngIf="date">
+      <div class="date-wrapper">
         {{ date.day }}
-        {{ getTaskCount(date) }}
-      </span>
+        <span class="task-counter" *ngIf="getTaskCount(date)">{{
+          getTaskCount(date)
+        }}</span>
+      </div>
     </ng-template>
   </p-datepicker>
   <ng-container *ngIf="!showPlanningForm">
-    <div>
-      <h3>Планування на {{ selectedDate | date : "dd.MM.yyyy" }}</h3>
-      <button (click)="openPlanningForm()">Додати завдання</button>
+    <div class="planning-header">
+      <div class="planning-selected-day">Планування на {{ selectedDate | date : "dd.MM.yyyy" }}</div>
+      <button class="add-task" pButton label="Додати завдання" (click)="openPlanningForm()"></button>
     </div>
-    <ul>
-      <ng-container *ngIf="data && data.length">
-        <li *ngFor="let item of data">
-          {{ item.planning_date | date : "dd.MM.yyyy" }}
-          {{ item.type }}
-          {{ item.name }}
-        </li>
-      </ng-container>
-      <ng-container *ngIf="!data || !data.length">
-        <div>Запланованих завдань не має</div>
-      </ng-container>
-    </ul>
+    <div class="task-list" *ngIf="filteredData && filteredData.length">
+      <div class="task-list-item" *ngFor="let item of filteredData; let i = index">
+        <span class="task-list-item-index">{{ i + 1 + ")" }}</span>
+        <span>{{ item.planning_date | date : "dd.MM.yyyy" }}</span>
+        <span>{{ item.type }}</span>
+        <span>{{ item.name }}</span>
+      </div>
+    </div>
+    <div *ngIf="!filteredData || !filteredData.length">
+      Запланованих завдань не має
+    </div>
   </ng-container>
   <app-planning-form
     *ngIf="showPlanningForm"
