@@ -1,11 +1,11 @@
 <svg
-  id="batMap"
+  id="map"
   #svg
-  [attr.width]="options.width + 'px'"
-  [attr.height]="options.height + 'px'"
+  width="100%"
+  height="100%"
 >
   <g [zoomableOf]="{ nativeElement: svg }">
-    <rect fill="red" width="100px" height="100px" />
+    
     <!-- <g [link]="link" *ngFor="let link of links"></g>
     <g
       [node]="node"
@@ -16,12 +16,10 @@
 </svg>
 <div class="action-row">
   <div class="action-row-group">
-    <app-icon-btn
-      [style]="{ width: '32px', height: '32px' }"
-      (onClick)="onChangeTypeView(graphTypes.PACK)"
-      svgIconPath="url('assets/icons/graph-data.svg')"
+    <app-font-btn
+      icon="bx-calendar"
     />
-    <app-icon-btn
+    <!-- <app-icon-btn
       [style]="{ width: '32px', height: '32px' }"
       (onClick)="onChangeTypeView(graphTypes.TABLE)"
       svgIconPath="url('assets/icons/table.svg')"
@@ -35,7 +33,7 @@
       [style]="{ width: '32px', height: '32px' }"
       (onClick)="onChangeTypeView(graphTypes.TREE)"
       svgIconPath="url('assets/icons/graph.svg')"
-    />
+    /> -->
   </div>
   <div class="action-row-group">
     <app-icon-btn

@@ -4,7 +4,8 @@ import { GraphService } from '../../Services/graph/graph.service';
 import { Graph } from '../../Models/d3/Graph';
 
 @Directive({
-    selector: '[draggableNode]'
+    selector: '[draggableNode]',
+    standalone: false
 })
 export class DraggableDirective<T> {
     @Input('draggableNode') draggableNode!: ITreeNode;

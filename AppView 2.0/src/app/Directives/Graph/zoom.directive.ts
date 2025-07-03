@@ -3,6 +3,7 @@ import { GraphService } from '../../Services/graph/graph.service';
 
 @Directive({
   selector: '[zoomableOf]',
+  standalone: false
 })
 export class ZoomableDirective<T> {
   @Input('zoomableOf') zoomableOf!: ElementRef;
