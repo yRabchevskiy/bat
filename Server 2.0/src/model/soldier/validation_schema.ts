@@ -1,11 +1,5 @@
 import Joi from "joi";
 
-const soldNameValidate = Joi.object({
-  first_name: Joi.string(),
-  last_name: Joi.string(),
-  middle_name: Joi.string().allow(''),
-});
-
 const soldRankValidate = Joi.object().keys({
   value: Joi.string(),
   date: Joi.date().allow(null),
@@ -43,7 +37,7 @@ const soldPropertyValidation = Joi.object({
 
 export const SoldierSchemaValidate = Joi.object({
   // _id: Joi.string(),
-  name: soldNameValidate,
+  name: Joi.string(),
   birthday: Joi.date(),
   phone: Joi.string().allow(''),
   rank: Joi.array().items(soldRankValidate),

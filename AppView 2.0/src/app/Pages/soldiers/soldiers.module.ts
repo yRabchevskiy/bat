@@ -17,7 +17,6 @@ import { AccordionModule } from 'primeng/accordion';
 import { DrawerModule } from 'primeng/drawer';
 import { GeneralModule } from '../../Components/General/general.module';
 import { VlkFormComponent } from './forms/vlk-form/vlk-form.component';
-import { NameFormComponent } from './forms/children_forms/name-form/name-form.component';
 import { SoldEditionalDataFormComponent } from './forms/children_forms/sold-editional-data-form/sold-editional-data-form.component';
 import { SoldPropertyFormComponent } from './forms/children_forms/sold-property-form/sold-property-form.component';
 import { SoldiersTableComponent } from './soldiers-table/soldiers-table.component';
@@ -36,7 +35,6 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     SoldiersTableComponent,
     CreateSoldierComponent,
     VlkFormComponent,
-    NameFormComponent,
     SoldEditionalDataFormComponent,
     SoldPropertyFormComponent,
     RemissionFormComponent,

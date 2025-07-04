@@ -17,11 +17,7 @@ import { selectSoldierStateError, selectSoldierStateLoading } from '../../../Sto
 
 export class CreateSoldierComponent implements OnInit {
   soldierForm: FormGroup = new FormGroup({
-    // name: new FormGroup({
-    //   first_name: new FormControl<string | null>('', Validators.required),
-    //   middle_name: new FormControl<string | null>(''),
-    //   last_name: new FormControl<string | null>('', Validators.required)
-    // }),
+    name: new FormControl<string>('', Validators.required),
     // editional_data: new FormGroup({
     //   blood_type: new FormControl<BLOOD_TYPES>(BLOOD_TYPES.UNKNOWN),
     //   sex_type: new FormControl<SEX_TYPE>(SEX_TYPE.MALE),

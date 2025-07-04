@@ -1,11 +1,5 @@
 import { BLOOD_TYPES, RANK_TYPES, SEX_TYPE } from "./Enums/general";
 
-export interface IName {
-  first_name: string;
-  last_name: string;
-  middle_name: string;
-}
-
 export interface IRank {
   value: RANK_TYPES;
   date: Date;
@@ -48,7 +42,7 @@ export interface ISoldierEditionalData {
 
 export interface ISoldier {
   _id?: string;
-  name: IName;
+  name: string;
   birthday: Date;
   phone: string;
   rank: IRank[];

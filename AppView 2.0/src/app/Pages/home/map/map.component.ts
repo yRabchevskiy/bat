@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../../Services/api';
 import { Router } from '@angular/router';
 import { GraphService } from '../../../Services/graph/graph.service';
 
 @Component({
-    selector: 'app-map',
-    templateUrl: './map.component.html',
-    styleUrl: './map.component.scss',
-    standalone: false
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrl: './map.component.scss',
+  standalone: false,
 })
 export class MapComponent {
+  @ViewChild('svg') svg!: ElementRef;
   // data: IBatStructure[] = [];
   selectedBatId: string = '';
   loading: boolean = false;
-  constructor(private apiService: ApiService, private router: Router, private graphService: GraphService<any>,) {
-  }
-
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private graphService: GraphService<any>
+  ) {}
 
   // doGetData() {
   //   return this.apiService.getStructure();
@@ -42,6 +45,10 @@ export class MapComponent {
     this.graphService.zoomOut();
   }
 
+  addUnion(): void {
+    this.graphService.createItem(this.svg);
+  }
+
   // onAddStructureItem(value: IUnit) {
   //   this.loading = true;
   //   this.apiService.addStructureItem({ ...value, structure_id: this.selectedBatId }).subscribe({
@@ -57,5 +64,4 @@ export class MapComponent {
   //     }
   //   });
   // }
-
 }

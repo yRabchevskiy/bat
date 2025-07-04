@@ -1,6 +1,6 @@
 <p-table class="table" #st [value]="soldiers" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
   [expandedRowKeys]="expandedRows"
-  [globalFilterFields]="['name.first_name', 'name.last_name', 'name.middle_name', 'editional_data.position']"
+  [globalFilterFields]="['name', 'editional_data.position']"
   [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
   <ng-template #caption>
     <div class="table_action_row">
@@ -41,7 +41,7 @@
           [ngClass]="expanded ? 'expanded' : 'collapsed'" />
       </td>
       <td>{{ rowIndex + 1 }}</td>
-      <td>{{ item.name.last_name }} {{ item.name.first_name }} {{ item.name.middle_name }}</td>
+      <td>{{ item.name }}</td>
       <td>{{ item.birthday | date : "dd/MM/yyyy" }}</td>
       <td>{{ item.phone }}</td>
       <td>{{ item.rank && item.rank.length ? item.rank[item.rank.length - 1].value : '' }}</td>

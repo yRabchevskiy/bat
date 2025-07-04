@@ -4,7 +4,7 @@
   width="100%"
   height="100%"
 >
-  <g [zoomableOf]="{ nativeElement: svg }">
+  <g id="app-g-container" [zoomableOf]="{ nativeElement: svg }">
     
     <!-- <g [link]="link" *ngFor="let link of links"></g>
     <g
@@ -18,6 +18,7 @@
   <div class="action-row-group">
     <app-font-btn
       icon="bx-calendar"
+      (onClick)="addUnion()"
     />
     <!-- <app-icon-btn
       [style]="{ width: '32px', height: '32px' }"

@@ -34,11 +34,7 @@ const soldPropertiesDataSchema = new Schema<ISoldierProperties>({
 
 const soldierSchema = new Schema<ISoldier>({
   _id: mongoose.SchemaTypes.ObjectId,
-  name: {
-    first_name: { type: String },
-    last_name: { type: String },
-    middle_name: { type: String },
-  },
+  name: { type: String },
   birthday: { type: Date },
   phone: { type: String },
   rank: [{

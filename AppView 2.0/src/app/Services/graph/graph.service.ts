@@ -25,8 +25,7 @@ export class GraphService<T> {
   links: d3.HierarchyLink<any>[] = [];
   zoom: any = d3.zoom();
   dispather = d3.dispatch('zoom_in', 'zoom_out');
-  svg!: ElementRef;
-  container!: ElementRef;
+
   constructor() {}
 
   /** A method to bind a pan and zoom behaviour to an svg element */
@@ -44,47 +43,57 @@ export class GraphService<T> {
 
     const zoomIn = (event: any) => {
       this.zoom.scaleBy(svg.transition().duration(750), 1.2);
-    }
+    };
 
     const zoomOut = (event: any) => {
       this.zoom.scaleBy(svg.transition().duration(750), 0.8);
-    }
+    };
 
     this.zoom.on('zoom', zoomed);
-    
+
     svg.call(this.zoom).on('dblclick.zoom', null);
     this.dispather.on('zoom_in', zoomIn).on('zoom_out', zoomOut);
   }
 
   zoomIn() {
-    this.dispather.call('zoom_in')
+    this.dispather.call('zoom_in');
   }
   zoomOut() {
-    this.dispather.call('zoom_out')
+    this.dispather.call('zoom_out');
   }
 
   /** A method to bind a draggable behaviour to an svg element */
-  applyDraggableBehaviour(element: any, node: ITreeNode, graph: Graph<T>) {
-    const d3element = d3.select(element);
+  applyDraggableBehaviour(id: string): void {
+    const el = d3.select(id) as any;
+    const drag = d3
+      .drag()
+      .on('start', (event, d) => {
+        console.log('Drag start:', event, d);
+        
+      })
+      .on('drag', (event, d) => {
+        el.attr('x', event.x).attr('y', event.y);
+      })
+      .on('end', (event, d) => {
+        el.attr('x', event.x).attr('y', event.y);
+      });
 
-    function started(event: any) {
-      /** Preventing propagation of dragstart to parent elements */
-      event.sourceEvent.stopPropagation();
+    // Apply the drag behavior to a D3 selection
+    el.call(drag);
+  }
 
-      event.on('drag', dragged).on('end', ended);
+  createItem(svgElement: ElementRef) {
+    const svg = d3.select(svgElement.nativeElement);
+    const g = svg.select('#app-g-container');
+    g.append('rect')
+      .attr('id', 'fake-rect')
+      .attr('width', 100)
+      .attr('height', 100)
+      .attr('fill', 'black')
+      .attr('pointer-event', 'all');
 
-      function dragged(event: any) {
-        node.x = event.x;
-        node.y = event.y;
-      }
-
-      function ended(event: any) {
-        // node.x = null;
-        // node.y = null;
-      }
-    }
-
-    d3element.call(d3.drag().on('start', started));
+    const rect = g.select('#fake-rect');
+    this.applyDraggableBehaviour('#fake-rect');
   }
 
   expandeCollapseNode(node: ITreeNode, index: number) {

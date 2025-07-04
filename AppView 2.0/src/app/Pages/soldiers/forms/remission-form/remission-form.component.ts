@@ -8,11 +8,6 @@ import {
   postRemissionSuccess,
 } from '../../../../Store/actions/remission.action';
 import {
-  selectSoldierStateLoading,
-  selectSoldierStateError,
-} from '../../../../Store/selectors/soldier.selector';
-import {
-  buildSoldierFullName,
   getDiffOfDays,
 } from '../../../../Helpers/soldier.helper';
 import { IRemissionPostData } from '../../../../Store/interfaces/remission';
@@ -116,7 +111,7 @@ export class RemissionFormComponent {
           this.soldier.rank && this.soldier.rank.length
             ? this.soldier.rank[this.soldier.rank.length - 1].value
             : this.rank_types[0].value,
-        name: buildSoldierFullName(this.soldier),
+        name: this.soldier.name,
         union: this.soldier.editional_data?.unit || '',
       });
     }

@@ -1,35 +1,80 @@
-<form [formGroup]="soldierForm" (ngSubmit)="save()" novalidate class="form_wrapper">
+<form
+  [formGroup]="soldierForm"
+  (ngSubmit)="save()"
+  novalidate
+  class="form_wrapper"
+>
   <div class="form_content">
     <p-accordion class="soldier-wrapper" [value]="['0']" [multiple]="true">
       <p-accordion-panel class="soldier-tab-panel" value="0">
         <p-accordion-header>Загальна інформація</p-accordion-header>
         <p-accordion-content>
-          <app-name-form class="form_fields_colums_group_3"></app-name-form>
+          <div class="form_control_wrapper">
+            <label for="name" class="form_label">ПІБ *</label>
+            <input
+              id="name"
+              type="text"
+              pInputText
+              formControlName="name"
+              class="form_input"
+            />
+          </div>
 
           <div class="form_fields_colums_group_2">
             <div class="form_control_wrapper">
               <label for="birthday" class="form_label">Дата народження *</label>
-              <p-datepicker [showIcon]="true" [showOnFocus]="false" appendTo="body" inputId="birthday" class="form_calendar" formControlName="birthday"
-                placeholder="../../...." dateFormat="dd/mm/yy" />
+              <p-datepicker
+                [showIcon]="true"
+                [showOnFocus]="false"
+                appendTo="body"
+                inputId="birthday"
+                class="form_calendar"
+                formControlName="birthday"
+                placeholder="../../...."
+                dateFormat="dd/mm/yy"
+              />
             </div>
             <div class="form_control_wrapper">
               <label for="phone" class="form_label">Телефон</label>
-              <p-inputMask class="form_mask" mask="+380(99)999 99 99" formControlName="phone"
-                placeholder="+380(99)999 99 99" />
+              <p-inputMask
+                class="form_mask"
+                mask="+380(99)999 99 99"
+                formControlName="phone"
+                placeholder="+380(99)999 99 99"
+              />
             </div>
           </div>
-          <ng-container formArrayName="rank" *ngFor="let item of ranks.controls; let j = index">
+          <ng-container
+            formArrayName="rank"
+            *ngFor="let item of ranks.controls; let j = index"
+          >
             <ng-container [formGroupName]="j">
               <div class="form_fields_colums_group_2">
                 <div class="form_control_wrapper">
                   <label [for]="j + 'rank'" class="form_label">Звання</label>
-                  <p-dropdown [inputId]="j + 'rank'" formControlName="value" [options]="rank_types" optionLabel="label"
-                    optionValue="value" class="form_dropdown" />
+                  <p-dropdown
+                    [inputId]="j + 'rank'"
+                    formControlName="value"
+                    [options]="rank_types"
+                    optionLabel="label"
+                    optionValue="value"
+                    class="form_dropdown"
+                  />
                 </div>
                 <div class="form_control_wrapper">
-                  <label [for]="j + 'rank_date'" class="form_label">Дата присвоєння</label>
-                  <p-datepicker [showIcon]="true" [showOnFocus]="false" appendTo="body" [inputId]="j + 'rank_date'" formControlName="date" class="form_calendar"
-                    placeholder="../../...." dateFormat="dd/mm/yy" />
+                  <label [for]="j + 'rank_date'" class="form_label"
+                    >Дата присвоєння</label
+                  >
+                  <p-datepicker
+                    [showIcon]="true"
+                    [showOnFocus]="false"
+                    appendTo="body"
+                    [inputId]="j + 'rank_date'"
+                    formControlName="date"
+                    class="form_calendar"
+                    placeholder="../../...."
+                    dateFormat="dd/mm/yy"
+                  />
                 </div>
               </div>
             </ng-container>
@@ -46,61 +91,122 @@
               <ng-container [formGroupName]="j">
                 <div class="form_fields_colums_group_2">
                   <div class="form_control_wrapper">
-                    <label for="vlc_number" class="form_label">Номер наказу</label>
-                    <input id="vlc_number" type="text" pInputText formControlName="vlc_number" class="form_input" />
+                    <label for="vlc_number" class="form_label"
+                      >Номер наказу</label
+                    >
+                    <input
+                      id="vlc_number"
+                      type="text"
+                      pInputText
+                      formControlName="vlc_number"
+                      class="form_input"
+                    />
                   </div>
                   <div class="form_control_wrapper">
-                    <label for="vlc_date" class="form_label">Дата проходження</label>
-                    <p-datepicker [showIcon]="true" [showOnFocus]="false" inputId="vlc_date" appendTo="body" formControlName="vlc_date" class="form_calendar"
-                      placeholder="../../...." dateFormat="dd/mm/yy" />
+                    <label for="vlc_date" class="form_label"
+                      >Дата проходження</label
+                    >
+                    <p-datepicker
+                      [showIcon]="true"
+                      [showOnFocus]="false"
+                      inputId="vlc_date"
+                      appendTo="body"
+                      formControlName="vlc_date"
+                      class="form_calendar"
+                      placeholder="../../...."
+                      dateFormat="dd/mm/yy"
+                    />
                   </div>
                 </div>
                 <div class="form_fields_colums_group_2">
                   <div class="form_control_wrapper">
-                    <label for="hospital_name" class="form_label">Місце проходження</label>
-                    <textarea id="hospital_name" rows="4" cols="30" pTextarea  formControlName="hospital_name"
-                      class="form_textarea">
+                    <label for="hospital_name" class="form_label"
+                      >Місце проходження</label
+                    >
+                    <textarea
+                      id="hospital_name"
+                      rows="4"
+                      cols="30"
+                      pTextarea
+                      formControlName="hospital_name"
+                      class="form_textarea"
+                    >
                     </textarea>
                   </div>
                   <div class="form_control_wrapper">
                     <label for="diagnosis" class="form_label">Діагноз</label>
-                    <textarea id="diagnosis" rows="4" cols="30" pTextarea  formControlName="diagnosis"
-                      class="form_textarea">
+                    <textarea
+                      id="diagnosis"
+                      rows="4"
+                      cols="30"
+                      pTextarea
+                      formControlName="diagnosis"
+                      class="form_textarea"
+                    >
                     </textarea>
                   </div>
                 </div>
                 <div class="form_control_wrapper">
                   <label for="recomendation" class="form_label">Висновок</label>
-                  <textarea id="recomendation" rows="4" cols="30" pTextarea  formControlName="recomendation"
-                    class="form_textarea">
+                  <textarea
+                    id="recomendation"
+                    rows="4"
+                    cols="30"
+                    pTextarea
+                    formControlName="recomendation"
+                    class="form_textarea"
+                  >
                   </textarea>
                 </div>
               </ng-container>
             </ng-container>
-            <button class="app_action_button" type="button" (click)="addVlc()">Додати ВЛК</button>
+            <button class="app_action_button" type="button" (click)="addVlc()">
+              Додати ВЛК
+            </button>
           </ng-container>
         </p-accordion-content>
-
       </p-accordion-panel>
       <p-accordion-panel class="soldier-tab-panel" value="2" header="">
         <p-accordion-header>Медичне майно</p-accordion-header>
         <p-accordion-content>
           <ng-container formGroupName="properties">
-            <ng-container formArrayName="med_properties" *ngFor="let item of med_properties.controls; index as i">
-              <app-sold-property-form [id]="i + '_med_property'" [data]="getMedPropertyGroup(i)"
-                (onDelete)="removeMedProperty(i)"></app-sold-property-form>
+            <ng-container
+              formArrayName="med_properties"
+              *ngFor="let item of med_properties.controls; index as i"
+            >
+              <app-sold-property-form
+                [id]="i + '_med_property'"
+                [data]="getMedPropertyGroup(i)"
+                (onDelete)="removeMedProperty(i)"
+              ></app-sold-property-form>
             </ng-container>
-            <button class="app_action_button" type="button" (click)="addMedProperty()">Додати інвентар</button>
+            <button
+              class="app_action_button"
+              type="button"
+              (click)="addMedProperty()"
+            >
+              Додати інвентар
+            </button>
           </ng-container>
         </p-accordion-content>
-
       </p-accordion-panel>
     </p-accordion>
   </div>
 
   <div class="form_footer">
-    <button pButton type="button" label="Відмінити" severity="secondary" (click)="cancel()"></button>
-    <button pButton type="submit" label="Зберегти" [disabled]="soldierForm.invalid"></button>
+    <button
+      pButton
+      type="button"
+      label="Відмінити"
+      severity="secondary"
+      (click)="cancel()"
+    ></button>
+    <button
+      pButton
+      type="submit"
+      label="Зберегти"
+      [disabled]="soldierForm.invalid"
+    ></button>
   </div>
 </form>
 <app-loading *ngIf="loading" />
