@@ -30,6 +30,10 @@ export class ApiService extends BaseApi {
     return this.doPost('/soldier', data);
   }
 
+  deleteSoldier(data: string): Observable<IApiRes<string>> {
+    return this.doDelete('/soldier', data);
+  }
+
   // Remissions
   getRemisions(): Observable<IApiRes<IRemission[]>> {
     return this.doGet('/remission');

@@ -30,8 +30,9 @@ router.post('/', cors(corsOptions), async (req: Request, res: Response) => {
 });
 
 
-router.delete('/', cors(corsOptions), async (req:Request, res:Response) => {
-  const service = await deleteSoldier(req.body.id)
+router.delete('/:id', cors(corsOptions), async (req:Request, res:Response) => {
+  console.log('Delete Soldier', req.params.id);
+  const service = await deleteSoldier(req.params.id)
   res.status(200).send(service)
 });
 

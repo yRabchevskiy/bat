@@ -7,7 +7,7 @@ import { Table } from 'primeng/table';
 import { SoldierDialogType } from '../../../Store/interfaces/general';
 import { setDialogType } from '../../../Store/actions/config.action';
 import { selectDialogType } from '../../../Store/selectors/config.selector';
-import { getSoldiers } from '../../../Store/actions/soldier.action';
+import { deleteSoldier, getSoldiers } from '../../../Store/actions/soldier.action';
 
 
 @Component({
@@ -42,8 +42,10 @@ export class SoldiersTableComponent {
     }    
   }
 
-  deleteSoldier($event: ISoldier) {
+  onDeleteSoldier($event: ISoldier) {
     if (!$event._id) return;
+    console.log('Delete Soldier:', $event._id);
+    this._store.dispatch(deleteSoldier({ id: $event._id }));
   }
 
   openRemission($event: ISoldier, type: SoldierDialogType) {

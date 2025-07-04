@@ -13,6 +13,9 @@ export enum SOLDIER_ACTIONS {
   PostSoldierSuccess = '[Soldier] Post Soldier Success',
   PostSoldierFailure = '[Soldier] Post Soldier Failure',
 
+  deleteSoldier = '[Soldier] Delete Soldier',
+  deleteSoldierSuccess = '[Soldier] Delete Soldier Success',
+  deleteSoldierFailure = '[Soldier] Delete Soldier Failure',
 }
 
 export const getSoldiers = createAction(
@@ -52,4 +55,20 @@ export const selectSoldierById = createAction(
 export const selectSoldierByIdSuccess = createAction(
   SOLDIER_ACTIONS.SelectSoldierByIdSuccess,
   props<{ soldier: ISoldier | null }>()
+);
+
+
+export const deleteSoldier = createAction(
+  SOLDIER_ACTIONS.deleteSoldier,
+  props<{ id: string }>()
+);
+
+export const deleteSoldierSuccess = createAction(
+  SOLDIER_ACTIONS.deleteSoldierSuccess,
+  props<{ id: string }>()
+);
+
+export const deleteSoldierFailure = createAction(
+  SOLDIER_ACTIONS.deleteSoldierFailure,
+  props<{ error: string }>()
 );

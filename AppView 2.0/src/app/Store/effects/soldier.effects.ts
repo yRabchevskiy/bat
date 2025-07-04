@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, map, switchMap, tap, withLatestFrom } from "rxjs/operators";
+import { catchError, map, switchMap, withLatestFrom } from "rxjs/operators";
 import { select, Store } from "@ngrx/store";
 import { IAppState } from "../state/app.state";
 import { of } from "rxjs";
 import { ApiService } from "../../Services/api";
 import { IApiRes } from "../../Models/api";
 import { HttpErrorResponse } from "@angular/common/http";
-import { getSoldiersFailure, getSoldiersSuccess, selectSoldierById, postSoldierFailure, postSoldierSuccess, SOLDIER_ACTIONS, selectSoldierByIdSuccess } from "../actions/soldier.action";
+import { getSoldiersFailure, getSoldiersSuccess, postSoldierFailure, postSoldierSuccess, SOLDIER_ACTIONS, selectSoldierByIdSuccess, deleteSoldierSuccess, deleteSoldierFailure, } from "../actions/soldier.action";
 import { ISoldier } from "../interfaces/soldiers";
 import { selectSoldierList } from "../selectors/soldier.selector";
 import { Router } from "@angular/router";
@@ -41,6 +41,20 @@ export class SoldierEffects {
         }),
         catchError((error: HttpErrorResponse) => {
           return of(postSoldierFailure({ error: error.error }));
+        }))
+    })
+  ));
+
+  deleteSoldier$ = createEffect(() => this._actions$.pipe(
+    ofType(SOLDIER_ACTIONS.deleteSoldier),
+    switchMap((data: any) => {
+      return this._apiService.deleteSoldier(data.id).pipe(
+        map((data: IApiRes<string>) => {
+          this.router.navigate(['/soldiers/table']);
+          return deleteSoldierSuccess({ id: data.data });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return of(deleteSoldierFailure({ error: error.error }));
         }))
     })
   ));

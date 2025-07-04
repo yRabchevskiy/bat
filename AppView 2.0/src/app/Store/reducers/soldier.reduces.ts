@@ -1,6 +1,6 @@
 import { getHospitalizations, getHospitalizationsFailure, getHospitalizationsSuccess } from "../actions/hospitalization.action";
 import { getRemissions, getRemissionsFailure, getRemissionsSuccess, postRemission, postRemissionFailure, postRemissionSuccess } from "../actions/remission.action";
-import { getSoldiers, getSoldiersFailure, getSoldiersSuccess, selectSoldierByIdSuccess, postSoldier, postSoldierFailure, postSoldierSuccess } from "../actions/soldier.action";
+import { getSoldiers, getSoldiersFailure, getSoldiersSuccess, selectSoldierByIdSuccess, postSoldier, postSoldierFailure, postSoldierSuccess, deleteSoldier, deleteSoldierFailure, deleteSoldierSuccess } from "../actions/soldier.action";
 import { getVlks, getVlksSuccess, getVlksFailure } from "../actions/vlk.action";
 import { initialSoldierState, ISoldierState } from "../state/soldier.state";
 import { createReducer, on } from "@ngrx/store";
@@ -16,6 +16,10 @@ export const soldierReducers = createReducer(initialSoldierState,
   on(postSoldier, (state: ISoldierState, props) => ({ ...state, loading: true, error: null })),
   on(postSoldierSuccess, (state: ISoldierState, props) => ({ ...state, soldiers: [...state.soldiers, props.item], loading: false, error: null })),
   on(postSoldierFailure, (state: ISoldierState, props) => ({ ...state, loading: false, error: props.error })),
+
+  on(deleteSoldier, (state: ISoldierState, props) => ({ ...state, loading: true, error: null })),
+  on(deleteSoldierSuccess, (state: ISoldierState, props) => ({ ...state, soldiers: state.soldiers.filter(it => it._id !== props.id), loading: false, error: null })),
+  on(deleteSoldierFailure, (state: ISoldierState, props) => ({ ...state, loading: false, error: props.error })),
 
   
   on(getRemissions, (state: ISoldierState) => ({ ...state, loading: true, error: null })),

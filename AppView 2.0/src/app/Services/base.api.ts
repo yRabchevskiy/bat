@@ -4,7 +4,7 @@ import { HttpError, IHttpErrorHandler } from './httpErrorHandler';
 import { IAuth } from '../Store/interfaces/user';
 
 export class BaseApi {
-  private apiURL = 'http://localhost:3000';
+  private apiURL = 'http://localhost:4000';
   requestOptions: any = {
     headers: {
       'Content-Type': 'application/json',
