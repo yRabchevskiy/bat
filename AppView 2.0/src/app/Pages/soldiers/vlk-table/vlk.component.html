@@ -1,36 +1,98 @@
-
-<p-table class="table" [value]="vlks" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
-  [globalFilterFields]="['name.first_name', 'name.last_name', 'name.middle_name', 'editional_data.position']"
-  [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
-  <ng-template pTemplate="emptymessage">
-    <tr>
-      <td colspan="9">Дані відсутні</td>
-    </tr>
+<p-table
+  class="table"
+  #st
+  [value]="vlks"
+  dataKey="_id"
+  [globalFilterFields]="[
+    'name',
+    'vlk_result',
+    'vlk_institution',
+    'vlk_date',
+    'rank'
+  ]"
+  [rows]="50"
+  [expandedRowKeys]="expandedRows"
+  [rowsPerPageOptions]="[5, 10, 25, 50, 100, 150]"
+  [paginator]="true"
+>
+  <ng-template #caption>
+    <div class="table_action_row">
+      <input
+        class="app_table_input"
+        type="text"
+        (input)="globalFilter(st, $event)"
+        placeholder="Пошук"
+      />
+      <app-font-btn
+        fontSize="28px"
+        icon="bx-refresh"
+        (onClick)="onLoadData()"
+      ></app-font-btn>
+    </div>
   </ng-template>
+
   <ng-template pTemplate="header">
     <tr>
-      <th width="40px">№</th>
+      <th style="width: 40px"></th>
+      <th width="60px">№</th>
       <th>ПІБ</th>
-      <th width="130px">Дата направлення / госпіталізації</th>
-      <th width="200px">Діагноз при направленні</th>
-      <th width="200px">Діагноз при виписці</th>
-      <th width="130px">Дата виписки</th>
-      <th width="120px">Заклад <br/>МОЗ/МО</th>
-      <th width="140px">Тип звернення</th>
-      <th width="140px">Характер звернення</th>
+      <th width="180px">Звання</th>
+      <th width="320px">Висновок ВЛК</th>
+      <th width="220px">№ ВЛК</th>
+      <th width="120px">Дата ВЛК</th>
+      <th width="120px">Установа ВЛК</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+  <ng-template #body let-item let-rowIndex="rowIndex" let-expanded="expanded">
     <tr>
+      <td>
+        <app-svg-icon
+          [pRowToggler]="item"
+          path="url(assets/icons/arrow-right.svg)"
+          [ngClass]="expanded ? 'expanded' : 'collapsed'"
+        />
+      </td>
       <td>{{ rowIndex + 1 }}</td>
-      <td>{{item.name.first_name}} {{item.name.last_name}}</td>
-      <td>{{ item.date_in | date:'dd/MM/yyyy' }}</td>
-      <td>{{ item.pre_diagnosis }}</td>
-      <td>{{ item.final_diagnosis }}</td>
-      <td>{{ item.date_out | date:'dd/MM/yyyy' }}</td>
-      <td>{{ item.hospital_name }}</td>
-      <td>{{ item.type_of_visit }}</td>
-      <td>{{ item.type_of_disease }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.rank }}</td>
+      <td>{{ item.vlk_result }}</td>
+      <td>{{ item.vlk_number }}</td>
+      <td>{{ item.vlk_date }}</td>
+      <td>{{ item.vlk_institution }}</td>
+    </tr>
+  </ng-template>
+  <ng-template #expandedrow let-item>
+    <tr>
+      <td colspan="9">
+        <div class="expanded_row_wrapper">
+          <div class="expanded_row">
+            <span class="expanded_row_label">Дата народження:</span>
+            <span class="expanded_row_value">{{ item.birthday }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Місце проживання:</span>
+            <span class="expanded_row_value">{{ item.address }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Підрозділ:</span>
+            <span class="expanded_row_value">{{ item.union }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Посада:</span>
+            <span class="expanded_row_value">{{ item.position }}</span>
+          </div>
+          <div class="expanded_row">
+            <span class="expanded_row_label">Діагноз:</span>
+            <span class="expanded_row_value">{{ item.diagnosis }}</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">Дані відсутні</td>
     </tr>
   </ng-template>
 </p-table>

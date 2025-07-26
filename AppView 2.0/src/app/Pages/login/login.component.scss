@@ -1,22 +1,38 @@
 :host {
-    display: flex;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .form_wrapper {
-    margin: auto;
-    width: 320px;
-    height: 400px;
+  margin: auto;
+  width: 80vw;
+  height: 75vh;
+  max-width: 600px;
+  max-height: 400px;
+  box-shadow: 0 0px 12px 1px var(--accent-color);
+  padding: 12px;
 }
 
 .err-message {
-    margin: 12px 0;
-    color: red;
-    font-size: 12px;
+  margin: 12px 0;
+  color: red;
+  font-size: 12px;
 }
 
 .form_control_wrapper {
-    width: 100%;
-    margin-bottom: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.log_button {
+  height: 40px;
+  width: 50%;
+  margin: auto auto 20px auto;
+}
+
+.log_title {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 20px auto auto auto;
 }

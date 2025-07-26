@@ -85,7 +85,7 @@ export class SoldierEffects {
     ofType(VLK_ACTIONS.GetVlks),
     switchMap(() => this._apiService.getVlks().pipe(
       map((data: IApiRes<any[]>) => {
-        return getVlksSuccess({ data: data.data });
+        return getVlksSuccess({ data: data.data.reverse() });
       }),
       catchError((error: HttpErrorResponse) => {
         return of(getVlksFailure({ error: error.error }));
