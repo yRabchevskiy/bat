@@ -24,8 +24,8 @@ export class RemissionTableComponent implements OnInit {
   today: Date = new Date();
 
   columns: any[] = [
-    { field: 'start_date', format: 'dd/MM/yyyy', header: 'З:', width: '120px', hidden: false },
-    { field: 'end_date', format: 'dd/MM/yyyy', header: 'До:', width:    '120px', hidden: false },
+    { field: 'start_date', template: 'date', format: 'dd/MM/yyyy', header: 'З:', width: '120px', hidden: false },
+    { field: 'end_date', template: 'date', format: 'dd/MM/yyyy', header: 'До:', width:    '120px', hidden: false },
     { field: 'diffOfDays', format: '', header: 'К-сть', width: '120px', hidden: false },
     { field: 'name', format: '', header: 'ПІБ', width: '240px', hidden: false },
     { field: 'rank', format: '', header: 'Звання', width: '120px', hidden: false },
@@ -33,6 +33,8 @@ export class RemissionTableComponent implements OnInit {
     { field: 'diagnosis', format: '', header: 'Діагноз', hidden: false },
     { field: 'description', format: '', header: 'Опис', hidden: true },
   ];
+
+  filterFields: string[] = ['name', 'union', 'start_date', 'end_date', 'diagnosis'];
 
   private _rangeDates: Date[] | undefined = undefined;
 
@@ -53,33 +55,12 @@ export class RemissionTableComponent implements OnInit {
   constructor(private _store: Store<IAppState>) {
     this._store.select(selectRemissionList).subscribe((_data) => {
       this.data = _data;
-      // const groupedData: any = {};
-      // this.data.forEach((item) => {
-      //   const date = format(item.end_date, 'dd.MM.yyyy');
-      //   const quantity = item.diffOfDays || 0;
-      //   if (groupedData[date]) {
-      //     groupedData[date] += quantity;
-      //   } else {
-      //     groupedData[date] = quantity;
-      //   }
-      // });
-      // this.chartData = {
-      //   labels: Object.keys(groupedData), // Масив дат
-      //   datasets: [
-      //     {
-      //       type: 'line',
-      //       label: 'Кількість днів звільнення',
-      //       data: Object.values(groupedData), // Масив кількостей
-      //       // Можна додати інші налаштування для dataset, наприклад, колір, стиль тощо
-      //     },
-      //   ],
-      // };
     });
   }
 
   ngOnInit(): void {
     if (!this.data || !this.data.length) {
-      this._store.dispatch(getRemissions());
+      this.onLoadData();
     }
   }
 

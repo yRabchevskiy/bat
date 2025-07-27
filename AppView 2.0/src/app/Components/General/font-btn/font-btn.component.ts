@@ -12,7 +12,7 @@ export class FontBtnComponent {
   @Input() icon: string = '';
   @Input() label: string = '';
   @Input() size: string = '32px';
-  @Input() color: string = 'var(--text-secondary-color)';
+  @Input() color: string = 'var(--b-text-secondary-color)';
   @Input() fontSize: string = '20px';
   @Input() url: string = '';
   @Input() useAsLink: boolean = false;

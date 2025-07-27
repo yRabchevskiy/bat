@@ -1,57 +1,62 @@
 @use "sass:meta";
 /* You can add global styles to this file, and also import other style files */
 // @include meta.load-css('assets/fonts.scss');
-@include meta.load-css('assets/accordion.scss');
-@include meta.load-css('assets/page.scss');
-@include meta.load-css('assets/table.scss');
-@include meta.load-css('assets/sidebar.scss');
-@include meta.load-css('assets/inputs.scss');
-@include meta.load-css('assets/general.scss');
-@include meta.load-css('assets/button.scss');
-@include meta.load-css('assets/dialog.scss');
-@include meta.load-css('assets/calendar.scss');
+@include meta.load-css("assets/accordion.scss");
+@include meta.load-css("assets/page.scss");
+@include meta.load-css("assets/table.scss");
+@include meta.load-css("assets/sidebar.scss");
+@include meta.load-css("assets/inputs.scss");
+@include meta.load-css("assets/general.scss");
+@include meta.load-css("assets/button.scss");
+@include meta.load-css("assets/dialog.scss");
+@include meta.load-css("assets/calendar.scss");
 :root {
-    --accent-color: #10b981;
+  --b-accent-color: #10b981;
 
-    --error-color: #ff0a54;
+  --b-error-color: #ff0a54;
 
-    --text-main-color: #171710;
-    --text-secondary-color: #707370;
+  --b-text-main-color: #171710;
+  --b-text-secondary-color: #707370;
 
-    --primary-bg-color: #FFFFFF;
-    --secondary-bg-color: #E5CEF6;
+  --b-primary-bg-color: #ffffff;
+  --b-secondary-bg-color: #f7f7f7;
 
-    --table-border-color: #707370;
-    --table-border-highlight: #171710;
+  --b-table-border-color: #707370;
+  --b-table-border-highlight: #171710;
+
+  --b-border-radius: 8px;
+
+  --b-transition: 0.25s linear;
 }
 * {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    font-weight: 500;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: var(--primary-bg-color);
+html,
+body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--b-primary-bg-color);
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 app-root {
-    display: flex;
-    flex: 1 1 100%;
-    flex-direction: column;
-    overflow: hidden;
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .text_center {
-    text-align: center;
+  text-align: center;
 }

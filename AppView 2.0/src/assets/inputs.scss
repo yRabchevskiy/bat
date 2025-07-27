@@ -42,7 +42,6 @@
 .form_fields_colums_group_wrapper {
   display: flex;
   flex-direction: row;
-  flex: 1 1 100%;
   justify-content: space-between;
   flex-wrap: wrap;
 }
@@ -92,11 +91,54 @@
   }
 }
 
+.form_input_prefix_wrapper {
+  width: 100%;
+  position: relative;
+  .form_input {
+    padding-left: 32px;
+  }
+}
+
+.form_input_prefix {
+  position: absolute;
+  left: 4px;
+  top: calc(50% - 12px);
+  z-index: 1;
+  height: 24px;
+  width: 24px;
+}
+
 .form_control_wrapper_inline {
   @extend .form_control_wrapper;
   flex-direction: row;
   .form_label_before {
-    line-height: 30px;
+    line-height: 40px;
+  }
+
+  .form_switch_toggle {
+    align-self: center;
+  }
+}
+
+.form_switch_toggle {
+  display: block;
+  width: 40px;
+  height: 24px;
+  &.p-toggleswitch-checked {
+    .p-toggleswitch-slider {
+      background: var(--b-accent-color);
+    }
+  }
+  .p-toggleswitch-slider {
+    background: var(--b-text-secondary-color);
+    transition-property: background;
+    transition: var(--b-transition);
+  }
+  .p-toggleswitch-handle {
+    height: 16px;
+    width: 16px;
+    top: calc(50% - 8px);
+    background: var(--b-primary-bg-color);
   }
 }
 .form_field_margin_r_20 {
@@ -129,17 +171,31 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  margin-bottom: 4px;
   font-size: 14px;
   min-height: 16px;
 }
 
-.form_textarea {
-  height: 52px;
+.b-input {
+  font-size: 14px;
+  line-height: 16px;
   width: 100%;
-  resize: none;
   padding: 8px;
+  border-radius: 4px;
+  color: var(--b-text-secondary-color);
+  border: 1px solid var(--b-text-secondary-color);
   box-shadow: none !important;
+  outline: 0;
+  &:focus:not(:disabled),
+  &:hover:not(:disabled) {
+    color: var(--b-text-main-color);
+    border-color: var(--b-text-main-color);
+  }
+}
+
+.form_textarea {
+  @extend .b-input;
+  height: 52px;
+  resize: none;
 }
 
 .form_textarea_mh_64 {
@@ -154,23 +210,16 @@
 }
 
 .form_input {
-  height: 32px;
-  width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid;
-  outline: 0;
-  box-shadow: none !important;
+  @extend .b-input;
+  height: 40px;
 }
 
 .form_calendar,
 .form_mask,
 .form_dropdown {
-  height: 32px;
-  width: 100%;
-  line-height: 14px;
-  box-shadow: none !important;
-
+  @extend .b-input;
+  height: 40px;
+  padding: 0;
   .p-calendar {
     display: flex;
     width: 100%;
@@ -186,10 +235,22 @@
   }
 
   .p-inputtext {
+    font-size: inherit;
     box-shadow: none !important;
     padding: 8px;
+    outline: 0;
+    border: none;
     width: 100%;
     height: 100%;
+  }
+
+  .p-datepicker-dropdown {
+    background: transparent;
+    width: 40px;
+    height: 100%;
+    border: none;
+    outline: 0;
+    box-shadow: none !important;
   }
 
   .p-dropdown {
@@ -204,21 +265,6 @@
 }
 
 .app-datepiker {
-  height: 32px;
-  .p-inputtext.p-datepicker-input {
-    // pointer-events: none;
-    font-size: 14px;
-    box-shadow: none;
-    outline: none;
-    outline-offset: 0;
-    color: var(--text-secondary-color);
-    border: 1px solid var(--text-secondary-color);
-    &:focus {
-      box-shadow: none;
-      outline: none;
-      outline-offset: 0;
-      color: var(--text-secondary-color);
-      border: 1px solid var(--text-secondary-color);
-    }
-  }
+  height: 40px;
+  width: 260px;
 }

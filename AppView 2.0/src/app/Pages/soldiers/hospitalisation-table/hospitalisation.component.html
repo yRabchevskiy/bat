@@ -1,12 +1,12 @@
-<p-table class="table" [value]="hospitalizations" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
+<p-table class="b-table" [value]="hospitalizations" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
   [globalFilterFields]="['name.first_name', 'name.last_name', 'name.middle_name', 'editional_data.position']"
   [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
-  <ng-template pTemplate="emptymessage">
+  <ng-template #emptymessage>
     <tr>
       <td colspan="9">Дані відсутні</td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <tr>
       <th width="40px">№</th>
       <th>ПІБ</th>

@@ -8,6 +8,4 @@ import { Component, Input } from '@angular/core';
 })
 export class FontIconComponent {
   @Input() icon: string = '';
-  @Input() size: string = '40px';
-  @Input() fontSize: string = '28px';
 }

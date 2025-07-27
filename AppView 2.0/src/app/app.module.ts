@@ -5,7 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GeneralModule } from './Components/General/general.module';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './Services/api';
@@ -27,6 +30,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { RemissionEffects } from './Store/effects/remission.effects';
 import { PlanningEffects } from './Store/effects/planning.effects';
+import { VlkEffects } from './Store/effects/vlk.effects';
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent],
@@ -40,21 +44,36 @@ import { PlanningEffects } from './Store/effects/planning.effects';
     AppRoutingModule,
     GeneralModule,
     StoreModule.forRoot(appReducers, { metaReducers: [clearState] }),
-    EffectsModule.forRoot([UserEffects, ConfigEffects, SoldierEffects, RemissionEffects, PlanningEffects]),
+    EffectsModule.forRoot([
+      UserEffects,
+      ConfigEffects,
+      SoldierEffects,
+      RemissionEffects,
+      PlanningEffects,
+      VlkEffects,
+    ]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],
-    providers: [
-      ApiService, 
-      UserService,
-      AuthGuard,
-      MessageService,
-      provideHttpClient(withInterceptorsFromDi()),
-      provideAnimationsAsync(),
-      providePrimeNG({
-        theme: {
-          preset: Aura
-        }
-      })
-    ]
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+  ],
+  providers: [
+    ApiService,
+    UserService,
+    AuthGuard,
+    MessageService,
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+        options: {
+          cssLayer: {
+            name: 'primeng',
+            order: 'styles, primeng',
+          },
+        },
+      },
+      ripple: false
+    }),
+  ],
 })
-export class AppModule { }
+export class AppModule {}

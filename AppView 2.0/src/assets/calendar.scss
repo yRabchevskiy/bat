@@ -29,7 +29,7 @@
   .p-datepicker-day-cell {
     border: 1px solid;
     padding: 0;
-    height: 32px;
+    height: 40px;
   }
   .p-datepicker-day {
     width: 100%;
@@ -45,7 +45,7 @@
     position: relative;
   }
   .task-counter {
-    background: var(--error-color);
+    background: var(--b-error-color);
     border-radius: 50%;
     padding: 2px 6px;
     position: absolute;

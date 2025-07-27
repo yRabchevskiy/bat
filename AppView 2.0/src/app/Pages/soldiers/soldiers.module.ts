@@ -8,11 +8,9 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
-import { DropdownModule } from 'primeng/dropdown';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 import { InputMaskModule } from 'primeng/inputmask';
-import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import { DrawerModule } from 'primeng/drawer';
 import { GeneralModule } from '../../Components/General/general.module';
@@ -40,7 +38,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     RemissionFormComponent,
     RemissionTableComponent,
     VlkComponent,
-    HospitalisationComponent
+    HospitalisationComponent,
   ],
   imports: [
     CommonModule,
@@ -50,11 +48,9 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     DatePickerModule,
     InputMaskModule,
     ButtonModule,
-    TabViewModule,
     AccordionModule,
     InputTextModule,
     AutoCompleteModule,
-    DropdownModule,
     SelectModule,
     TextareaModule,
     FormsModule,
@@ -62,8 +58,8 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     DrawerModule,
     GeneralModule,
     ChartModule,
-    ToggleSwitchModule
+    ToggleSwitchModule,
   ],
-  providers: []
+  providers: [],
 })
-export class SoldiersModule { }
+export class SoldiersModule {}

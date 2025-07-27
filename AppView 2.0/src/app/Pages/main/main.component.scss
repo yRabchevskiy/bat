@@ -1,26 +1,13 @@
-$bar-size: 48px;
 :host {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.app-page-layout {
-    display: flex;
-    flex: 1 1 100%;
-    overflow: hidden;
-}
-
-.app-page-nav-bar {
-    width: $bar-size;
-    height: 100vh;
-    flex-shrink: 0;
-    position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .app-page-content {
-    padding: 0px 0px 0px $bar-size;
-    overflow: auto;
-    display: flex;
-    flex-grow: 1;
+  padding: 4px 4px 4px 52px;
+  overflow: auto;
+  display: flex;
+  flex-grow: 1;
+  background-color: var(--b-secondary-bg-color);
 }

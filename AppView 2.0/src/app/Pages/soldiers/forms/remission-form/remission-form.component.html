@@ -8,12 +8,9 @@
     maxHeight: '90vh',
     width: '720px',
     height: '800px',
-    borderRadius: 0,
-    boxShadow: 'none'
   }"
-  position="center"
-  styleClass="remission-form-dialog"
-  [contentStyle]="{ padding: '12px', overflow: 'hidden' }"
+  [modal]="true"
+  styleClass="b-form-dialog"
 >
   <form
     [formGroup]="remissionForm"
@@ -41,9 +38,10 @@
     <div class="remission_after">
       Приступити до виконання: {{ tomorrow | date : "dd/MM/yyyy" }}
     </div>
-    <div class="form_control_wrapper" style="margin-bottom: 0">
-      <label for="remission_more" class="form_label">Додати ще</label>
+    <div class="form_control_wrapper_inline" style="margin-bottom: 0">
+      <label for="remission_more" class="form_label_before">Додати ще</label>
       <p-toggleswitch
+        styleClass="form_switch_toggle"
         inputId="remission_more"
         [(ngModel)]="addMore"
         [ngModelOptions]="{ standalone: true }"
@@ -55,7 +53,7 @@
           <label for="remission_from" class="form_label_before">З:</label>
           <p-datepicker
             inputId="remission_from"
-            styleClass="app-datepiker"
+            styleClass="app-datepiker form_calendar"
             iconDisplay="button"
             [showButtonBar]="true"
             formControlName="start_date"
@@ -70,7 +68,7 @@
           <label for="remission_to" class="form_label_before">До:</label>
           <p-datepicker
             inputId="remission_to"
-            styleClass="app-datepiker"
+            styleClass="app-datepiker form_calendar"
             iconDisplay="button"
             [showButtonBar]="true"
             formControlName="end_date"
@@ -96,6 +94,7 @@
       <div class="form_control_wrapper">
         <label for="rank" class="form_label">Звання</label>
         <p-autocomplete
+          appendTo="body"
           inputId="rank"
           formControlName="rank"
           [suggestions]="filteredRanks"

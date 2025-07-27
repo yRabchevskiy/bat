@@ -9,6 +9,7 @@ import { ISoldier } from '../Store/interfaces/soldiers';
 import { IVisit, IVisitPostData } from '../Store/interfaces/visit';
 import { IRemission, IRemissionPostData } from '../Store/interfaces/remission';
 import { IPlanning } from '../Store/interfaces/planning';
+import { IVlk, IVlkPostData } from '../Store/interfaces/vlk';
 
 @Injectable()
 export class ApiService extends BaseApi {
@@ -60,6 +61,10 @@ export class ApiService extends BaseApi {
   // Vlks
   getVlks(): Observable<IApiRes<any[]>> {
     return this.doGet('/vlk');
+  }
+
+  postVlk(data: IVlkPostData): Observable<IApiRes<IVlk>> {
+    return this.doPost('/vlk', data);
   }
 
   getVisits(): Observable<IVisit[]> {

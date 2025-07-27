@@ -1,131 +1,228 @@
-<p-dialog [modal]="true" [closeOnEscape]="true" [closable]="false" [visible]="true" [style]="{
+<p-dialog
+  [modal]="true"
+  [closeOnEscape]="true"
+  [closable]="false"
+  [visible]="true"
+  [style]="{
     width: '100vw',
     height: 'calc(100vh - 32px)',
     maxHeight: 'none',
     borderRadius: 0,
     boxShadow: 'none'
-  }" position="bottom" [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }">
-  <form [formGroup]="visitForm" (ngSubmit)="save($event)" novalidate class="form_wrapper">
+  }"
+  position="bottom"
+  [contentStyle]="{ padding: '20px 20px 0 20px', overflow: 'hidden' }"
+>
+  <form
+    [formGroup]="visitForm"
+    (ngSubmit)="save($event)"
+    novalidate
+    class="form_wrapper"
+  >
     <div class="form_content">
       <div class="form_fields_colums_group_wrapper">
         <div class="form_control_wrapper form_field_left">
           <label for="soldier_name" class="form_label">Солдат</label>
-          <input id="soldier_name" pInputText formControlName="soldier_name" class="form_input">
+          <input
+            id="soldier_name"
+            pInputText
+            formControlName="soldier_name"
+            class="form_input"
+          />
         </div>
         <div class="form_control_wrapper form_field_right">
           <label for="rank" class="form_label">Звання</label>
-          <p-dropdown formControlName="rank" [options]="rank_types" optionLabel="label" optionValue="value"
-            class="form_dropdown" />
+          <p-select
+            formControlName="rank"
+            [options]="rank_types"
+            optionLabel="label"
+            optionValue="value"
+            class="form_dropdown"
+          />
         </div>
       </div>
       <div class="form_fields_colums_group_wrapper">
         <div class="form_control_wrapper form_field_right">
           <label for="phone" class="form_label">Телефон</label>
-          <p-inputMask class="form_mask" mask="+380(99)999 99 99" formControlName="phone"
-            placeholder="+380(99)999 99 99" />
+          <p-inputMask
+            class="form_mask"
+            mask="+380(99)999 99 99"
+            formControlName="phone"
+            placeholder="+380(99)999 99 99"
+          />
         </div>
       </div>
       <div class="form_fields_colums_group_wrapper">
         <div class="form_control_wrapper form_field_left">
           <label for="type_of_visit" class="form_label">Тип звернення</label>
-          <p-dropdown formControlName="type_of_visit" [options]="visits_types" optionLabel="label" optionValue="value"
-            class="form_dropdown" (onChange)="onChangeTypeOfVisit($event)" />
+          <p-select
+            formControlName="type_of_visit"
+            [options]="visits_types"
+            optionLabel="label"
+            optionValue="value"
+            class="form_dropdown"
+            (onChange)="onChangeTypeOfVisit($event)"
+          />
         </div>
         <div class="form_control_wrapper form_field_right">
-          <label for="type_of_disease" class="form_label">Характер звернення</label>
-          <p-dropdown formControlName="type_of_disease" [options]="disease_types" optionLabel="label"
-            optionValue="value" class="form_dropdown" />
+          <label for="type_of_disease" class="form_label"
+            >Характер звернення</label
+          >
+          <p-select
+            formControlName="type_of_disease"
+            [options]="disease_types"
+            optionLabel="label"
+            optionValue="value"
+            class="form_dropdown"
+          />
         </div>
       </div>
-      <ng-container *ngIf="visitForm.value.type_of_visit === Type_of_Visit.HOSPITALIZATION">
+      <ng-container
+        *ngIf="visitForm.value.type_of_visit === Type_of_Visit.HOSPITALIZATION"
+      >
         <div class="form_fields_colums_group_wrapper">
           <div class="form_control_wrapper form_field_left">
             <label class="form_label">Дата направлення / госпіталізації</label>
-            <p-datepicker [showIcon]="true" [showOnFocus]="false" class="form_calendar" formControlName="date_in" placeholder="../../...."
-              dateFormat="dd/mm/yy" />
+            <p-datepicker
+              [showIcon]="true"
+              [showOnFocus]="false"
+              class="form_calendar"
+              formControlName="date_in"
+              placeholder="../../...."
+              dateFormat="dd/mm/yy"
+            />
           </div>
           <div class="form_control_wrapper form_field_right">
             <label class="form_label">Дата виписки</label>
-            <p-datepicker [showIcon]="true" [showOnFocus]="false" class="form_calendar" formControlName="date_out" placeholder="../../...."
-              dateFormat="dd/mm/yy" />
+            <p-datepicker
+              [showIcon]="true"
+              [showOnFocus]="false"
+              class="form_calendar"
+              formControlName="date_out"
+              placeholder="../../...."
+              dateFormat="dd/mm/yy"
+            />
           </div>
         </div>
         <div class="form_control_wrapper">
-          <label for="hospital_name_hosp" class="form_label">Заклад МОЗ/МО</label>
-          <textarea id="hospital_name_hosp" rows="4" cols="30" pTextarea  formControlName="hospital_name"
-            class="form_textarea">
+          <label for="hospital_name_hosp" class="form_label"
+            >Заклад МОЗ/МО</label
+          >
+          <textarea
+            id="hospital_name_hosp"
+            rows="4"
+            cols="30"
+            pTextarea
+            formControlName="hospital_name"
+            class="form_textarea"
+          >
           </textarea>
         </div>
         <div class="form_control_wrapper">
-          <label for="pre_diagnosis" class="form_label">Діагноз при направленні</label>
-          <textarea id="pre_diagnosis" rows="4" cols="30" pTextarea  formControlName="pre_diagnosis"
-            class="form_textarea">
+          <label for="pre_diagnosis" class="form_label"
+            >Діагноз при направленні</label
+          >
+          <textarea
+            id="pre_diagnosis"
+            rows="4"
+            cols="30"
+            pTextarea
+            formControlName="pre_diagnosis"
+            class="form_textarea"
+          >
           </textarea>
         </div>
         <div class="form_control_wrapper">
-          <label for="in_diagnosis_hosp" class="form_label">Діагноз при госпіталізації</label>
-          <textarea id="in_diagnosis_hosp" rows="4" cols="30" pTextarea  formControlName="in_diagnosis"
-            class="form_textarea">
+          <label for="in_diagnosis_hosp" class="form_label"
+            >Діагноз при госпіталізації</label
+          >
+          <textarea
+            id="in_diagnosis_hosp"
+            rows="4"
+            cols="30"
+            pTextarea
+            formControlName="in_diagnosis"
+            class="form_textarea"
+          >
           </textarea>
         </div>
         <div class="form_control_wrapper">
-          <label for="recomendation_hosp" class="form_label">Рекомендації</label>
-          <textarea id="recomendation_hosp" rows="4" cols="30" pTextarea  formControlName="recomendation"
-            class="form_textarea">
+          <label for="recomendation_hosp" class="form_label"
+            >Рекомендації</label
+          >
+          <textarea
+            id="recomendation_hosp"
+            rows="4"
+            cols="30"
+            pTextarea
+            formControlName="recomendation"
+            class="form_textarea"
+          >
           </textarea>
         </div>
       </ng-container>
       <!-- <ng-container *ngIf="visitForm.value.type_of_visit === Type_of_Visit.AMBULATORY">
-        <div class="form_control_wrapper">
-          <label class="form_label">Дата звернення</label>
-          <p-datepicker class="form_calendar" formControlName="date_in" placeholder="../../...." dateFormat="dd/mm/yy" />
-        </div>
-        <div class="form_control_wrapper">
-          <label for="complaint" class="form_label">Скарги</label>
-          <textarea id="complaint" rows="4" cols="30" pTextarea  formControlName="complaint" class="form_textarea">
-      </textarea>
-        </div>
-        <div class="form_control_wrapper">
-          <label for="final_diagnosis_amb" class="form_label">Діагноз</label>
-          <textarea id="final_diagnosis_amb" rows="4" cols="30" pTextarea  formControlName="final_diagnosis"
-            class="form_textarea">
-      </textarea>
-        </div>
-        <div class="form_control_wrapper">
-          <label for="recomendation_amb" class="form_label">Рекомендації</label>
-          <textarea id="recomendation_amb" rows="4" cols="30" pTextarea  formControlName="recomendation"
-            class="form_textarea">
-          </textarea>
-        </div>
-      </ng-container> -->
+                  <div class="form_control_wrapper">
+                    <label class="form_label">Дата звернення</label>
+                    <p-datepicker class="form_calendar" formControlName="date_in" placeholder="../../...." dateFormat="dd/mm/yy" />
+                  </div>
+                  <div class="form_control_wrapper">
+                    <label for="complaint" class="form_label">Скарги</label>
+                    <textarea id="complaint" rows="4" cols="30" pTextarea  formControlName="complaint" class="form_textarea">
+                    </textarea>
+                  </div>
+                  <div class="form_control_wrapper">
+                    <label for="final_diagnosis_amb" class="form_label">Діагноз</label>
+                    <textarea id="final_diagnosis_amb" rows="4" cols="30" pTextarea  formControlName="final_diagnosis"
+                      class="form_textarea">
+                    </textarea>
+                  </div>
+                  <div class="form_control_wrapper">
+                    <label for="recomendation_amb" class="form_label">Рекомендації</label>
+                    <textarea id="recomendation_amb" rows="4" cols="30" pTextarea  formControlName="recomendation"
+                      class="form_textarea">
+                    </textarea>
+                  </div>
+                </ng-container> -->
       <!-- <ng-container *ngIf="visitForm.value.type_of_visit === Type_of_Visit.EXAMINATION">
-        <div class="form_control_wrapper">
-          <label class="form_label">Дата звернення</label>
-          <p-datepicker class="form_calendar" formControlName="date_in" placeholder="../../...." dateFormat="dd/mm/yy" />
-        </div>
-        <div class="form_control_wrapper">
-          <label for="pre_diagnosis_exam" class="form_label">Попередній діагноз</label>
-          <textarea id="pre_diagnosis_exam" rows="4" cols="30" pTextarea  formControlName="pre_diagnosis"
-            class="form_textarea">
-      </textarea>
-        </div>
-        <div class="form_control_wrapper">
-          <label for="hospital_name_exam" class="form_label">Заклад МОЗ/МО</label>
-          <textarea id="hospital_name_exam" rows="4" cols="30" pTextarea  formControlName="hospital_name"
-            class="form_textarea">
-      </textarea>
-        </div>
-        <div class="form_control_wrapper">
-          <label for="recomendation_exam" class="form_label">Обстеження / консультації</label>
-          <textarea id="recomendation_exam" rows="4" cols="30" pTextarea  formControlName="recomendation"
-            class="form_textarea">
-      </textarea>
-        </div>
-      </ng-container> -->
+                <div class="form_control_wrapper">
+                  <label class="form_label">Дата звернення</label>
+                  <p-datepicker class="form_calendar" formControlName="date_in" placeholder="../../...." dateFormat="dd/mm/yy" />
+                </div>
+                <div class="form_control_wrapper">
+                  <label for="pre_diagnosis_exam" class="form_label">Попередній діагноз</label>
+                  <textarea id="pre_diagnosis_exam" rows="4" cols="30" pTextarea  formControlName="pre_diagnosis"
+                    class="form_textarea">
+                  </textarea>
+                </div>
+                <div class="form_control_wrapper">
+                  <label for="hospital_name_exam" class="form_label">Заклад МОЗ/МО</label>
+                  <textarea id="hospital_name_exam" rows="4" cols="30" pTextarea  formControlName="hospital_name"
+                    class="form_textarea">
+                  </textarea>
+                </div>
+                <div class="form_control_wrapper">
+                  <label for="recomendation_exam" class="form_label">Обстеження / консультації</label>
+                  <textarea id="recomendation_exam" rows="4" cols="30" pTextarea  formControlName="recomendation"
+                    class="form_textarea">
+                  </textarea>
+                </div>
+              </ng-container> -->
     </div>
     <div class="form_footer">
-      <button pButton type="button" label="Відмінити" severity="secondary" (click)="cancel()"></button>
-      <button pButton type="submit" label="Зберегти" [disabled]="visitForm.invalid"></button>
+      <button
+        pButton
+        type="button"
+        label="Відмінити"
+        severity="secondary"
+        (click)="cancel()"
+      ></button>
+      <button
+        pButton
+        type="submit"
+        label="Зберегти"
+        [disabled]="visitForm.invalid"
+      ></button>
     </div>
   </form>
 </p-dialog>

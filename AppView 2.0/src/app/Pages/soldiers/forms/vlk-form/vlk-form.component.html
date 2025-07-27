@@ -1,77 +1,184 @@
-<form [formGroup]="vlkForm" (ngSubmit)="save()" novalidate class="form_wrapper">
-  <div class="form_content">
-    <div class="form_fields_colums_group_wrapper">
-      <div class="form_control_wrapper form_field_left">
-        <label for="vlc_number" class="form_label">Номер наказу</label>
+<p-dialog
+  [closeOnEscape]="false"
+  [closable]="false"
+  [draggable]="false"
+  [visible]="true"
+  [modal]="true"
+  [style]="{
+    maxWidth: '90vw',
+    maxHeight: '90vh',
+    width: '720px',
+    height: '800px',
+  }"
+  appendTo="body"
+  styleClass="b-form-dialog"
+>
+  <ng-template #header>
+    <div class="b_dialog_title" *ngIf="item">ВЛК №{{ item.vlk_number }}</div>
+
+    <div class="b_dialog_title" *ngIf="!item">Додати ВЛК</div>
+  </ng-template>
+  <form
+    [formGroup]="vlkForm"
+    (ngSubmit)="save()"
+    novalidate
+    class="form_wrapper"
+  >
+    <div class="form_content">
+      <div class="form_control_wrapper">
+        <label for="name" class="form_label">ПІБ</label>
         <input
-          id="vlc_number"
+          [autofocus]="true"
+          id="name"
           type="text"
           pInputText
-          formControlName="vlc_number"
+          formControlName="name"
           class="form_input"
         />
       </div>
-      <div class="form_control_wrapper form_field_right">
-        <label for="vlc_date" class="form_label">Дата проходження</label>
-        <p-datepicker
-          [showIcon]="true" [showOnFocus]="false"
-          formControlName="vlc_date"
-          class="form_calendar"
-          placeholder="../../...."
-          dateFormat="dd/mm/yy"
+      <div class="form_fields_colums_group_wrapper">
+        <div class="form_control_wrapper form_field_left">
+          <label for="birthday" class="form_label">Рік народження</label>
+          <input
+            id="birthday"
+            type="text"
+            pInputText
+            formControlName="birthday"
+            class="form_input"
+          />
+        </div>
+        <div class="form_control_wrapper form_field_right">
+          <label for="address" class="form_label">Адреса</label>
+          <input
+            id="address"
+            type="text"
+            pInputText
+            formControlName="address"
+            class="form_input"
+          />
+        </div>
+      </div>
+      <div class="form_fields_colums_group_wrapper">
+        <div class="form_control_wrapper form_field_left">
+          <label for="union" class="form_label">Підрозділ</label>
+          <input
+            id="union"
+            type="text"
+            pInputText
+            formControlName="union"
+            class="form_input"
+          />
+        </div>
+        <div class="form_control_wrapper form_field_right">
+          <label for="position" class="form_label">Посада</label>
+          <input
+            id="position"
+            type="text"
+            pInputText
+            formControlName="position"
+            class="form_input"
+          />
+        </div>
+      </div>
+
+      <div class="form_fields_colums_group_wrapper">
+        <div class="form_control_wrapper form_field_left">
+          <label for="rank" class="form_label">Звання</label>
+          <p-autocomplete
+            inputId="rank"
+            appendTo="body"
+            formControlName="rank"
+            [suggestions]="filteredRanks"
+            (completeMethod)="search($event)"
+            optionLabel="label"
+            optionValue="value"
+            class="form_dropdown"
+          />
+        </div>
+        <div class="form_control_wrapper form_field_right">
+          <label for="vlk_date" class="form_label">Дата проходження</label>
+          <p-datepicker
+            inputId="vlk_date"
+            [showIcon]="true"
+            [showOnFocus]="false"
+            formControlName="vlk_date"
+            class="form_calendar"
+            placeholder="../../...."
+            dateFormat="dd.mm.yy"
+            [readonlyInput]="true"
+            appendTo="body"
+          />
+        </div>
+      </div>
+      <div class="form_control_wrapper">
+        <label for="vlk_number" class="form_label">Номер наказу</label>
+        <div class="form_input_prefix_wrapper">
+          <span class="form_input_prefix">№</span>
+          <input
+            id="vlk_number"
+            type="text"
+            pInputText
+            formControlName="vlk_number"
+            class="form_input"
+          />
+        </div>
+      </div>
+      <div class="form_control_wrapper">
+        <label for="vlk_institution" class="form_label"
+          >Місце проходження</label
+        >
+        <input
+          id="vlk_institution"
+          type="text"
+          pInputText
+          formControlName="vlk_institution"
+          class="form_input"
         />
       </div>
+      <div class="form_control_wrapper">
+        <label for="diagnosis" class="form_label">Діагноз</label>
+        <textarea
+          id="diagnosis"
+          rows="4"
+          cols="30"
+          pTextarea
+          formControlName="diagnosis"
+          class="form_textarea_h_120"
+        >
+        </textarea>
+      </div>
+      <div class="form_control_wrapper">
+        <label for="vlk_result" class="form_label">Висновок</label>
+        <textarea
+          id="vlk_result"
+          rows="4"
+          cols="30"
+          pTextarea
+          formControlName="vlk_result"
+          class="form_textarea_h_120"
+        >
+        </textarea>
+      </div>
     </div>
-    <div class="form_control_wrapper">
-      <label for="hospital_name" class="form_label">Місце проходження</label>
-      <textarea
-        id="hospital_name"
-        rows="4"
-        cols="30"
-        pTextarea 
-        formControlName="hospital_name"
-        class="form_textarea"
-      >
-      </textarea>
+    {{ error | async }}
+    <app-loading
+      *ngIf="loading | async"
+      [styles]="{ width: '100%', height: '100%' }"
+    />
+    <div class="form_footer">
+      <button
+        pButton
+        type="button"
+        label="Відмінити"
+        severity="secondary"
+        (click)="cancel()"
+      ></button>
+      <button
+        pButton
+        type="submit"
+        label="Зберегти"
+        [disabled]="vlkForm.invalid"
+      ></button>
     </div>
-    <div class="form_control_wrapper">
-      <label for="diagnosis" class="form_label">Діагноз</label>
-      <textarea
-        id="diagnosis"
-        rows="4"
-        cols="30"
-        pTextarea 
-        formControlName="diagnosis"
-        class="form_textarea_h_120"
-      >
-      </textarea>
-    </div>
-    <div class="form_control_wrapper">
-      <label for="recomendation" class="form_label">Висновок</label>
-      <textarea
-        id="recomendation"
-        rows="4"
-        cols="30"
-        pTextarea 
-        formControlName="recomendation"
-        class="form_textarea_h_120"
-      >
-      </textarea>
-    </div>
-  </div>
-  <div class="form_footer">
-    <button
-      pButton
-      type="button"
-      label="Відмінити"
-      severity="secondary"
-      (click)="cancel()"
-    ></button>
-    <button
-      pButton
-      type="submit"
-      label="Зберегти"
-      [disabled]="vlkForm.invalid"
-    ></button>
-  </div>
-</form>
+  </form>
+</p-dialog>

@@ -6,6 +6,7 @@ import { initialSoldierState, ISoldierState } from "./soldier.state";
 import { CONFIG_ACTIONS } from "../actions/config.action";
 import { initialRemissionState, IRemissionState } from "./remission.state";
 import { initialPlanningState, IPlanningState } from "./planning.state";
+import { initialVlkState, IVlkState } from "./vlk.state";
 
 export interface IAppState {
   router?: RouterReducerState;
@@ -13,6 +14,7 @@ export interface IAppState {
   visits: IVisitState;
   remissions: IRemissionState;
   plannings: IPlanningState;
+  vlks: IVlkState;
   soldiers: ISoldierState;
   config: IConfigState;
 }
@@ -23,6 +25,7 @@ export const initialAppState: IAppState = {
   soldiers: initialSoldierState,
   remissions: initialRemissionState,
   plannings: initialPlanningState,
+  vlks: initialVlkState,
   config: initialConfigState,
 }
 

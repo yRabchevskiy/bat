@@ -1,1 +1,3 @@
-<a class="home-link" *ngIf="page.id !== 'home'" [routerLink]="page.url" routerLinkActive="home-link-active">{{page.title}}</a>
+@if (page.id !== 'home') {
+  <a class="home-link" [routerLink]="page.url" routerLinkActive="home-link-active">{{page.title}}</a>
+}

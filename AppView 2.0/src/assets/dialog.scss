@@ -1,5 +1,18 @@
-.remission-form-dialog {
-  .p-dialog-header {
-    display: none;
+.b-form-dialog {
+  border-radius: var(--b-border-radius);
+  box-shadow: none;
+  padding: 12px;
+  .b_dialog_title {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .p-dialog-content {
+    flex: 1 1 100%;
   }
 }

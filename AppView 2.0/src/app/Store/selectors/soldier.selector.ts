@@ -35,12 +35,3 @@ export const selectHospitalizationList = createSelector(
 );
 
 
-export const selectSelectedVlk = createSelector(
-  selectSoldiers,
-  (state: ISoldierState) => state.selectedVlk
-);
-
-export const selectVlkList = createSelector(
-  selectSoldiers,
-  (state: ISoldierState) => state.vlks
-);

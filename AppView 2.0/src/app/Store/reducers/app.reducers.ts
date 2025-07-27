@@ -7,6 +7,7 @@ import { visitReducers } from "./visit.reduces";
 import { soldierReducers } from "./soldier.reduces";
 import { remissionReducers } from "./remission.reduces";
 import { planningReducers } from "./planning.reducers";
+import { vlkReducers } from "./vlk.reduces";
 
 export const appReducers: ActionReducerMap<IAppState, any> = {
   router: routerReducer,
@@ -15,5 +16,6 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
   soldiers: soldierReducers,
   remissions: remissionReducers,
   plannings: planningReducers,
+  vlks: vlkReducers,
   config: configReducers,
 };

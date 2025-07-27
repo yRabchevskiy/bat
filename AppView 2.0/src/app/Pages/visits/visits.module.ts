@@ -6,12 +6,10 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { SidebarModule } from 'primeng/sidebar';
 import { DatePickerModule } from 'primeng/datepicker';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 import { InputMaskModule } from 'primeng/inputmask';
-import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import { GeneralModule } from '../../Components/General/general.module';
 import { VisitsRoutingModule } from './visits-routing.module';
@@ -29,14 +27,12 @@ import { VisitFormComponent } from './visit-form/visit-form.component';
     DatePickerModule,
     InputMaskModule,
     ButtonModule,
-    TabViewModule,
     AccordionModule,
     InputTextModule,
-    DropdownModule,
+    SelectModule,
     TextareaModule,
     FormsModule,
     ReactiveFormsModule,
-    SidebarModule,
     GeneralModule,
   ],
   providers: []

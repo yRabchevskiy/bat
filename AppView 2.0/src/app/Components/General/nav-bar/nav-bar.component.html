@@ -1,9 +1,13 @@
-<a class="page_nav_link" *ngFor="let link of pages"
-    [ngClass]="link.id === (selectedPage | async) ? 'link-active' : ''"
-    (click)="onClick(link.id)" routerLinkActive="active">
-    <app-font-icon size="32px" fontSize="24px" icon="{{link.icon}}"></app-font-icon>
+<a
+  *ngFor="let link of pages; let i = index"
+  class="page_nav_link"
+  [ngClass]="link.id === (selectedPage | async) ? 'link-active' : ''"
+  (click)="onClick(link.id)"
+  routerLinkActive="active"
+>
+  <app-font-icon icon="{{ link.icon }}"></app-font-icon>
 </a>
 
 <button type="button" (click)="onLogOut()" class="page_nav_logout">
-    <app-font-icon size="32px" fontSize="24px" icon="bx-log-out-circle"></app-font-icon>
+  <app-font-icon icon="bx-log-out-circle"></app-font-icon>
 </button>

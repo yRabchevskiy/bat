@@ -9,30 +9,42 @@
   width: 80vw;
   height: 75vh;
   max-width: 600px;
-  max-height: 400px;
-  box-shadow: 0 0px 12px 1px var(--accent-color);
+  max-height: 480px;
+  box-shadow: 0 0px 12px 1px var(--b-accent-color);
   padding: 12px;
+  border-radius: 8px;
 }
 
 .err-message {
-  margin: 12px 0;
+  width: 80%;
+  margin: 12px auto;
   color: red;
   font-size: 12px;
-}
-
-.form_control_wrapper {
-  width: 100%;
-  margin-bottom: 0;
+  min-height: 20px;
 }
 
 .log_button {
-  height: 40px;
-  width: 50%;
-  margin: auto auto 20px auto;
+  margin-bottom: 20px;
+  margin-top: auto;
 }
 
+.form_control_wrapper,
+.log_button {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.log_button,
+.log_input {
+  height: 40px;
+}
 .log_title {
   font-size: 30px;
   font-weight: 700;
   margin: 20px auto auto auto;
+}
+
+.log_input_label {
+  font-size: 18px;
 }

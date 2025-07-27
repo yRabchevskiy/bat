@@ -13,8 +13,7 @@ export interface ISoldierState {
 
   hospitalizations: IHospitalization[],
   selectedHospitalization: IHospitalization |null,
-  vlks: any[],
-  selectedVlk: any | null,
+ 
 
 }
 
@@ -27,6 +26,4 @@ export const initialSoldierState: ISoldierState = {
   selectedRemission: null,
   hospitalizations: [],
   selectedHospitalization: null,
-  vlks: [],
-  selectedVlk: null,
 }

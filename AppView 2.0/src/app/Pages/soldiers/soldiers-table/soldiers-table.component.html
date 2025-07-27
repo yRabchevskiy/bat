@@ -1,4 +1,4 @@
-<p-table class="table" #st [value]="soldiers" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
+<p-table class="b-table" #st [value]="soldiers" [scrollable]="true" scrollHeight="calc(100% - 94px)" dataKey="_id"
   [expandedRowKeys]="expandedRows"
   [globalFilterFields]="['name', 'editional_data.position']"
   [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]" [paginator]="true">
@@ -33,68 +33,70 @@
       <td>
         <app-svg-icon [pRowToggler]="item" path="url(assets/icons/arrow-right.svg)"
           [ngClass]="expanded ? 'expanded' : 'collapsed'" />
-      </td>
-      <td>{{ rowIndex + 1 }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.birthday | date : "dd/MM/yyyy" }}</td>
-      <td>{{ item.phone }}</td>
-      <td>{{ item.rank && item.rank.length ? item.rank[item.rank.length - 1].value : '' }}</td>
-      <td>{{ item.editional_data.position }}</td>
-      <td>
-        <!-- <app-icon-btn (onClick)="openModalWindow('visit', item)" svgIconPath="url('assets/icons/visit.svg')" />
-        <app-icon-btn (onClick)="openModalWindow('vlk', item)" svgIconPath="url('assets/icons/vlk.svg')" /> -->
-        <app-font-btn (onClick)="openRemission(item, dialogTypes.Remission)" icon="bx-food-menu" />
-        <app-font-btn (onClick)="onDeleteSoldier(item)" icon="bxs-trash" />
+        </td>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.birthday | date : "dd/MM/yyyy" }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.rank && item.rank.length ? item.rank[item.rank.length - 1].value : '' }}</td>
+        <td>{{ item.editional_data.position }}</td>
+        <td>
+          <!-- <app-icon-btn (onClick)="openModalWindow('visit', item)" svgIconPath="url('assets/icons/visit.svg')" />
+          <app-icon-btn (onClick)="openModalWindow('vlk', item)" svgIconPath="url('assets/icons/vlk.svg')" /> -->
+          <app-font-btn (onClick)="openRemission(item, dialogTypes.Remission)" icon="bx-food-menu" />
+          <app-font-btn (onClick)="onDeleteSoldier(item)" icon="bxs-trash" />
 
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #expandedrow let-item>
-    <tr>
-      <td colspan="7">
-        <div class="expanded_row_wrapper">
-          <div class="expanded_row">
-            <span class="expanded_row_label">Підрозділ:</span>
-            <span class="expanded_row_value">{{
-              item.editional_data.unit
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #expandedrow let-item>
+      <tr>
+        <td colspan="7">
+          <div class="expanded_row_wrapper">
+            <div class="expanded_row">
+              <span class="expanded_row_label">Підрозділ:</span>
+              <span class="expanded_row_value">{{
+                item.editional_data.unit
               }}</span>
-          </div>
-          <div class="expanded_row">
-            <span class="expanded_row_label">Місце проживання:</span>
-            <span class="expanded_row_value">{{
-              item.editional_data.address
+            </div>
+            <div class="expanded_row">
+              <span class="expanded_row_label">Місце проживання:</span>
+              <span class="expanded_row_value">{{
+                item.editional_data.address
               }}</span>
-          </div>
-          <!-- <div class="expanded_row">
+            </div>
+            <!-- <div class="expanded_row">
             <span class="expanded_row_label">Дата призову:</span>
             <span class="expanded_row_value">{{
               item.editional_data.summoned_date | date : "dd/MM/yyyy"
-              }}</span>
+            }}</span>
           </div>
           <div class="expanded_row">
             <span class="expanded_row_label">Призваний:</span>
             <span class="expanded_row_value">{{
               item.editional_data.summoned
-              }}</span>
+            }}</span>
           </div> -->
           <div class="expanded_row">
             <span class="expanded_row_label">Група крові:</span>
             <span class="expanded_row_value">{{
               item.editional_data.blood_type
-              }}</span>
+            }}</span>
           </div>
           <div class="expanded_row">
             <span class="expanded_row_label">Стать:</span>
             <span class="expanded_row_value">{{
               item.editional_data.sex_type
-              }}</span>
+            }}</span>
           </div>
-          <div class="expanded_row" *ngIf="item.editional_data.description">
-            <span class="expanded_row_label">Додаткова інформація:</span>
-            <span class="expanded_row_value">{{
-              item.editional_data.description
+          @if (item.editional_data.description) {
+            <div class="expanded_row">
+              <span class="expanded_row_label">Додаткова інформація:</span>
+              <span class="expanded_row_value">{{
+                item.editional_data.description
               }}</span>
-          </div>
+            </div>
+          }
         </div>
       </td>
     </tr>
@@ -102,6 +104,10 @@
 </p-table>
 
 
-<app-loading *ngIf="loading | async" />
-<app-remission-form *ngIf="selectedSoldier && dialogType === dialogTypes.Remission" [soldier]="selectedSoldier"
+@if (loading | async) {
+  <app-loading />
+}
+@if (selectedSoldier && dialogType === dialogTypes.Remission) {
+  <app-remission-form [soldier]="selectedSoldier"
   (onClose)="closeDialog($event)"></app-remission-form>
+}

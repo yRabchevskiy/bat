@@ -1,26 +1,22 @@
 <p-table
-  class="table remission-table"
+  class="b-table remission-table"
   #st
   [value]="data"
   [scrollable]="true"
-  scrollHeight="calc(100% - 94px)"
+  scrollHeight="100%"
   dataKey="_id"
-  [globalFilterFields]="[
-    'name',
-    'union',
-    'start_date',
-    'end_date',
-    'diagnosis'
-  ]"
-  [rows]="25"
+  [globalFilterFields]="filterFields"
+  [rows]="50"
   [rowsPerPageOptions]="[5, 10, 25, 50]"
   [paginator]="true"
 >
-  <ng-template pTemplate="caption">
-    <div class="table_action_row">
+  <ng-template #caption>
+    <div class="table_action_row row_content_start">
       <div class="app-today">{{ today | date : "dd.MM.yyyy" }}</div>
+    </div>
+    <div class="table_action_row row_content_end">
       <p-datepicker
-        styleClass="app-datepiker"
+        styleClass="app-datepiker form_calendar"
         iconDisplay="button"
         [showButtonBar]="true"
         [(ngModel)]="rangeDates"
@@ -38,18 +34,20 @@
       <app-font-btn
         fontSize="28px"
         icon="bx-refresh"
+        size="40px"
         (onClick)="onLoadData()"
       ></app-font-btn>
     </div>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
+  <ng-template #emptymessage>
     <tr>
       <td colspan="9">Дані відсутні</td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <tr>
       <th style="width: 60px">№</th>
+
       <ng-container *ngFor="let col of columns">
         <th *ngIf="!col.hidden">{{ col.header }}</th>
       </ng-container>
@@ -58,20 +56,26 @@
   <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
     <tr [ngClass]="getBorderStyle(item)">
       <td>{{ rowIndex + 1 }}</td>
-
       <ng-container *ngFor="let col of columns">
         <td *ngIf="!col.hidden">
-          <span *ngIf="col.format">{{ item[col.field] | date : col.format }}</span>
-          <span *ngIf="!col.format">{{ item[col.field] }}</span>
+          <ng-container *ngIf="col.template">
+            <ng-container *ngIf="col.template === 'date'">
+              <span>{{ item[col.field] | date : col.format }}</span>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="!col.template">
+            <span>{{ item[col.field] }}</span>
+          </ng-container>
         </td>
       </ng-container>
     </tr>
   </ng-template>
 </p-table>
-<!-- 
-<div>
-  <p-chart [data]="chartData" />
-</div> -->
+<!--
+    <div>
+      <p-chart [data]="chartData" />
+    </div> -->
+
 <app-remission-form
   *ngIf="showRemissionForm"
   [rangeDates]="rangeDates"

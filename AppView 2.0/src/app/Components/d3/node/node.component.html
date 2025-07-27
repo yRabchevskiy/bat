@@ -1,14 +1,24 @@
 <svg:g [attr.transform]="node.transform"
-(click)="onClick($event)">
-  <svg:circle *ngIf="node.typeOfGraph === 'Pack'" [attr.r]="node.r" fill="#2ca9bc" stroke="#0F0F0F" ></svg:circle>
-  <g *ngIf="node.typeOfGraph === 'Tree'">
-    <svg:rect x="-4" y="-10" width="8" height="20" fill="#2ca9bc" stroke="#0F0F0F" rx="4">
-      <svg:title *ngIf="node.data.position">{{ node.data.position }} : {{ node.data.name }}</svg:title>
-      <svg:title *ngIf="node.data.structure">{{ node.data.name }}</svg:title>
-    </svg:rect>
-  </g>
-  <svg:text fill="#0F0F0F">
-    <!-- {{ node.data.id }} -->
-  </svg:text>
-  <svg:rect *ngIf="node.typeOfGraph === 'Partition'" x="0" y="0" [attr.width]="node.width" [attr.height]="node.height" fill="#2ca9bc" stroke="#0F0F0F" rx="4"></svg:rect>
-</svg:g>
+  (click)="onClick($event)">
+  @if (node.typeOfGraph === 'Pack') {
+    <svg:circle [attr.r]="node.r" fill="#2ca9bc" stroke="#0F0F0F" ></svg:circle>
+    }
+    @if (node.typeOfGraph === 'Tree') {
+      <g>
+        <svg:rect x="-4" y="-10" width="8" height="20" fill="#2ca9bc" stroke="#0F0F0F" rx="4">
+          @if (node.data.position) {
+            <svg:title>{{ node.data.position }} : {{ node.data.name }}</svg:title>
+            }
+            @if (node.data.structure) {
+              <svg:title>{{ node.data.name }}</svg:title>
+              }
+              </svg:rect>
+            </g>
+          }
+          <svg:text fill="#0F0F0F">
+            <!-- {{ node.data.id }} -->
+            </svg:text>
+            @if (node.typeOfGraph === 'Partition') {
+              <svg:rect x="0" y="0" [attr.width]="node.width" [attr.height]="node.height" fill="#2ca9bc" stroke="#0F0F0F" rx="4"></svg:rect>
+              }
+              </svg:g>

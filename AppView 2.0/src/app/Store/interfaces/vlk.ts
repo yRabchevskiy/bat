@@ -1,4 +1,4 @@
-import { ISoldier } from "../soldier/interfaceses";
+import { ISoldier } from "./soldiers";
 
 export interface IVlk {
   _id?: string;

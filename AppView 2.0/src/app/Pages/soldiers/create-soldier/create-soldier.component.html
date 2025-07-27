@@ -44,15 +44,13 @@
               />
             </div>
           </div>
-          <ng-container
-            formArrayName="rank"
-            *ngFor="let item of ranks.controls; let j = index"
-          >
+          @for (item of ranks.controls; track item; let j = $index) {
+          <ng-container formArrayName="rank">
             <ng-container [formGroupName]="j">
               <div class="form_fields_colums_group_2">
                 <div class="form_control_wrapper">
                   <label [for]="j + 'rank'" class="form_label">Звання</label>
-                  <p-dropdown
+                  <p-select
                     [inputId]="j + 'rank'"
                     formControlName="value"
                     [options]="rank_types"
@@ -79,6 +77,7 @@
               </div>
             </ng-container>
           </ng-container>
+          }
           <app-sold-editional-data-form></app-sold-editional-data-form>
         </p-accordion-content>
       </p-accordion-panel>
@@ -87,79 +86,79 @@
         <p-accordion-header>ВЛК</p-accordion-header>
         <p-accordion-content>
           <ng-container formArrayName="vlc">
-            <ng-container *ngFor="let vlc_item of vlcs.controls; let j = index">
-              <ng-container [formGroupName]="j">
-                <div class="form_fields_colums_group_2">
-                  <div class="form_control_wrapper">
-                    <label for="vlc_number" class="form_label"
-                      >Номер наказу</label
-                    >
-                    <input
-                      id="vlc_number"
-                      type="text"
-                      pInputText
-                      formControlName="vlc_number"
-                      class="form_input"
-                    />
-                  </div>
-                  <div class="form_control_wrapper">
-                    <label for="vlc_date" class="form_label"
-                      >Дата проходження</label
-                    >
-                    <p-datepicker
-                      [showIcon]="true"
-                      [showOnFocus]="false"
-                      inputId="vlc_date"
-                      appendTo="body"
-                      formControlName="vlc_date"
-                      class="form_calendar"
-                      placeholder="../../...."
-                      dateFormat="dd/mm/yy"
-                    />
-                  </div>
-                </div>
-                <div class="form_fields_colums_group_2">
-                  <div class="form_control_wrapper">
-                    <label for="hospital_name" class="form_label"
-                      >Місце проходження</label
-                    >
-                    <textarea
-                      id="hospital_name"
-                      rows="4"
-                      cols="30"
-                      pTextarea
-                      formControlName="hospital_name"
-                      class="form_textarea"
-                    >
-                    </textarea>
-                  </div>
-                  <div class="form_control_wrapper">
-                    <label for="diagnosis" class="form_label">Діагноз</label>
-                    <textarea
-                      id="diagnosis"
-                      rows="4"
-                      cols="30"
-                      pTextarea
-                      formControlName="diagnosis"
-                      class="form_textarea"
-                    >
-                    </textarea>
-                  </div>
+            @for (vlc_item of vlcs.controls; track vlc_item; let j = $index) {
+            <ng-container [formGroupName]="j">
+              <div class="form_fields_colums_group_2">
+                <div class="form_control_wrapper">
+                  <label for="vlc_number" class="form_label"
+                    >Номер наказу</label
+                  >
+                  <input
+                    id="vlc_number"
+                    type="text"
+                    pInputText
+                    formControlName="vlc_number"
+                    class="form_input"
+                  />
                 </div>
                 <div class="form_control_wrapper">
-                  <label for="recomendation" class="form_label">Висновок</label>
+                  <label for="vlc_date" class="form_label"
+                    >Дата проходження</label
+                  >
+                  <p-datepicker
+                    [showIcon]="true"
+                    [showOnFocus]="false"
+                    inputId="vlc_date"
+                    appendTo="body"
+                    formControlName="vlc_date"
+                    class="form_calendar"
+                    placeholder="../../...."
+                    dateFormat="dd/mm/yy"
+                  />
+                </div>
+              </div>
+              <div class="form_fields_colums_group_2">
+                <div class="form_control_wrapper">
+                  <label for="hospital_name" class="form_label"
+                    >Місце проходження</label
+                  >
                   <textarea
-                    id="recomendation"
+                    id="hospital_name"
                     rows="4"
                     cols="30"
                     pTextarea
-                    formControlName="recomendation"
+                    formControlName="hospital_name"
                     class="form_textarea"
                   >
                   </textarea>
                 </div>
-              </ng-container>
+                <div class="form_control_wrapper">
+                  <label for="diagnosis" class="form_label">Діагноз</label>
+                  <textarea
+                    id="diagnosis"
+                    rows="4"
+                    cols="30"
+                    pTextarea
+                    formControlName="diagnosis"
+                    class="form_textarea"
+                  >
+                  </textarea>
+                </div>
+              </div>
+              <div class="form_control_wrapper">
+                <label for="recomendation" class="form_label">Висновок</label>
+                <textarea
+                  id="recomendation"
+                  rows="4"
+                  cols="30"
+                  pTextarea
+                  formControlName="recomendation"
+                  class="form_textarea"
+                >
+                </textarea>
+              </div>
             </ng-container>
+            }
             <button class="app_action_button" type="button" (click)="addVlc()">
               Додати ВЛК
             </button>
@@ -170,16 +169,15 @@
         <p-accordion-header>Медичне майно</p-accordion-header>
         <p-accordion-content>
           <ng-container formGroupName="properties">
-            <ng-container
-              formArrayName="med_properties"
-              *ngFor="let item of med_properties.controls; index as i"
-            >
+            @for (item of med_properties.controls; track item; let i = $index) {
+            <ng-container formArrayName="med_properties">
               <app-sold-property-form
                 [id]="i + '_med_property'"
                 [data]="getMedPropertyGroup(i)"
                 (onDelete)="removeMedProperty(i)"
               ></app-sold-property-form>
             </ng-container>
+            }
             <button
               class="app_action_button"
               type="button"
@@ -209,5 +207,8 @@
     ></button>
   </div>
 </form>
-<app-loading *ngIf="loading" />
-<div *ngIf="error">{{ error }}</div>
+@if (loading) {
+<app-loading />
+} @if (error) {
+<div>{{ error }}</div>
+}

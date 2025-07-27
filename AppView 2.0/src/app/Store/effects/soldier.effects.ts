@@ -12,7 +12,6 @@ import { ISoldier } from "../interfaces/soldiers";
 import { selectSoldierList } from "../selectors/soldier.selector";
 import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
-import { getVlksFailure, getVlksSuccess, VLK_ACTIONS } from "../actions/vlk.action";
 import { getHospitalizationsFailure, getHospitalizationsSuccess, HOSPITALIZATION_ACTIONS } from "../actions/hospitalization.action";
 import { IHospitalization } from "../interfaces/hospitalization";
 
@@ -77,18 +76,6 @@ export class SoldierEffects {
       }),
       catchError((error: HttpErrorResponse) => {
         return of(getHospitalizationsFailure({ error: error.error }));
-      })
-    ))
-  ));
-
-  getVlks$ = createEffect(() => this._actions$.pipe(
-    ofType(VLK_ACTIONS.GetVlks),
-    switchMap(() => this._apiService.getVlks().pipe(
-      map((data: IApiRes<any[]>) => {
-        return getVlksSuccess({ data: data.data.reverse() });
-      }),
-      catchError((error: HttpErrorResponse) => {
-        return of(getVlksFailure({ error: error.error }));
       })
     ))
   ));
