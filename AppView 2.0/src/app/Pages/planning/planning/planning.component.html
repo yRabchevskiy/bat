@@ -7,45 +7,45 @@
     [fluid]="true"
     [showTime]="true"
     hourFormat="24"
-    >
+  >
     <ng-template #date let-date>
       <div class="date-wrapper">
         {{ date.day }}
-        @if (getTaskCount(date)) {
-          <span class="task-counter">{{
-            getTaskCount(date)
-          }}</span>
-        }
+        <span class="task-counter" *ngIf="getTaskCount(date)">{{
+          getTaskCount(date)
+        }}</span>
       </div>
     </ng-template>
   </p-datepicker>
-  @if (!showPlanningForm) {
-    <div class="planning-header">
-      <div class="planning-selected-day">Планування на {{ selectedDate | date : "dd.MM.yyyy" }}</div>
-      <button class="add-task" pButton label="Додати завдання" (click)="openPlanningForm()"></button>
+
+  <div class="planning-header" *ngIf="!showPlanningForm">
+    <div class="planning-selected-day">
+      Планування на {{ selectedDate | date : "dd.MM.yyyy" }}
     </div>
-    @if (filteredData && filteredData.length) {
-      <div class="task-list">
-        @for (item of filteredData; track item; let i = $index) {
-          <div class="task-list-item">
-            <span class="task-list-item-index">{{ i + 1 + ")" }}</span>
-            <span>{{ item.planning_date | date : "dd.MM.yyyy" }}</span>
-            <span>{{ item.type }}</span>
-            <span>{{ item.name }}</span>
-          </div>
-        }
-      </div>
-    }
-    @if (!filteredData || !filteredData.length) {
-      <div>
-        Запланованих завдань не має
-      </div>
-    }
-  }
-  @if (showPlanningForm) {
-    <app-planning-form
-      [selectedDate]="selectedDate"
-      (onClose)="closePlanningForm()"
-      />
-  }
+    <button
+      class="add-task"
+      pButton
+      label="Додати завдання"
+      (click)="openPlanningForm()"
+    ></button>
+  </div>
+  <div class="task-list" *ngIf="filteredData && filteredData.length">
+    <div
+      class="task-list-item"
+      *ngFor="let item of filteredData; let i = index"
+    >
+      <span class="task-list-item-index">{{ i + 1 + ")" }}</span>
+      <span>{{ item.planning_date | date : "dd.MM.yyyy" }}</span>
+      <span>{{ item.type }}</span>
+      <span>{{ item.name }}</span>
+    </div>
+  </div>
+  <div *ngIf="!filteredData || !filteredData.length">
+    Запланованих завдань не має
+  </div>
+  <app-planning-form
+    *ngIf="showPlanningForm"
+    [selectedDate]="selectedDate"
+    (onClose)="closePlanningForm()"
+  />
 </div>

@@ -31,6 +31,7 @@ import Aura from '@primeng/themes/aura';
 import { RemissionEffects } from './Store/effects/remission.effects';
 import { PlanningEffects } from './Store/effects/planning.effects';
 import { VlkEffects } from './Store/effects/vlk.effects';
+import { EquipmentEffects } from './Store/effects/equipment.effects';
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent],
@@ -51,6 +52,7 @@ import { VlkEffects } from './Store/effects/vlk.effects';
       RemissionEffects,
       PlanningEffects,
       VlkEffects,
+      EquipmentEffects,
     ]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),

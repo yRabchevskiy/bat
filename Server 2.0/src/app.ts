@@ -11,6 +11,7 @@ import remission from './routes/remission';
 import vlk from './routes/vlk';
 import hospitalization from './routes/hospitalization';
 import planning from './routes/planning';
+import equipment from './routes/equipment';
 
 const cors = require('cors');
 
@@ -30,6 +31,7 @@ app.use('/remission', remission);
 app.use('/planning', planning);
 app.use('/hospitalization', hospitalization);
 app.use('/vlk', vlk);
+app.use('/equipment', equipment);
 app.use('/visit', visits);
 app.use('/structure', structure);
 

@@ -13,7 +13,7 @@ const routes: Routes = [{
     { path: 'soldiers', loadChildren: () => import('../soldiers/soldiers.module').then(m => m.SoldiersModule) },
     // { path: 'visits', loadChildren: () => import('../visits/visits.module').then(m => m.VisitsModule) },
     { path: 'planning', loadChildren: () => import('../planning/planning.module').then(m => m.PlanningModule), canActivateChild: [AuthGuard] },
-    { path: 'inventory', loadChildren: () => import('../drugs/drugs.module').then(m => m.DrugsModule), canActivateChild: [AuthGuard] },
+    { path: 'equipments', loadChildren: () => import('../equipments/equipments.module').then(m => m.EquipmentsModule), canActivateChild: [AuthGuard] },
     // Unexpected URL handling.
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
